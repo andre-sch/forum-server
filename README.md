@@ -22,31 +22,69 @@
   classDiagram
     direction LR
 
-    class User
-    class Role
-    class Permission
+    class User {
+      id: String
+      name: String
+      email: String
+      password: String
+      created_at: int
+    }
 
-    class Admin
-    class Reader
-    class Author
+    class Role {
+      name: String
+      description: String
+      created_at: int
+    }
 
-    class Post
-    class Category
-    class Comment
+    class Permission {
+      name: String
+      description: String
+      created_at: int
+    }
 
-    User -- Role
-    Role -- Permission
-    Permission -- User
+    class Post {
+      id: String
+      title: String
+      content: String
+      created_at: int
+      last_update: int
+    }
 
-    Admin --|> User
-    Reader --|> User
-    Author --|> User
+    class Category {
+      id: String
+      parent_id: String
+      name: String
+      description: String
+      created_at: int
+    }
 
-    Post -- Category
-    Post -- Author
-    Post -- Admin
+    class Comment {
+      id: String
+      parent_id: String
+      user_id: String
+      content: String
+      created_at: int
+      last_update: int
+    }
 
-    Comment -- User
-    Comment -- Post
-    Comment -- Comment: reply
+    class Rank {
+      up_votes: String[]
+      down_votes: String[]
+    }
+
+    User "*" -- "*" Role
+    Role "*" -- "*" Permission
+    Permission "*" -- "*" User
+
+    Comment "*" -- "1" User
+    Post "*" -- "1" User
+
+    Post "*" -- "*" Category
+    Category "*" --o "1" Category: nest
+
+    Post "1" *-- "*" Comment
+    Comment "*" --o "1" Comment: reply
+
+    Comment "1" -- "1" Rank
+    Post "1" -- "1" Rank
 ```
