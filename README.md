@@ -1,4 +1,4 @@
-# Blog
+# Forum
 
 ## Overview
 
@@ -6,7 +6,7 @@
 
 ## Requirements
 
-- The blog system manages users, posts and comments.
+- The forum system manages users, posts and comments.
 - A user contains: id, name, email, password and creation timestamp.
 - The user password must be stored encrypted.
 - The system must have user authentication.
