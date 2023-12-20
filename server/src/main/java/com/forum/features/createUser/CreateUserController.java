@@ -12,11 +12,11 @@ class CreateUserController implements HttpHandler {
   }
 
   public void handle(HttpRequest request, HttpResponse response) {
-    UserCreationRequest creationRequest = jsonConverter.fromJson(request.body(), UserCreationRequest.class);
+    UserCreationRequest creationRequest = this.jsonConverter.fromJson(request.body(), UserCreationRequest.class);
 
-    UserCreationResponse creationResponse = this.createUserService.execute(creationRequest);
+    UserView createdUser = this.createUserService.execute(creationRequest);
 
     response.status(201);
-    response.json(creationResponse);
+    response.json(createdUser);
   };
 }

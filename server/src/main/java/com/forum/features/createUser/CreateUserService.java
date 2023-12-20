@@ -16,7 +16,7 @@ class CreateUserService {
     this.usersRepository = usersRepository;
   }
 
-  public UserCreationResponse execute(UserCreationRequest creationRequest) {
+  public UserView execute(UserCreationRequest creationRequest) {
     // TODO: apenas 1 usuário por email
 
     String passwordHash = this.hashGenerator.generate(creationRequest.password);
@@ -29,6 +29,6 @@ class CreateUserService {
 
     this.usersRepository.create(user);
 
-    return new UserCreationResponse(user);
+    return new UserView(user);
   }
 }
