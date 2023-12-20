@@ -7,17 +7,12 @@ import com.forum.http.HttpHandler;
 
 public class CreateUser {
   private HashGenerator hashGenerator = new BcryptHashGenerator();
-  
-  private UsersRepository usersRepository;
-  private CreateUserService createUserService;
-  private CreateUserController createUserController;
 
   public CreateUser(UsersRepository usersRepository) {
-    this.usersRepository = usersRepository;
-    this.createUserService = new CreateUserService(this.hashGenerator, this.usersRepository);
-    this.createUserController = new CreateUserController(this.createUserService);
+    CreateUserService service = new CreateUserService(this.hashGenerator, usersRepository);
+    CreateUserController controller = new CreateUserController(service);
 
-    this.handler = this.createUserController;
+    this.handler = controller;
   }
 
   public HttpHandler handler;
