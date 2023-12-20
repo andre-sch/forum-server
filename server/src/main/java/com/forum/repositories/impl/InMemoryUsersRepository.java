@@ -9,6 +9,10 @@ import com.forum.repositories.UsersRepository;
 public class InMemoryUsersRepository implements UsersRepository {
   private List<User> users = new ArrayList<User>();
   
+  public List<User> list() {
+    return this.users;
+  }
+
   public void create(User user) {
     this.users.add(user);
   }
