@@ -1,7 +1,6 @@
 package com.forum.features.listUsers;
 
 import java.util.List;
-import com.forum.entities.User;
 import com.forum.http.*;
 
 class ListUsersController implements HttpHandler {
@@ -12,7 +11,7 @@ class ListUsersController implements HttpHandler {
   }
 
   public void handle(HttpRequest request, HttpResponse response) {
-    List<User> users = this.listUsersService.execute();
+    List<UserView> users = this.listUsersService.execute();
     response.json(users);
   };
 }
