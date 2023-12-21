@@ -7,6 +7,7 @@ import com.forum.features.createUser.CreateUser;
 import com.forum.features.listUsers.ListUsers;
 
 import com.forum.features.createPost.CreatePost;
+import com.forum.features.listPosts.ListPosts;
 
 import com.forum.repositories.PostsRepository;
 import com.forum.repositories.UsersRepository;
@@ -26,6 +27,7 @@ public class Main {
 
     PostsRepository postsRepository = new InMemoryPostsRepository();
 
+    app.get("/posts", new ListPosts(postsRepository).handler);
     app.post("/posts", new CreatePost(postsRepository, usersRepository).handler);
   }
 }
