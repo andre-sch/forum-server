@@ -21,9 +21,8 @@
 - A post can be created, updated and deleted by one author.
 - A post contains: id, title, content, timestamps (creation, last update) and comments.
 - A post can be linked to multiple categories, improving search.
-- A category contains: node id, parent id, name, description and creation timestamp.
-- Categories can be nested, grouped into a hierarchy. [?]
-- Sibling categories must have unique names.
+- A category contains: name (unique), description and creation timestamp.
+- Categories must have unique names.
 - Categories can only be created, updated and deleted by admins.
 - A comment contains: node id, parent id, user id, content and timestamps (creation, last update).
 - A comment can be linked to a post directly or indirectly by another comment (as a reply).
@@ -69,8 +68,6 @@
     }
 
     class Category {
-      id: String
-      parent_id: String
       name: String
       description: String
       created_at: int
@@ -98,7 +95,6 @@
     Post "*" -- "1" User
 
     Post "*" -- "*" Category
-    Category "*" --o "1" Category: nest
 
     Post "1" *-- "*" Comment
     Comment "*" --o "1" Comment: reply
