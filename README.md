@@ -91,8 +91,8 @@
     Role "*" -- "*" Permission
     Permission "*" -- "*" User
 
-    Comment "*" -- "1" User
-    Post "*" -- "1" User
+    Comment "*" --* "1" User
+    Post "*" --* "1" User
 
     Post "*" -- "*" Category
 
