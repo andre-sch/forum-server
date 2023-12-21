@@ -3,17 +3,20 @@ package com.forum;
 import com.forum.http.*;
 import com.forum.http.impl.Javalin.*;
 
-import com.forum.features.createUser.CreateUser;
 import com.forum.features.listUsers.ListUsers;
-
-import com.forum.features.createPost.CreatePost;
-import com.forum.features.listPosts.ListPosts;
-
-import com.forum.repositories.PostsRepository;
+import com.forum.features.createUser.CreateUser;
 import com.forum.repositories.UsersRepository;
-
-import com.forum.repositories.impl.InMemoryPostsRepository;
 import com.forum.repositories.impl.InMemoryUsersRepository;
+
+import com.forum.features.listPosts.ListPosts;
+import com.forum.features.createPost.CreatePost;
+import com.forum.repositories.PostsRepository;
+import com.forum.repositories.impl.InMemoryPostsRepository;
+
+import com.forum.features.createCategory.CreateCategory;
+import com.forum.repositories.CategoriesRepository;
+import com.forum.repositories.impl.InMemoryCategoriesRepository;
+
 
 public class Main {
   public static void main(String[] args) {
@@ -29,5 +32,9 @@ public class Main {
 
     app.get("/posts", new ListPosts(postsRepository).handler);
     app.post("/posts", new CreatePost(postsRepository, usersRepository).handler);
+
+    CategoriesRepository categoriesRepository = new InMemoryCategoriesRepository();
+
+    app.post("/categories", new CreateCategory(categoriesRepository).handler);
   }
 }
