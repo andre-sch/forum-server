@@ -8,9 +8,18 @@ import com.forum.repositories.UsersRepository;
 
 public class InMemoryUsersRepository implements UsersRepository {
   private List<User> users = new ArrayList<User>();
-  
+
   public List<User> list() {
     return this.users;
+  }
+
+  public User listOne(String id) {
+    for (User user : this.users) {
+      if (id.equals(user.id)) {
+        return user;
+      }
+    }
+    return null;
   }
 
   public void create(User user) {
