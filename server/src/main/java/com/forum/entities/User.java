@@ -8,7 +8,7 @@ public class User {
   public String name;
   public String email;
   public String password;
-  public long created_at;
+  public int created_at;
 
   public User(String name, String email, String password) {
     UUID uuid = UUID.randomUUID();

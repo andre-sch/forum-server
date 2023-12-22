@@ -9,8 +9,8 @@ public class Post {
   public String content;
   public String author;
   public String[] categories;
-  public long created_at;
-  public long last_update;
+  public int created_at;
+  public int last_update;
 
   public Post(
     String title,
