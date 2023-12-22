@@ -5,19 +5,26 @@ import com.forum.utils.Time;
 
 public class Post {
   public String id;
-  public String author;
   public String title;
   public String content;
+  public String author;
+  public String[] categories;
   public long created_at;
   public long last_update;
 
-  public Post(String author, String title, String content) {
+  public Post(
+    String title,
+    String content,
+    String author,
+    String[] categories
+  ) {
     UUID uuid = UUID.randomUUID();
     this.id = uuid.toString();
 
-    this.author = author;
     this.title = title;
     this.content = content;
+    this.author = author;
+    this.categories = categories;
 
     this.created_at = Time.now();
     this.last_update = Time.now();

@@ -25,16 +25,14 @@ public class Main {
     HttpApp app = server.start(4000);
 
     UsersRepository usersRepository = new InMemoryUsersRepository();
+    PostsRepository postsRepository = new InMemoryPostsRepository();
+    CategoriesRepository categoriesRepository = new InMemoryCategoriesRepository();
 
     app.get("/users", new ListUsers(usersRepository).handler);
     app.post("/users", new CreateUser(usersRepository).handler);
 
-    PostsRepository postsRepository = new InMemoryPostsRepository();
-
     app.get("/posts", new ListPosts(postsRepository).handler);
-    app.post("/posts", new CreatePost(postsRepository, usersRepository).handler);
-
-    CategoriesRepository categoriesRepository = new InMemoryCategoriesRepository();
+    app.post("/posts", new CreatePost(postsRepository, usersRepository, categoriesRepository).handler);
 
     app.get("/categories", new ListCategories(categoriesRepository).handler);
     app.post("/categories", new CreateCategory(categoriesRepository).handler);
