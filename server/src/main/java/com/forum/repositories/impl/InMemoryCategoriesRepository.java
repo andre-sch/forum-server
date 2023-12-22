@@ -9,6 +9,10 @@ import com.forum.repositories.CategoriesRepository;
 public class InMemoryCategoriesRepository implements CategoriesRepository {
   private List<Category> categories = new ArrayList<Category>();
 
+  public List<Category> list() {
+    return this.categories;
+  }
+
   public Category listOne(String name) {
     for (Category category : this.categories) {
       if (name.equals(category.name)) {

@@ -13,6 +13,7 @@ import com.forum.features.createPost.CreatePost;
 import com.forum.repositories.PostsRepository;
 import com.forum.repositories.impl.InMemoryPostsRepository;
 
+import com.forum.features.listCategories.ListCategories;
 import com.forum.features.createCategory.CreateCategory;
 import com.forum.repositories.CategoriesRepository;
 import com.forum.repositories.impl.InMemoryCategoriesRepository;
@@ -35,6 +36,7 @@ public class Main {
 
     CategoriesRepository categoriesRepository = new InMemoryCategoriesRepository();
 
+    app.get("/categories", new ListCategories(categoriesRepository).handler);
     app.post("/categories", new CreateCategory(categoriesRepository).handler);
   }
 }
