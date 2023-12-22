@@ -27,6 +27,6 @@ public class Post {
     this.categories = categories;
 
     this.created_at = Time.now();
-    this.last_update = Time.now();
+    this.last_update = created_at;
   }
 }
