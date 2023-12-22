@@ -8,7 +8,7 @@ public class User {
   public String name;
   public String email;
   public String password;
-  public int created_at;
+  public int createdAt;
 
   public User(String name, String email, String password) {
     UUID uuid = UUID.randomUUID();
@@ -18,6 +18,6 @@ public class User {
     this.email = email;
     this.password = password;
 
-    this.created_at = Time.now();
+    this.createdAt = Time.now();
   }
 }

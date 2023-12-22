@@ -9,8 +9,8 @@ public class Post {
   public String content;
   public String author;
   public String[] categories;
-  public int created_at;
-  public int last_update;
+  public int createdAt;
+  public int lastUpdate;
 
   public Post(
     String title,
@@ -26,7 +26,7 @@ public class Post {
     this.author = author;
     this.categories = categories;
 
-    this.created_at = Time.now();
-    this.last_update = created_at;
+    this.createdAt = Time.now();
+    this.lastUpdate = this.createdAt;
   }
 }

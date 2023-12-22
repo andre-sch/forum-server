@@ -6,9 +6,9 @@ public class Time {
   public static int now() {
     Date date = new Date();
 
-    long timestamp_in_ms = date.getTime();
-    long timestamp_in_seconds = timestamp_in_ms / 1000;
+    long timestampInMs = date.getTime();
+    long timestampInSeconds = timestampInMs / 1000;
 
-    return (int) timestamp_in_seconds;
+    return (int) timestampInSeconds;
   }
 }
