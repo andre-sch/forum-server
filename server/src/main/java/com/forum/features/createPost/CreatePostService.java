@@ -39,9 +39,9 @@ class CreatePostService {
     }
 
     Post post = new Post(
+      creationRequest.author,
       creationRequest.title,
       creationRequest.content,
-      creationRequest.author,
       creationRequest.categories
     );
 

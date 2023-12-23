@@ -42,8 +42,8 @@ class CreateCommentService {
 
     comment = new Comment(
       creationRequest.parentId,
-      creationRequest.content,
-      creationRequest.author
+      creationRequest.author,
+      creationRequest.content
     );
 
     this.commentsRepository.create(comment);
