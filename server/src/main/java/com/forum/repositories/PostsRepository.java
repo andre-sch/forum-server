@@ -5,5 +5,6 @@ import com.forum.entities.Post;
 
 public interface PostsRepository {
   public List<Post> list();
+  public Post listOne(String id);
   public void create(Post post);
 }

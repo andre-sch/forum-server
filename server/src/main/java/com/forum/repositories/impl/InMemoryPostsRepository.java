@@ -13,6 +13,15 @@ public class InMemoryPostsRepository implements PostsRepository {
     return this.posts;
   }
 
+  public Post listOne(String id) {
+    for (Post post : this.posts) {
+      if (id.equals(post.id)) {
+        return post;
+      }
+    }
+    return null;
+  }
+
   public void create(Post post) {
     this.posts.add(post);
   }
