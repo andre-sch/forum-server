@@ -1,6 +1,6 @@
 package com.forum.entities;
 
-import java.util.UUID;
+import java.util.*;
 import com.forum.utils.Time;
 
 public class Comment {

@@ -13,4 +13,8 @@ class JavalinRequest implements HttpRequest {
   public String body() {
     return this.httpContext.body();
   }
+
+  public String getParam(String name) {
+    return this.httpContext.pathParam(name);
+  }
 }

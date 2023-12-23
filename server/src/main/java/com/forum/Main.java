@@ -18,6 +18,7 @@ import com.forum.features.createCategory.CreateCategory;
 import com.forum.repositories.CategoriesRepository;
 import com.forum.repositories.impl.InMemoryCategoriesRepository;
 
+import com.forum.features.listPostComments.ListPostComments;
 import com.forum.features.createComment.CreateComment;
 import com.forum.repositories.CommentsRepository;
 import com.forum.repositories.impl.InMemoryCommentsRepository;
@@ -41,6 +42,7 @@ public class Main {
     app.get("/categories", new ListCategories(categoriesRepository).handler);
     app.post("/categories", new CreateCategory(categoriesRepository).handler);
 
+    app.get("/posts/{postId}/comments", new ListPostComments(commentsRepository).handler);
     app.post("/comments", new CreateComment(commentsRepository, usersRepository, postsRepository).handler);
   }
 }
