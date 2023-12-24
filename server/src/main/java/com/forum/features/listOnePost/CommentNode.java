@@ -1,4 +1,4 @@
-package com.forum.features.listPostComments;
+package com.forum.features.listOnePost;
 
 import java.util.List;
 import java.util.LinkedList;

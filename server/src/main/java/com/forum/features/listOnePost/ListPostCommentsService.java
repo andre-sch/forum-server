@@ -1,4 +1,4 @@
-package com.forum.features.listPostComments;
+package com.forum.features.listOnePost;
 
 import java.util.*;
 import com.forum.entities.Comment;
@@ -11,8 +11,8 @@ class ListPostCommentsService {
     this.commentsRepository = commentsRepository;
   }
 
-  public List<CommentNode> execute(PostCommentsListingRequest listingRequest) {
-    List<Comment> rootComments = this.getRepliesFrom(listingRequest.postId);
+  public List<CommentNode> execute(String postId) {
+    List<Comment> rootComments = this.getRepliesFrom(postId);
     List<CommentNode> listOfComments = rootComments.stream().map(CommentNode::new).toList();
     this.populateCommentReplies(listOfComments);
 
