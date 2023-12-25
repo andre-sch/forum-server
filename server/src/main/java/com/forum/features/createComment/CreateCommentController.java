@@ -6,14 +6,14 @@ import com.google.gson.Gson;
 
 class CreateCommentController implements HttpHandler {
   private CreateCommentService createCommentService;
-  private Gson jsonParser = new Gson();
+  private Gson jsonConverter = new Gson();
 
   public CreateCommentController(CreateCommentService service) {
     this.createCommentService = service;
   }
 
   public void handle(HttpRequest request, HttpResponse response) {
-    CommentCreationRequest creationRequest = this.jsonParser.fromJson(request.body(), CommentCreationRequest.class);
+    CommentCreationRequest creationRequest = this.jsonConverter.fromJson(request.body(), CommentCreationRequest.class);
 
     Comment createdComment = this.createCommentService.execute(creationRequest);
 
