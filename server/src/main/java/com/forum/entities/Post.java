@@ -9,6 +9,7 @@ public class Post {
   public String title;
   public String content;
   public String[] categories;
+  public Rank rank;
   public int createdAt;
   public int lastUpdate;
 
@@ -25,6 +26,8 @@ public class Post {
     this.title = title;
     this.content = content;
     this.categories = categories;
+
+    this.rank = new Rank();
 
     this.createdAt = Time.now();
     this.lastUpdate = this.createdAt;

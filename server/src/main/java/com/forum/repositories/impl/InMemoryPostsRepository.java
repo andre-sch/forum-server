@@ -25,4 +25,10 @@ public class InMemoryPostsRepository implements PostsRepository {
   public void create(Post post) {
     this.posts.add(post);
   }
+
+  public void update(Post newPost) {
+    Post oldPost = this.listOne(newPost.id);
+    int index = this.posts.indexOf(oldPost);
+    this.posts.set(index, newPost);
+  }
 }
