@@ -7,7 +7,7 @@
 ## Requirements
 
 - The forum system manages users, posts and comments.
-- A user contains: id, name, email, password and creation timestamp.
+- A user contains: id, name, email (unique), password, avatar url and creation timestamp.
 - The user password must be stored encrypted.
 - The system must have user authentication.
 - The system must have access control.
