@@ -7,7 +7,7 @@
 ## Requirements
 
 - The forum system manages users, posts and comments.
-- A user contains: id, name, email, password and creation timestamp.
+- A user contains: id, name, email (unique), password, avatar url and creation timestamp.
 - The user password must be stored encrypted.
 - The system must have user authentication.
 - The system must have access control.
@@ -44,6 +44,7 @@
       name: String
       email: String
       password: String
+      avatar_url: String
       created_at: int
     }
 
@@ -61,6 +62,7 @@
 
     class Post {
       id: String
+      author: String
       title: String
       content: String
       created_at: int
@@ -76,7 +78,7 @@
     class Comment {
       id: String
       parent_id: String
-      user_id: String
+      author: String
       content: String
       created_at: int
       last_update: int
