@@ -6,7 +6,7 @@ class UserView {
   public String id;
   public String name;
   public String email;
-  public long createdAt;
+  public int createdAt;
 
   public UserView(User user) {
     this.id = user.id;

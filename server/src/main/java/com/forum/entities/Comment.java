@@ -9,8 +9,8 @@ public class Comment {
   public String author;
   public String content;
   public Rank rank;
-  public long createdAt;
-  public long lastUpdate;
+  public int createdAt;
+  public int lastUpdate;
 
   public Comment(
     String parentId,

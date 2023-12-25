@@ -10,8 +10,8 @@ class CommentNode {
   public String author;
   public String content;
   public Rank rank;
-  public long createdAt;
-  public long lastUpdate;
+  public int createdAt;
+  public int lastUpdate;
   public List<CommentNode> replies;
 
   public CommentNode(Comment comment) {
