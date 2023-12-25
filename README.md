@@ -62,6 +62,7 @@
 
     class Post {
       id: String
+      author: String
       title: String
       content: String
       created_at: int
@@ -79,7 +80,7 @@
     class Comment {
       id: String
       parent_id: String
-      user_id: String
+      author: String
       content: String
       created_at: int
       last_update: int
