@@ -24,7 +24,8 @@ class CreateUserService {
     User user = new User(
       creationRequest.name,
       creationRequest.email,
-      passwordHash
+      passwordHash,
+      creationRequest.avatarUrl
     );
 
     this.usersRepository.create(user);
