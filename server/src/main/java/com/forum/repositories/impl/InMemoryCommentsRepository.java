@@ -30,4 +30,10 @@ public class InMemoryCommentsRepository implements CommentsRepository {
   public void create(Comment comment) {
     this.comments.add(comment);
   }
+
+  public void update(Comment newComment) {
+    Comment oldComment = this.listOne(newComment.id);
+    int index = this.comments.indexOf(oldComment);
+    this.comments.set(index, newComment);
+  }
 }

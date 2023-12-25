@@ -8,6 +8,7 @@ public class Comment {
   public String parentId;
   public String author;
   public String content;
+  public Rank rank;
   public long createdAt;
   public long lastUpdate;
 
@@ -22,6 +23,8 @@ public class Comment {
     this.parentId = parentId;
     this.author = author;
     this.content = content;
+
+    this.rank = new Rank();
 
     this.createdAt = Time.now();
     this.lastUpdate = this.createdAt;

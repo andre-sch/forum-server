@@ -9,4 +9,5 @@ public interface CommentsRepository {
   public List<Comment> list(Predicate<Comment> filter);
   public Comment listOne(String id);
   public void create(Comment comment);
+  public void update(Comment newComment);
 }

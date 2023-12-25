@@ -21,6 +21,7 @@ import com.forum.repositories.CategoriesRepository;
 import com.forum.repositories.impl.InMemoryCategoriesRepository;
 
 import com.forum.features.createComment.CreateComment;
+import com.forum.features.rankComment.RankComment;
 import com.forum.repositories.CommentsRepository;
 import com.forum.repositories.impl.InMemoryCommentsRepository;
 
@@ -41,10 +42,12 @@ public class Main {
     app.get("/posts/{postId}", new ListOnePost(postsRepository, commentsRepository).handler);
 
     app.post("/posts", new CreatePost(postsRepository, usersRepository, categoriesRepository).handler);
-    app.post("/comments", new CreateComment(commentsRepository, usersRepository, postsRepository).handler);
-
     app.put("/posts/{postId}/upvote", new RankPost("upvote", postsRepository).handler);
     app.put("/posts/{postId}/downvote", new RankPost("downvote", postsRepository).handler);
+
+    app.post("/comments", new CreateComment(commentsRepository, usersRepository, postsRepository).handler);
+    app.put("/comments/{commentId}/upvote", new RankComment("upvote", commentsRepository).handler);
+    app.put("/comments/{commentId}/downvote", new RankComment("downvote", commentsRepository).handler);
 
     app.get("/categories", new ListCategories(categoriesRepository).handler);
     app.post("/categories", new CreateCategory(categoriesRepository).handler);
