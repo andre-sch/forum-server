@@ -1,8 +1,8 @@
 package com.forum.features.createPost;
 
 class PostCreationRequest {
-  String title;
-  String content;
-  String author;
-  String[] categories;
+  public String title;
+  public String content;
+  public String author;
+  public String[] categories;
 }
