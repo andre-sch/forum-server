@@ -11,7 +11,6 @@ import com.forum.features.listPosts.ListPosts;
 import com.forum.features.listOnePost.ListOnePost;
 import com.forum.features.createPost.CreatePost;
 import com.forum.features.rankPost.RankPost;
-import com.forum.repositories.PostsRepository;
 import com.forum.repositories.impl.InMemoryPostsRepository;
 
 import com.forum.features.listCategories.ListCategories;
@@ -33,7 +32,7 @@ public class Main {
     HttpApp app = server.start(4000);
 
     Repository<User> usersRepository = new InMemoryUsersRepository();
-    PostsRepository postsRepository = new InMemoryPostsRepository();
+    Repository<Post> postsRepository = new InMemoryPostsRepository();
     CommentsRepository commentsRepository = new InMemoryCommentsRepository();
     CategoriesRepository categoriesRepository = new InMemoryCategoriesRepository();
 

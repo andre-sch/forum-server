@@ -2,14 +2,14 @@ package com.forum.features.listOnePost;
 
 import java.util.List;
 import com.forum.entities.Post;
-import com.forum.repositories.PostsRepository;
+import com.forum.repositories.Repository;
 
 class ListOnePostService {
-  private PostsRepository postsRepository;
+  private Repository<Post> postsRepository;
   private ListPostCommentsService listPostCommentsService;
 
   public ListOnePostService(
-    PostsRepository postsRepository,
+    Repository<Post> postsRepository,
     ListPostCommentsService listPostCommentsService
   ) {
     this.postsRepository = postsRepository;

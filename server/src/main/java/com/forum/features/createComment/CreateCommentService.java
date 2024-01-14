@@ -9,12 +9,12 @@ import com.forum.repositories.*;
 class CreateCommentService {
   private CommentsRepository commentsRepository;
   private Repository<User> usersRepository;
-  private PostsRepository postsRepository;
+  private Repository<Post> postsRepository;
 
   public CreateCommentService(
     CommentsRepository commentsRepository,
     Repository<User> usersRepository,
-    PostsRepository postsRepository
+    Repository<Post> postsRepository
   ) {
     this.commentsRepository = commentsRepository;
     this.usersRepository = usersRepository;

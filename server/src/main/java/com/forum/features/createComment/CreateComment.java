@@ -8,7 +8,7 @@ public class CreateComment {
   public CreateComment(
     CommentsRepository commentsRepository,
     Repository<User> usersRepository,
-    PostsRepository postsRepository
+    Repository<Post> postsRepository
   ) {
     CreateCommentService service = new CreateCommentService(
       commentsRepository,

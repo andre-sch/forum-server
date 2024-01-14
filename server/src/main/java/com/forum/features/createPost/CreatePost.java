@@ -6,7 +6,7 @@ import com.forum.entities.*;
 
 public class CreatePost {
   public CreatePost(
-    PostsRepository postsRepository,
+    Repository<Post> postsRepository,
     Repository<User> usersRepository,
     CategoriesRepository categoriesRepository
   ) {

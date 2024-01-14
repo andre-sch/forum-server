@@ -4,12 +4,12 @@ import com.forum.repositories.*;
 import com.forum.entities.*;
 
 class CreatePostService {
-  private PostsRepository postsRepository;
+  private Repository<Post> postsRepository;
   private Repository<User> usersRepository;
   private CategoriesRepository categoriesRepository;
 
   public CreatePostService(
-    PostsRepository postsRepository,
+    Repository<Post> postsRepository,
     Repository<User> usersRepository,
     CategoriesRepository categoriesRepository
   ) {
