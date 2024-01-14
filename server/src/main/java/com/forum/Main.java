@@ -5,21 +5,21 @@ import com.forum.http.impl.Javalin.*;
 
 import com.forum.features.listUsers.ListUsers;
 import com.forum.features.createUser.CreateUser;
-import com.forum.repositories.impl.InMemoryUsersRepository;
+import com.forum.repositories.impl.memo.InMemoryUsersRepository;
 
 import com.forum.features.listPosts.ListPosts;
 import com.forum.features.listOnePost.ListOnePost;
 import com.forum.features.createPost.CreatePost;
 import com.forum.features.rankPost.RankPost;
-import com.forum.repositories.impl.InMemoryPostsRepository;
+import com.forum.repositories.impl.memo.InMemoryPostsRepository;
 
 import com.forum.features.listCategories.ListCategories;
 import com.forum.features.createCategory.CreateCategory;
-import com.forum.repositories.impl.InMemoryCategoriesRepository;
+import com.forum.repositories.impl.memo.InMemoryCategoriesRepository;
 
 import com.forum.features.createComment.CreateComment;
 import com.forum.features.rankComment.RankComment;
-import com.forum.repositories.impl.InMemoryCommentsRepository;
+import com.forum.repositories.impl.memo.InMemoryCommentsRepository;
 
 import com.forum.repositories.Repository;
 import com.forum.entities.*;

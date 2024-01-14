@@ -1,4 +1,4 @@
-package com.forum.repositories.impl;
+package com.forum.repositories.impl.memo;
 
 import java.util.*;
 import java.util.function.Predicate;
