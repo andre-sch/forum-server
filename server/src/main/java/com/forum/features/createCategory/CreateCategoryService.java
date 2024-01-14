@@ -22,7 +22,7 @@ class CreateCategoryService {
       creationRequest.description
     );
 
-    this.categoriesRepository.create(category);
+    this.categoriesRepository.save(category);
 
     return category;
   }

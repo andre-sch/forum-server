@@ -28,7 +28,7 @@ class CreateUserService {
       creationRequest.avatarUrl
     );
 
-    this.usersRepository.create(user);
+    this.usersRepository.save(user);
 
     return new UserView(user);
   }

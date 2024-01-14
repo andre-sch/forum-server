@@ -40,7 +40,7 @@ class CreatePostService {
       creationRequest.categories
     );
 
-    this.postsRepository.create(post);
+    this.postsRepository.save(post);
 
     return post;
   }
