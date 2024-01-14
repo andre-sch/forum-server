@@ -6,12 +6,12 @@ import com.forum.entities.*;
 class CreatePostService {
   private Repository<Post> postsRepository;
   private Repository<User> usersRepository;
-  private CategoriesRepository categoriesRepository;
+  private Repository<Category> categoriesRepository;
 
   public CreatePostService(
     Repository<Post> postsRepository,
     Repository<User> usersRepository,
-    CategoriesRepository categoriesRepository
+    Repository<Category> categoriesRepository
   ) {
     this.postsRepository = postsRepository;
     this.usersRepository = usersRepository;

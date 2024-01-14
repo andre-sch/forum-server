@@ -8,7 +8,7 @@ public class CreatePost {
   public CreatePost(
     Repository<Post> postsRepository,
     Repository<User> usersRepository,
-    CategoriesRepository categoriesRepository
+    Repository<Category> categoriesRepository
   ) {
     CreatePostService service = new CreatePostService(
       postsRepository,

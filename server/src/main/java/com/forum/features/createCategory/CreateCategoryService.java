@@ -1,12 +1,12 @@
 package com.forum.features.createCategory;
 
 import com.forum.entities.Category;
-import com.forum.repositories.CategoriesRepository;
+import com.forum.repositories.Repository;
 
 class CreateCategoryService {
-  private CategoriesRepository categoriesRepository;
+  private Repository<Category> categoriesRepository;
 
-  public CreateCategoryService(CategoriesRepository categoriesRepository) {
+  public CreateCategoryService(Repository<Category> categoriesRepository) {
     this.categoriesRepository = categoriesRepository;
   }
 

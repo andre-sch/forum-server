@@ -15,7 +15,6 @@ import com.forum.repositories.impl.InMemoryPostsRepository;
 
 import com.forum.features.listCategories.ListCategories;
 import com.forum.features.createCategory.CreateCategory;
-import com.forum.repositories.CategoriesRepository;
 import com.forum.repositories.impl.InMemoryCategoriesRepository;
 
 import com.forum.features.createComment.CreateComment;
@@ -33,7 +32,7 @@ public class Main {
     Repository<User> usersRepository = new InMemoryUsersRepository();
     Repository<Post> postsRepository = new InMemoryPostsRepository();
     Repository<Comment> commentsRepository = new InMemoryCommentsRepository();
-    CategoriesRepository categoriesRepository = new InMemoryCategoriesRepository();
+    Repository<Category> categoriesRepository = new InMemoryCategoriesRepository();
 
     app.get("/users", new ListUsers(usersRepository).handler);
     app.post("/users", new CreateUser(usersRepository).handler);
