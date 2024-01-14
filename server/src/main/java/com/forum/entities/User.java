@@ -4,27 +4,29 @@ import java.util.UUID;
 import com.forum.utils.Time;
 
 public class User {
-  public String id;
-  public String name;
-  public String email;
-  public String password;
-  public String avatarUrl;
-  public int createdAt;
+  private String id;
+  private String name;
+  private String email;
+  private String password;
+  private String avatarUrl;
+  private int createdAt;
 
-  public User(
-    String name,
-    String email,
-    String password,
-    String avatarUrl
-  ) {
+  public User() {
     UUID uuid = UUID.randomUUID();
     this.id = uuid.toString();
 
-    this.name = name;
-    this.email = email;
-    this.password = password;
-    this.avatarUrl = avatarUrl;
-
     this.createdAt = Time.now();
   }
+
+  public String getId() { return this.id; }
+  public String getName() { return this.name; }
+  public String getEmail() { return this.email; }
+  public String getPassword() { return this.password; }
+  public String getAvatarUrl() { return this.avatarUrl; }
+  public int getCreationTimestamp() { return this.createdAt; }
+
+  public void setName(String name) { this.name = name; }
+  public void setEmail(String email) { this.email = email; }
+  public void setPassword(String password) { this.password = password; }
+  public void setAvatarUrl(String avatarUrl) { this.avatarUrl = avatarUrl; }
 }

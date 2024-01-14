@@ -10,10 +10,10 @@ class UserView {
   public int createdAt;
 
   public UserView(User user) {
-    this.id = user.id;
-    this.name = user.name;
-    this.email = user.email;
-    this.avatarUrl = user.avatarUrl;
-    this.createdAt = user.createdAt;
+    this.id = user.getId();
+    this.name = user.getName();
+    this.email = user.getEmail();
+    this.avatarUrl = user.getAvatarUrl();
+    this.createdAt = user.getCreationTimestamp();
   }
 }

@@ -21,12 +21,11 @@ class CreateUserService {
 
     String passwordHash = this.hashGenerator.generate(creationRequest.password);
 
-    User user = new User(
-      creationRequest.name,
-      creationRequest.email,
-      passwordHash,
-      creationRequest.avatarUrl
-    );
+    User user = new User();
+    user.setName(creationRequest.name);
+    user.setEmail(creationRequest.email);
+    user.setPassword(passwordHash);
+    user.setAvatarUrl(creationRequest.avatarUrl);
 
     this.usersRepository.save(user);
 
