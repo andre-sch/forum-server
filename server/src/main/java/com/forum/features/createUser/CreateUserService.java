@@ -1,16 +1,16 @@
 package com.forum.features.createUser;
 
 import com.forum.entities.User;
-import com.forum.repositories.UsersRepository;
+import com.forum.repositories.Repository;
 import com.forum.security.HashGenerator;
 
 class CreateUserService {
   private HashGenerator hashGenerator;
-  private UsersRepository usersRepository;
+  private Repository<User> usersRepository;
 
   public CreateUserService(
     HashGenerator hashGenerator,
-    UsersRepository usersRepository
+    Repository<User> usersRepository
   ) {
     this.hashGenerator = hashGenerator;
     this.usersRepository = usersRepository;

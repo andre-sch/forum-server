@@ -4,18 +4,16 @@ import com.forum.entities.Comment;
 import com.forum.entities.User;
 import com.forum.entities.Post;
 
-import com.forum.repositories.CommentsRepository;
-import com.forum.repositories.UsersRepository;
-import com.forum.repositories.PostsRepository;
+import com.forum.repositories.*;
 
 class CreateCommentService {
   private CommentsRepository commentsRepository;
-  private UsersRepository usersRepository;
+  private Repository<User> usersRepository;
   private PostsRepository postsRepository;
 
   public CreateCommentService(
     CommentsRepository commentsRepository,
-    UsersRepository usersRepository,
+    Repository<User> usersRepository,
     PostsRepository postsRepository
   ) {
     this.commentsRepository = commentsRepository;

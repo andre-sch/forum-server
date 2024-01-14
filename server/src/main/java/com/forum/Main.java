@@ -5,7 +5,6 @@ import com.forum.http.impl.Javalin.*;
 
 import com.forum.features.listUsers.ListUsers;
 import com.forum.features.createUser.CreateUser;
-import com.forum.repositories.UsersRepository;
 import com.forum.repositories.impl.InMemoryUsersRepository;
 
 import com.forum.features.listPosts.ListPosts;
@@ -25,12 +24,15 @@ import com.forum.features.rankComment.RankComment;
 import com.forum.repositories.CommentsRepository;
 import com.forum.repositories.impl.InMemoryCommentsRepository;
 
+import com.forum.repositories.Repository;
+import com.forum.entities.*;
+
 public class Main {
   public static void main(String[] args) {
     HttpServer server = new JavalinServer();
     HttpApp app = server.start(4000);
 
-    UsersRepository usersRepository = new InMemoryUsersRepository();
+    Repository<User> usersRepository = new InMemoryUsersRepository();
     PostsRepository postsRepository = new InMemoryPostsRepository();
     CommentsRepository commentsRepository = new InMemoryCommentsRepository();
     CategoriesRepository categoriesRepository = new InMemoryCategoriesRepository();

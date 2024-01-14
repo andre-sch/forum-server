@@ -1,21 +1,16 @@
 package com.forum.features.createPost;
 
-import com.forum.entities.Post;
-import com.forum.entities.User;
-import com.forum.entities.Category;
-
-import com.forum.repositories.PostsRepository;
-import com.forum.repositories.UsersRepository;
-import com.forum.repositories.CategoriesRepository;
+import com.forum.repositories.*;
+import com.forum.entities.*;
 
 class CreatePostService {
   private PostsRepository postsRepository;
-  private UsersRepository usersRepository;
+  private Repository<User> usersRepository;
   private CategoriesRepository categoriesRepository;
 
   public CreatePostService(
     PostsRepository postsRepository,
-    UsersRepository usersRepository,
+    Repository<User> usersRepository,
     CategoriesRepository categoriesRepository
   ) {
     this.postsRepository = postsRepository;
