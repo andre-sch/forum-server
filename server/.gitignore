@@ -1,2 +1,9 @@
-target/
+# editor files
 .idea/
+
+# build files
+target/
+
+# config files
+flyway.conf
+persistence.xml
