@@ -20,7 +20,6 @@ import com.forum.repositories.impl.InMemoryCategoriesRepository;
 
 import com.forum.features.createComment.CreateComment;
 import com.forum.features.rankComment.RankComment;
-import com.forum.repositories.CommentsRepository;
 import com.forum.repositories.impl.InMemoryCommentsRepository;
 
 import com.forum.repositories.Repository;
@@ -33,7 +32,7 @@ public class Main {
 
     Repository<User> usersRepository = new InMemoryUsersRepository();
     Repository<Post> postsRepository = new InMemoryPostsRepository();
-    CommentsRepository commentsRepository = new InMemoryCommentsRepository();
+    Repository<Comment> commentsRepository = new InMemoryCommentsRepository();
     CategoriesRepository categoriesRepository = new InMemoryCategoriesRepository();
 
     app.get("/users", new ListUsers(usersRepository).handler);

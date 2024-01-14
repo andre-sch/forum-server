@@ -1,13 +1,13 @@
 package com.forum.features.listOnePost;
 
 import java.util.*;
+import com.forum.repositories.Repository;
 import com.forum.entities.Comment;
-import com.forum.repositories.CommentsRepository;
 
 class ListPostCommentsService {
-  private CommentsRepository commentsRepository;
+  private Repository<Comment> commentsRepository;
 
-  public ListPostCommentsService(CommentsRepository commentsRepository) {
+  public ListPostCommentsService(Repository<Comment> commentsRepository) {
     this.commentsRepository = commentsRepository;
   }
 

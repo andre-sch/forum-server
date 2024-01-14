@@ -1,14 +1,14 @@
 package com.forum.features.listOnePost;
 
 import com.forum.http.HttpHandler;
-import com.forum.repositories.CommentsRepository;
 import com.forum.repositories.Repository;
 import com.forum.entities.Post;
+import com.forum.entities.Comment;
 
 public class ListOnePost {
   public ListOnePost(
     Repository<Post> postsRepository,
-    CommentsRepository commentsRepository
+    Repository<Comment> commentsRepository
   ) {
     ListOnePostService service = new ListOnePostService(
       postsRepository,

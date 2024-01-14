@@ -7,12 +7,12 @@ import com.forum.entities.Post;
 import com.forum.repositories.*;
 
 class CreateCommentService {
-  private CommentsRepository commentsRepository;
+  private Repository<Comment> commentsRepository;
   private Repository<User> usersRepository;
   private Repository<Post> postsRepository;
 
   public CreateCommentService(
-    CommentsRepository commentsRepository,
+    Repository<Comment> commentsRepository,
     Repository<User> usersRepository,
     Repository<Post> postsRepository
   ) {
@@ -44,7 +44,7 @@ class CreateCommentService {
       creationRequest.content
     );
 
-    this.commentsRepository.create(comment);
+    this.commentsRepository.save(comment);
 
     return comment;
   }

@@ -1,12 +1,12 @@
 package com.forum.features.rankComment;
 
 import com.forum.entities.Comment;
-import com.forum.repositories.CommentsRepository;
+import com.forum.repositories.Repository;
 
 class RankCommentService {
-  private CommentsRepository commentsRepository;
+  private Repository<Comment> commentsRepository;
 
-  public RankCommentService(CommentsRepository commentsRepository) {
+  public RankCommentService(Repository<Comment> commentsRepository) {
     this.commentsRepository = commentsRepository;
   }
 

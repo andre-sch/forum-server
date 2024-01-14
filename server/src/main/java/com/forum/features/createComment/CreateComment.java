@@ -6,7 +6,7 @@ import com.forum.entities.*;
 
 public class CreateComment {
   public CreateComment(
-    CommentsRepository commentsRepository,
+    Repository<Comment> commentsRepository,
     Repository<User> usersRepository,
     Repository<Post> postsRepository
   ) {
