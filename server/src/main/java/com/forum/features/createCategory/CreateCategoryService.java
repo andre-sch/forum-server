@@ -17,10 +17,9 @@ class CreateCategoryService {
       throw new Error("category already exists");
     }
 
-    category = new Category(
-      creationRequest.name,
-      creationRequest.description
-    );
+    category = new Category();
+    category.setName(creationRequest.name);
+    category.setDescription(creationRequest.description);
 
     this.categoriesRepository.save(category);
 

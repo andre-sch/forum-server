@@ -3,13 +3,18 @@ package com.forum.entities;
 import com.forum.utils.Time;
 
 public class Category {
-  public String name;
-  public String description;
-  public int createdAt;
+  private String name;
+  private String description;
+  private int createdAt;
 
-  public Category(String name, String description) {
-    this.name = name;
-    this.description = description;
+  public Category() {
     this.createdAt = Time.now();
   }
+
+  public String getName() { return this.name; }
+  public String getDescription() { return this.description; }
+  public int getCreationTimestamp() { return this.createdAt; }
+
+  public void setName(String name) { this.name = name; }
+  public void setDescription(String description) { this.description = description; }
 }
