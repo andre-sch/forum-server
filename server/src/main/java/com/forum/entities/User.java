@@ -3,7 +3,12 @@ package com.forum.entities;
 import java.util.UUID;
 import com.forum.utils.Time;
 
+import jakarta.persistence.*;
+
+@Entity
+@Table(name = "users")
 public class User {
+  @Id
   private String id;
   private String name;
   private String email;

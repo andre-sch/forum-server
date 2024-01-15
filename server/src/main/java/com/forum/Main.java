@@ -5,7 +5,6 @@ import com.forum.http.impl.Javalin.*;
 
 import com.forum.features.listUsers.ListUsers;
 import com.forum.features.createUser.CreateUser;
-import com.forum.repositories.impl.memo.InMemoryUsersRepository;
 
 import com.forum.features.listPosts.ListPosts;
 import com.forum.features.listOnePost.ListOnePost;
@@ -21,15 +20,18 @@ import com.forum.features.createComment.CreateComment;
 import com.forum.features.rankComment.RankComment;
 import com.forum.repositories.impl.memo.InMemoryCommentsRepository;
 
+import com.forum.repositories.impl.hibernate.*;
 import com.forum.repositories.Repository;
 import com.forum.entities.*;
 
 public class Main {
   public static void main(String[] args) {
+    var transaction = new Transaction("com.forum");
+
     HttpServer server = new JavalinServer();
     HttpApp app = server.start(4000);
 
-    Repository<User> usersRepository = new InMemoryUsersRepository();
+    Repository<User> usersRepository = new HibernateUsersRepository(transaction);
     Repository<Post> postsRepository = new InMemoryPostsRepository();
     Repository<Comment> commentsRepository = new InMemoryCommentsRepository();
     Repository<Category> categoriesRepository = new InMemoryCategoriesRepository();
