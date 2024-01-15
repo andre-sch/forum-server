@@ -1,8 +1,12 @@
 package com.forum.entities;
 
 import com.forum.utils.Time;
+import jakarta.persistence.*;
 
+@Entity
+@Table(name = "categories")
 public class Category {
+  @Id
   private String name;
   private String description;
   private int createdAt;
