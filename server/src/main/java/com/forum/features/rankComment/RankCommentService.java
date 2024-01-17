@@ -17,7 +17,7 @@ class RankCommentService {
       throw new Error("Comment does not exist");
     }
 
-    comment.rank.vote(rankingRequest.userId, rankingRequest.vote);
+    // comment.rank.vote(rankingRequest.userId, rankingRequest.vote);
 
     this.commentsRepository.update(comment);
 

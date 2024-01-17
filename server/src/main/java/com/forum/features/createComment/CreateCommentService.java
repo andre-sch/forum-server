@@ -1,9 +1,6 @@
 package com.forum.features.createComment;
 
-import com.forum.entities.Comment;
-import com.forum.entities.User;
-import com.forum.entities.Post;
-
+import com.forum.entities.*;
 import com.forum.repositories.*;
 
 class CreateCommentService {
@@ -22,27 +19,26 @@ class CreateCommentService {
   }
 
   public Comment execute(CommentCreationRequest creationRequest) {
-    User author = this.usersRepository.listOne(creationRequest.author);
+    User author = this.usersRepository.listOne(creationRequest.authorId);
 
     if (author == null) {
       throw new Error("author does not exist");
     }
 
-    Comment comment = this.commentsRepository.listOne(creationRequest.parentId);
+    Contribution parent = this.commentsRepository.listOne(creationRequest.parentId);
 
-    if (comment == null) {
-      Post post = this.postsRepository.listOne(creationRequest.parentId);
+    if (parent == null) {
+      parent = this.postsRepository.listOne(creationRequest.parentId);
 
-      if (post == null) {
+      if (parent == null) {
         throw new Error("comment has no parent");
       }
     }
 
-    comment = new Comment(
-      creationRequest.parentId,
-      creationRequest.author,
-      creationRequest.content
-    );
+    Comment comment = new Comment();
+    comment.setAuthor(author);
+    comment.setParent(parent);
+    comment.setContent(creationRequest.content);
 
     this.commentsRepository.save(comment);
 

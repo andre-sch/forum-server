@@ -16,8 +16,9 @@ class CreateCommentController implements HttpHandler {
     CommentCreationRequest creationRequest = this.jsonConverter.fromJson(request.body(), CommentCreationRequest.class);
 
     Comment createdComment = this.createCommentService.execute(creationRequest);
+    CommentView createdCommentView = new CommentView(createdComment);
 
     response.status(201);
-    response.json(createdComment);
+    response.json(createdCommentView);
   }
 }

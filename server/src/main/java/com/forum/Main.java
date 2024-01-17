@@ -17,7 +17,6 @@ import com.forum.features.createCategory.CreateCategory;
 
 import com.forum.features.createComment.CreateComment;
 import com.forum.features.rankComment.RankComment;
-import com.forum.repositories.impl.memo.InMemoryCommentsRepository;
 
 import com.forum.repositories.impl.hibernate.*;
 import com.forum.repositories.Repository;
@@ -32,7 +31,7 @@ public class Main {
 
     Repository<User> usersRepository = new HibernateUsersRepository(transaction);
     Repository<Post> postsRepository = new InMemoryPostsRepository();
-    Repository<Comment> commentsRepository = new InMemoryCommentsRepository();
+    Repository<Comment> commentsRepository = new HibernateCommentsRepository(transaction);
     Repository<Category> categoriesRepository = new HibernateCategoriesRepository(transaction);
 
     app.get("/users", new ListUsers(usersRepository).handler);
