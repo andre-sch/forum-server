@@ -10,7 +10,6 @@ import com.forum.features.listPosts.ListPosts;
 import com.forum.features.listOnePost.ListOnePost;
 import com.forum.features.createPost.CreatePost;
 import com.forum.features.rankPost.RankPost;
-import com.forum.repositories.impl.memo.InMemoryPostsRepository;
 
 import com.forum.features.listCategories.ListCategories;
 import com.forum.features.createCategory.CreateCategory;
@@ -30,7 +29,7 @@ public class Main {
     HttpApp app = server.start(4000);
 
     Repository<User> usersRepository = new HibernateUsersRepository(transaction);
-    Repository<Post> postsRepository = new InMemoryPostsRepository();
+    Repository<Post> postsRepository = new HibernatePostsRepository(transaction);
     Repository<Comment> commentsRepository = new HibernateCommentsRepository(transaction);
     Repository<Category> categoriesRepository = new HibernateCategoriesRepository(transaction);
 

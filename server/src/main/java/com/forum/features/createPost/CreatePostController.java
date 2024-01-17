@@ -16,8 +16,9 @@ class CreatePostController implements HttpHandler {
     PostCreationRequest creationRequest = this.jsonConverter.fromJson(request.body(), PostCreationRequest.class);
 
     Post createdPost = this.createPostService.execute(creationRequest);
+    PostView createdPostView = new PostView(createdPost);
 
     response.status(201);
-    response.json(createdPost);
+    response.json(createdPostView);
   }
 }

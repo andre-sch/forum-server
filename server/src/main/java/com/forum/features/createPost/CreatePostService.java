@@ -1,5 +1,6 @@
 package com.forum.features.createPost;
 
+import java.util.*;
 import com.forum.repositories.*;
 import com.forum.entities.*;
 
@@ -19,26 +20,28 @@ class CreatePostService {
   }
 
   public Post execute(PostCreationRequest creationRequest) {
-    User author = this.usersRepository.listOne(creationRequest.author);
+    User author = this.usersRepository.listOne(creationRequest.authorId);
 
     if (author == null) {
       throw new Error("author does not exist");
     }
 
-    for (String categoryName : creationRequest.categories) {
+    Set<Category> categories = new HashSet<>();
+    for (String categoryName : creationRequest.categoryNames) {
       Category category = this.categoriesRepository.listOne(categoryName);
 
       if (category == null) {
         throw new Error(String.format("category named '%s' does not exist", categoryName));
       }
+
+      categories.add(category);
     }
 
-    Post post = new Post(
-      creationRequest.author,
-      creationRequest.title,
-      creationRequest.content,
-      creationRequest.categories
-    );
+    Post post = new Post();
+    post.setAuthor(author);
+    post.setTitle(creationRequest.title);
+    post.setContent(creationRequest.content);
+    post.setCategories(categories);
 
     this.postsRepository.save(post);
 

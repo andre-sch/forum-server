@@ -13,6 +13,8 @@ class ListPostsController implements HttpHandler {
 
   public void handle(HttpRequest request, HttpResponse response) {
     List<Post> posts = this.listPostsService.execute();
-    response.json(posts);
+    List<PostView> postViews = posts.stream().map(PostView::new).toList();
+
+    response.json(postViews);
   };
 }

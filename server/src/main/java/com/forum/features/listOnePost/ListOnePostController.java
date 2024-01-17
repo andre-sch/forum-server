@@ -12,8 +12,8 @@ class ListOnePostController implements HttpHandler {
   public void handle(HttpRequest request, HttpResponse response) {
     String postId = request.getParam("postId");
 
-    PostThread post = this.listOnePostService.execute(postId);
+    PostThread thread = this.listOnePostService.execute(postId);
 
-    response.json(post);
+    response.json(thread);
   };
 }

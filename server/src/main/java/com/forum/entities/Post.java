@@ -1,35 +1,29 @@
 package com.forum.entities;
 
-import java.util.UUID;
-import com.forum.utils.Time;
+import java.util.Set;
+import jakarta.persistence.*;
 
-public class Post {
-  public String id;
-  public String author;
-  public String title;
-  public String content;
-  public String[] categories;
-  public Rank rank;
-  public int createdAt;
-  public int lastUpdate;
+@Entity
+@Table(name = "posts")
+public class Post extends Contribution {
+  private String title;
+  private String content;
 
-  public Post(
-    String author,
-    String title,
-    String content,
-    String[] categories
-  ) {
-    UUID uuid = UUID.randomUUID();
-    this.id = uuid.toString();
+  @ManyToMany(fetch = FetchType.EAGER)
+  @JoinTable(
+    name = "post_categories",
+    joinColumns = @JoinColumn(name = "post_id"),
+    inverseJoinColumns = @JoinColumn(name = "category_name")
+  )
+  private Set<Category> categories;
 
-    this.author = author;
-    this.title = title;
-    this.content = content;
-    this.categories = categories;
+  public Post() {}
 
-    this.rank = new Rank();
+  public String getTitle() { return this.title; }
+  public String getContent() { return this.content; }
+  public Set<Category> getCategories() { return this.categories; }
 
-    this.createdAt = Time.now();
-    this.lastUpdate = this.createdAt;
-  }
+  public void setTitle(String title) { this.title = title; }
+  public void setContent(String content) { this.content = content; }
+  public void setCategories(Set<Category> categories) { this.categories = categories; }
 }
