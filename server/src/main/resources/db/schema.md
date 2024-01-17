@@ -1,6 +1,7 @@
 # Database Schema
 
 > TODO: explain design choices
+> update schema according to docs
 
 ## ER diagram
 
@@ -27,12 +28,16 @@
       int created_at
     }
 
+    CONTRIBUTION {
+      String id PK
+      int created_at
+      int last_update
+    }
+
     POST {
       String id PK
       String title
       String content
-      int created_at
-      int last_update
     }
 
     CATEGORY {
@@ -44,35 +49,28 @@
     COMMENT {
       String id PK
       String content
-      int created_at
-      int last_update
     }
 
-    POST_RANKING {
+    RANKING {
       String vote
     }
 
-    COMMENT_RANKING {
-      String vote
-    }
+    USER }o--o{ ROLE: performs
+    ROLE }o--o{ PERMISSION: provides
+    USER }o--o{ PERMISSION: has
 
-    USER }o--o{ ROLE: "performs"
-    ROLE }o--o{ PERMISSION: "provides"
-    USER }o--o{ PERMISSION: "has"
+    POST ||--|| CONTRIBUTION: inherits
+    COMMENT ||--|| CONTRIBUTION: inherits
 
-    POST }o--|| USER: "published by"
-    COMMENT }o--|| USER: "published by"
+    CONTRIBUTION }o--|| USER: published_by
 
-    POST }o--o{ CATEGORY: "belongs to"
+    POST }o--o{ CATEGORY: belongs_to
 
-    POST ||--o{ COMMENT: "contains"
-    COMMENT }o--|| COMMENT: "replies"
+    POST ||--o{ COMMENT: contains
+    COMMENT }o--|| COMMENT: replies
 
-    POST ||--o{ POST_RANKING: "sorted by"
-    POST_RANKING }o--|| USER: "participated by"
-
-    COMMENT ||--o{ COMMENT_RANKING: "sorted by"
-    COMMENT_RANKING }o--|| USER: "participated by"
+    CONTRIBUTION ||--o{ RANKING: classified_by
+    RANKING }o--|| USER: participated_by
 ```
 
 ## Relational Model
@@ -92,40 +90,43 @@ PERMISSION(name, description, created_at)
 
   - name is a primary key
 
-USER_ROLES(user_id, role)
-USER_PERMISSIONS(user_id, permission)
-ROLE_PERMISSIONS(role, permission)
+USER_ROLES(user_id, role_name)
+USER_PERMISSIONS(user_id, permission_name)
+ROLE_PERMISSIONS(role_name, permission_name)
 
-  - user_id, role and permission are both primary and foreign keys
+  - user_id, role_name and permission_name are both primary and foreign keys
   - user_id references USER.id
-  - role references ROLE.name
-  - permission references PERMISSION.name
+  - role_name references ROLE.name
+  - permission_name references PERMISSION.name
 
-POST(id, author, title, content, created_at, last_update)
+CONTRIBUTION(id, author_id, created_at, last_update)
 
   - id is a primary key
-  - author is a foreign key which references USER.id
+  - author_id is a foreign key which references USER.id
+
+POST(id, title, content)
+
+  - id is a primary key and a foreign key which references CONTRIBUTION.id
 
 CATEGORY(name, description, created_at)
 
   - name is a primary key
 
-POST_CATEGORIES(post_id, category)
+POST_CATEGORIES(post_id, category_name)
 
-  - post_id and category are both primary and foreign keys
+  - post_id and category_name are both primary and foreign keys
   - post_id references POST.id
-  - category references CATEGORY.name
+  - category_name references CATEGORY.name
 
-COMMENT(id, parent_id, author, content, created_at, last_update)
+COMMENT(id, parent_id, content)
 
-  - id is a primary key
-  - parent_id is a foreign key which references exclusively POST.id or COMMENT.id
-  - author is a foreign key which references USER.id
+  - id is a primary key and a foreign key which references CONTRIBUTION.id
+  - parent_id is a foreign key which references CONTRIBUTION.id
 
 RANKING(user_id, contribution_id, vote)
 
-  - user_id and contribution_id are both primary and foreign keys
+  - user_id and id are both primary and foreign keys
   - user_id references USER.id
-  - contribution_id references exclusively POST.id or COMMENT.id
+  - contribution_id references CONTRIBUTION.id
 
 ```
