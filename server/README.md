@@ -5,6 +5,7 @@
 ### Prerequisites
 
 - Connect to MySQL database
+- Install Maven CLI
 
 ### ORM with Hibernate
 
@@ -14,4 +15,4 @@
 ### Migrations with Flyway
 
 - Replace `flyway.example.conf` in root using the same process listed in the previous section.
-- To get the current state of the database, run `mvn flyway:migrate` on terminal.
+- To get the current state of the database, run `mvn flyway:migrate` on terminal in `server` directory.
