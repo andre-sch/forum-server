@@ -10,12 +10,13 @@ public class ListOnePost {
     Repository<Post> postsRepository,
     Repository<Comment> commentsRepository
   ) {
-    ListOnePostService service = new ListOnePostService(
-      postsRepository,
-      new ListPostCommentsService(commentsRepository)
-    );
+    ListOnePostService listOnePostService = new ListOnePostService(postsRepository);
+    ListPostCommentsService listPostCommentsService = new ListPostCommentsService(commentsRepository);
 
-    ListOnePostController controller = new ListOnePostController(service);
+    ListOnePostController controller = new ListOnePostController(
+      listOnePostService,
+      listPostCommentsService
+    );
 
     this.handler = controller;
   }
