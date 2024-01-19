@@ -9,13 +9,11 @@ import com.forum.features.createUser.CreateUser;
 import com.forum.features.listPosts.ListPosts;
 import com.forum.features.listOnePost.ListOnePost;
 import com.forum.features.createPost.CreatePost;
-import com.forum.features.rankPost.RankPost;
+import com.forum.features.createComment.CreateComment;
+import com.forum.features.rankContribution.RankContribution;
 
 import com.forum.features.listCategories.ListCategories;
 import com.forum.features.createCategory.CreateCategory;
-
-import com.forum.features.createComment.CreateComment;
-import com.forum.features.rankComment.RankComment;
 
 import com.forum.repositories.impl.hibernate.*;
 import com.forum.repositories.Repository;
@@ -31,6 +29,8 @@ public class Main {
     Repository<User> usersRepository = new HibernateUsersRepository(transaction);
     Repository<Post> postsRepository = new HibernatePostsRepository(transaction);
     Repository<Comment> commentsRepository = new HibernateCommentsRepository(transaction);
+    Repository<Contribution> contributionsRepository = new HibernateContributionsRepository(transaction);
+    Repository<Ranking> rankingsRepository = new HibernateRankingsRepository(transaction);
     Repository<Category> categoriesRepository = new HibernateCategoriesRepository(transaction);
 
     app.get("/users", new ListUsers(usersRepository).handler);
@@ -40,12 +40,12 @@ public class Main {
     app.get("/posts/{postId}", new ListOnePost(postsRepository, commentsRepository).handler);
 
     app.post("/posts", new CreatePost(postsRepository, usersRepository, categoriesRepository).handler);
-    app.put("/posts/{postId}/upvote", new RankPost("upvote", postsRepository).handler);
-    app.put("/posts/{postId}/downvote", new RankPost("downvote", postsRepository).handler);
-
     app.post("/comments", new CreateComment(commentsRepository, usersRepository, postsRepository).handler);
-    app.put("/comments/{commentId}/upvote", new RankComment("upvote", commentsRepository).handler);
-    app.put("/comments/{commentId}/downvote", new RankComment("downvote", commentsRepository).handler);
+
+    app.put(
+      "/ranking/{contributionId}/{action}",
+      new RankContribution(usersRepository, contributionsRepository, rankingsRepository).handler
+    );
 
     app.get("/categories", new ListCategories(categoriesRepository).handler);
     app.post("/categories", new CreateCategory(categoriesRepository).handler);

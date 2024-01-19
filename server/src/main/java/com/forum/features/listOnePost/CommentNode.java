@@ -7,7 +7,8 @@ class CommentNode {
   public String id;
   public String content;
   public UserView author;
-  // public Rank rank;
+  public List<String> upVotes;
+  public List<String> downVotes;
   public int createdAt;
   public int lastUpdate;
   public List<CommentNode> replies;
@@ -16,7 +17,8 @@ class CommentNode {
     this.id = comment.getId();
     this.content = comment.getContent();
     this.author = new UserView(comment.getAuthor());
-    // this.rank = comment.rank;
+    this.upVotes = comment.getUpVotes();
+    this.downVotes = comment.getDownVotes();
     this.createdAt = comment.getCreationTimestamp();
     this.lastUpdate = comment.getUpdateTimestamp();
     this.replies = new LinkedList<>();

@@ -9,7 +9,8 @@ class PostThread {
   public String content;
   public UserView author;
   public List<CategoryView> categories;
-  // public Rank rank;
+  public List<String> upVotes;
+  public List<String> downVotes;
   public int createdAt;
   public int lastUpdate;
   public List<CommentNode> comments;
@@ -24,24 +25,12 @@ class PostThread {
     this.categories = post.getCategories()
       .stream().map(CategoryView::new).toList();
 
-    // this.rank = post.rank;
+    this.upVotes = post.getUpVotes();
+    this.downVotes = post.getDownVotes();
+
     this.createdAt = post.getCreationTimestamp();
     this.lastUpdate = post.getUpdateTimestamp();
     this.comments = comments;
-  }
-}
-
-class UserView {
-  public String id;
-  public String name;
-  public String email;
-  public String avatarUrl;
-
-  public UserView(User user) {
-    this.id = user.getId();
-    this.name = user.getName();
-    this.email = user.getEmail();
-    this.avatarUrl = user.getAvatarUrl();
   }
 }
 

@@ -9,6 +9,8 @@ class PostView {
   public String content;
   public UserView author;
   public List<CategoryView> categories;
+  public List<String> upVotes;
+  public List<String> downVotes;
   public int createdAt;
   public int lastUpdate;
 
@@ -21,6 +23,9 @@ class PostView {
 
     this.categories = post.getCategories()
       .stream().map(CategoryView::new).toList();
+
+    this.upVotes = post.getUpVotes();
+    this.downVotes = post.getDownVotes();
 
     this.createdAt = post.getCreationTimestamp();
     this.lastUpdate = post.getUpdateTimestamp();
