@@ -37,6 +37,6 @@ class ListPostCommentsService {
   }
 
   private List<Comment> getRepliesFrom(String id) {
-    return this.commentsRepository.list((Comment comment) -> comment.parentId.equals(id));
+    return this.commentsRepository.list((Comment comment) -> comment.getParentId().equals(id));
   }
 }
