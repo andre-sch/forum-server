@@ -1,5 +1,6 @@
 package com.forum.features.createUser;
 
+import java.util.*;
 import com.forum.entities.User;
 import com.forum.repositories.Repository;
 import com.forum.security.HashGenerator;
@@ -17,7 +18,13 @@ class CreateUserService {
   }
 
   public User execute(UserCreationRequest creationRequest) {
-    // TODO: apenas 1 usuário por email
+    List<User> usersWithSameEmail = this.usersRepository.list(
+      (user) -> Objects.equals(user.getEmail(), creationRequest.email)
+    );
+
+    if (usersWithSameEmail.size() > 0) {
+      throw new Error("email already registered");
+    }
 
     String passwordHash = this.hashGenerator.generate(creationRequest.password);
 
