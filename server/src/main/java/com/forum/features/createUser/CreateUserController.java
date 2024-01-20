@@ -3,6 +3,7 @@ package com.forum.features.createUser;
 import com.forum.http.*;
 import com.google.gson.Gson;
 import com.forum.entities.User;
+import com.forum.views.CompleteUserView;
 
 class CreateUserController implements HttpHandler {
   private CreateUserService createUserService;
@@ -16,7 +17,7 @@ class CreateUserController implements HttpHandler {
     UserCreationRequest creationRequest = this.jsonConverter.fromJson(request.body(), UserCreationRequest.class);
 
     User createdUser = this.createUserService.execute(creationRequest);
-    UserView createdUserView = new UserView(createdUser);
+    CompleteUserView createdUserView = new CompleteUserView(createdUser);
 
     response.status(201);
     response.json(createdUserView);

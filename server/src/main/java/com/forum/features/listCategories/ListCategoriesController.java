@@ -2,6 +2,7 @@ package com.forum.features.listCategories;
 
 import java.util.List;
 import com.forum.entities.Category;
+import com.forum.views.CompleteCategoryView;
 import com.forum.http.*;
 
 class ListCategoriesController implements HttpHandler {
@@ -13,7 +14,7 @@ class ListCategoriesController implements HttpHandler {
 
   public void handle(HttpRequest request, HttpResponse response) {
     List<Category> categories = this.listCategoriesService.execute();
-    List<CategoryView> categoryViews = categories.stream().map(CategoryView::new).toList();
+    List<CompleteCategoryView> categoryViews = categories.stream().map(CompleteCategoryView::new).toList();
 
     response.json(categoryViews);
   }

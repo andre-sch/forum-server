@@ -2,13 +2,14 @@ package com.forum.features.listOnePost;
 
 import java.util.*;
 import com.forum.entities.*;
+import com.forum.views.*;
 
 class PostThread {
   public String id;
   public String title;
   public String content;
-  public UserView author;
-  public List<CategoryView> categories;
+  public CompactUserView author;
+  public List<CompactCategoryView> categories;
   public List<String> upVotes;
   public List<String> downVotes;
   public int createdAt;
@@ -16,32 +17,18 @@ class PostThread {
   public List<CommentNode> comments;
 
   public PostThread(Post post, List<CommentNode> comments) {
-    this.id = post.getId();
-    this.title = post.getTitle();
-    this.content = post.getContent();
+    CompletePostView postView = new CompletePostView(post);
 
-    this.author = new UserView(post.getAuthor());
+    this.id = postView.id;
+    this.title = postView.title;
+    this.content = postView.content;
+    this.author = postView.author;
+    this.categories = postView.categories;
+    this.upVotes = postView.upVotes;
+    this.downVotes = postView.downVotes;
+    this.createdAt = postView.createdAt;
+    this.lastUpdate = postView.lastUpdate;
 
-    this.categories = post.getCategories()
-      .stream().map(CategoryView::new).toList();
-
-    this.upVotes = post.getUpVotes();
-    this.downVotes = post.getDownVotes();
-
-    this.createdAt = post.getCreationTimestamp();
-    this.lastUpdate = post.getUpdateTimestamp();
     this.comments = comments;
-  }
-}
-
-class CategoryView {
-  public String name;
-  public String description;
-  public String color;
-
-  public CategoryView(Category category) {
-    this.name = category.getName();
-    this.description = category.getDescription();
-    this.color = category.getColor();
   }
 }

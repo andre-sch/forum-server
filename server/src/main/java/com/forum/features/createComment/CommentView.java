@@ -1,12 +1,13 @@
 package com.forum.features.createComment;
 
 import com.forum.entities.*;
+import com.forum.views.CompactUserView;
 
 class CommentView {
   public String id;
   public String parentId;
   public String content;
-  public UserView author;
+  public CompactUserView author;
   public int createdAt;
   public int lastUpdate;
 
@@ -14,22 +15,8 @@ class CommentView {
     this.id = comment.getId();
     this.content = comment.getContent();
     this.parentId = comment.getParentId();
-    this.author = new UserView(comment.getAuthor());
+    this.author = new CompactUserView(comment.getAuthor());
     this.createdAt = comment.getCreationTimestamp();
     this.lastUpdate = comment.getUpdateTimestamp();
-  }
-}
-
-class UserView {
-  public String id;
-  public String name;
-  public String email;
-  public String avatarUrl;
-
-  public UserView(User user) {
-    this.id = user.getId();
-    this.name = user.getName();
-    this.email = user.getEmail();
-    this.avatarUrl = user.getAvatarUrl();
   }
 }

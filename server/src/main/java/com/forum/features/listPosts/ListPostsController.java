@@ -2,6 +2,7 @@ package com.forum.features.listPosts;
 
 import java.util.List;
 import com.forum.entities.Post;
+import com.forum.views.CompletePostView;
 import com.forum.http.*;
 
 class ListPostsController implements HttpHandler {
@@ -13,7 +14,7 @@ class ListPostsController implements HttpHandler {
 
   public void handle(HttpRequest request, HttpResponse response) {
     List<Post> posts = this.listPostsService.execute();
-    List<PostView> postViews = posts.stream().map(PostView::new).toList();
+    List<CompletePostView> postViews = posts.stream().map(CompletePostView::new).toList();
 
     response.json(postViews);
   };

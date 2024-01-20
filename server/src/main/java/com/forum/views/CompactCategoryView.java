@@ -1,17 +1,15 @@
-package com.forum.features.createCategory;
+package com.forum.views;
 
 import com.forum.entities.Category;
 
-class CategoryView {
+public class CompactCategoryView {
   public String name;
   public String description;
   public String color;
-  public int createdAt;
 
-  public CategoryView(Category category) {
+  public CompactCategoryView(Category category) {
     this.name = category.getName();
     this.description = category.getDescription();
     this.color = category.getColor();
-    this.createdAt = category.getCreationTimestamp();
   }
 }

@@ -2,6 +2,7 @@ package com.forum.features.createPost;
 
 import com.forum.http.*;
 import com.forum.entities.Post;
+import com.forum.views.CompactPostView;
 import com.google.gson.Gson;
 
 class CreatePostController implements HttpHandler {
@@ -16,7 +17,7 @@ class CreatePostController implements HttpHandler {
     PostCreationRequest creationRequest = this.jsonConverter.fromJson(request.body(), PostCreationRequest.class);
 
     Post createdPost = this.createPostService.execute(creationRequest);
-    PostView createdPostView = new PostView(createdPost);
+    CompactPostView createdPostView = new CompactPostView(createdPost);
 
     response.status(201);
     response.json(createdPostView);

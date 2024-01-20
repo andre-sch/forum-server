@@ -2,6 +2,7 @@ package com.forum.features.createCategory;
 
 import com.forum.http.*;
 import com.forum.entities.Category;
+import com.forum.views.CompleteCategoryView;
 import com.google.gson.Gson;
 
 class CreateCategoryController implements HttpHandler {
@@ -16,7 +17,7 @@ class CreateCategoryController implements HttpHandler {
     CategoryCreationRequest creationRequest = this.jsonConverter.fromJson(request.body(), CategoryCreationRequest.class);
 
     Category createdCategory = this.createCategoryService.execute(creationRequest);
-    CategoryView createdCategoryView = new CategoryView(createdCategory);
+    CompleteCategoryView createdCategoryView = new CompleteCategoryView(createdCategory);
 
     response.status(201);
     response.json(createdCategoryView);
