@@ -7,12 +7,14 @@ import com.forum.http.*;
 class ListCategoriesController implements HttpHandler {
   private ListCategoriesService listCategoriesService;
 
-  public ListCategoriesController(ListCategoriesService service) {
-    this.listCategoriesService = service;
+  public ListCategoriesController(ListCategoriesService listCategoriesService) {
+    this.listCategoriesService = listCategoriesService;
   }
 
   public void handle(HttpRequest request, HttpResponse response) {
     List<Category> categories = this.listCategoriesService.execute();
-    response.json(categories);
+    List<CategoryView> categoryViews = categories.stream().map(CategoryView::new).toList();
+
+    response.json(categoryViews);
   }
 }

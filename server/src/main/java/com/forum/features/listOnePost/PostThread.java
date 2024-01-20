@@ -37,9 +37,11 @@ class PostThread {
 class CategoryView {
   public String name;
   public String description;
+  public String color;
 
   public CategoryView(Category category) {
     this.name = category.getName();
     this.description = category.getDescription();
+    this.color = category.getColor();
   }
 }
