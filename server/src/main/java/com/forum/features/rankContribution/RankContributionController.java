@@ -13,10 +13,10 @@ class RankContributionController implements HttpHandler {
   }
 
   public void handle(HttpRequest request, HttpResponse response) {
-    String contributionId = request.getParam("contributionId");
-    String action = request.getParam("action");
+    String contributionId = request.getPathParam("contributionId");
+    String action = request.getPathParam("action");
 
-    RequestBody body = this.jsonConverter.fromJson(request.body(), RequestBody.class);
+    RequestBody body = this.jsonConverter.fromJson(request.getBody(), RequestBody.class);
 
     ContributionRankingRequest rankingRequest = new ContributionRankingRequest();
 

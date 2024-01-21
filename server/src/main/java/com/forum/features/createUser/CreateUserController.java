@@ -14,7 +14,7 @@ class CreateUserController implements HttpHandler {
   }
 
   public void handle(HttpRequest request, HttpResponse response) {
-    UserCreationRequest creationRequest = this.jsonConverter.fromJson(request.body(), UserCreationRequest.class);
+    UserCreationRequest creationRequest = this.jsonConverter.fromJson(request.getBody(), UserCreationRequest.class);
 
     User createdUser = this.createUserService.execute(creationRequest);
     CompleteUserView createdUserView = new CompleteUserView(createdUser);

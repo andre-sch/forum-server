@@ -14,7 +14,7 @@ class CreateCategoryController implements HttpHandler {
   }
 
   public void handle(HttpRequest request, HttpResponse response) {
-    CategoryCreationRequest creationRequest = this.jsonConverter.fromJson(request.body(), CategoryCreationRequest.class);
+    CategoryCreationRequest creationRequest = this.jsonConverter.fromJson(request.getBody(), CategoryCreationRequest.class);
 
     Category createdCategory = this.createCategoryService.execute(creationRequest);
     CompleteCategoryView createdCategoryView = new CompleteCategoryView(createdCategory);

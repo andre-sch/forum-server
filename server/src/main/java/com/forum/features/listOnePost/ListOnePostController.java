@@ -17,7 +17,7 @@ class ListOnePostController implements HttpHandler {
   }
 
   public void handle(HttpRequest request, HttpResponse response) {
-    String postId = request.getParam("postId");
+    String postId = request.getPathParam("postId");
 
     List<CommentNode> comments = this.listPostCommentsService.execute(postId);
     Post post = this.listOnePostService.execute(postId);
