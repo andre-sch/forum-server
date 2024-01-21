@@ -1,6 +1,6 @@
 package com.forum.features.listPosts;
 
-import java.util.List;
+import java.util.*;
 import com.forum.entities.Post;
 import com.forum.views.CompletePostView;
 import com.forum.http.*;
@@ -13,7 +13,15 @@ class ListPostsController implements HttpHandler {
   }
 
   public void handle(HttpRequest request, HttpResponse response) {
-    List<Post> posts = this.listPostsService.execute();
+    PostListingRequest listingRequest = new PostListingRequest();
+
+    listingRequest.author = request.getQueryParam("author");
+    List<String> categoryNames = request.getQueryParams("category");
+
+    listingRequest.categoryNames = new HashSet<>();
+    categoryNames.forEach(listingRequest.categoryNames::add);
+
+    List<Post> posts = this.listPostsService.execute(listingRequest);
     List<CompletePostView> postViews = posts.stream().map(CompletePostView::new).toList();
 
     response.json(postViews);

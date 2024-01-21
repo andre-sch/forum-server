@@ -1,6 +1,6 @@
 package com.forum.entities;
 
-import java.util.Set;
+import java.util.*;
 import jakarta.persistence.*;
 
 @Entity
@@ -22,6 +22,11 @@ public class Post extends Contribution {
   public String getTitle() { return this.title; }
   public String getContent() { return this.content; }
   public Set<Category> getCategories() { return this.categories; }
+  public Set<String> getCategoryNames() {
+    Set<String> categoryNames = new HashSet<>();
+    this.getCategories().forEach((category) -> categoryNames.add(category.getName()));
+    return categoryNames;
+  }
 
   public void setTitle(String title) { this.title = title; }
   public void setContent(String content) { this.content = content; }

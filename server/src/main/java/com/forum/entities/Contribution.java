@@ -31,6 +31,7 @@ public class Contribution {
 
   public String getId() { return this.id; }
   public String getAuthorId() { return this.author.getId(); }
+  public String getAuthorName() { return this.author.getName(); }
   public User getAuthor() { return this.author; }
   public List<String> getUpVotes() { return this.getVotes("upvote"); }
   public List<String> getDownVotes() { return this.getVotes("downvote"); }
