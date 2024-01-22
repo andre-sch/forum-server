@@ -44,6 +44,7 @@
     CATEGORY {
       String name PK
       String description
+      String color
       int created_at
     }
 
