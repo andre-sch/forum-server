@@ -36,71 +36,74 @@
 ## Diagrams
 
 ```mermaid
-  classDiagram
-    direction LR
-
-    class User {
-      id: String
-      name: String
-      email: String
-      password: String
-      avatar_url: String
-      created_at: int
+  erDiagram
+    USER {
+      String id PK
+      String name
+      String email UK
+      String password
+      String avatar_url
+      int created_at
     }
 
-    class Role {
-      name: String
-      description: String
-      created_at: int
+    ROLE {
+      String name PK
+      String description
+      int created_at
     }
 
-    class Permission {
-      name: String
-      description: String
-      created_at: int
+    PERMISSION {
+      String name PK
+      String description
+      int created_at
     }
 
-    class Post {
-      id: String
-      author: String
-      title: String
-      content: String
-      created_at: int
-      last_update: int
+    CONTRIBUTION {
+      String id PK
+      String author_id FK
+      int created_at
+      int last_update
     }
 
-    class Category {
-      name: String
-      description: String
-      created_at: int
+    POST {
+      String id PK, FK
+      String title
+      String content
     }
 
-    class Comment {
-      id: String
-      parent_id: String
-      author: String
-      content: String
-      created_at: int
-      last_update: int
+    CATEGORY {
+      String name PK
+      String description
+      String color
+      int created_at
     }
 
-    class Rank {
-      up_votes: String[]
-      down_votes: String[]
+    COMMENT {
+      String id PK, FK
+      String parent_id FK
+      String content
     }
 
-    User "*" -- "*" Role
-    Role "*" -- "*" Permission
-    Permission "*" -- "*" User
+    RANKING {
+      String user_id PK, FK
+      String contribution_id PK, FK
+      String vote
+    }
 
-    Comment "*" --* "1" User
-    Post "*" --* "1" User
+    USER }o--o{ ROLE: performs
+    ROLE }o--o{ PERMISSION: provides
+    USER }o--o{ PERMISSION: has
 
-    Post "*" -- "*" Category
+    POST ||--|| CONTRIBUTION: inherits
+    COMMENT ||--|| CONTRIBUTION: inherits
 
-    Post "1" *-- "*" Comment
-    Comment "*" --o "1" Comment: reply
+    CONTRIBUTION }o--|| USER: published_by
 
-    Comment "1" -- "1" Rank
-    Post "1" -- "1" Rank
+    POST }o--o{ CATEGORY: belongs_to
+
+    POST ||--o{ COMMENT: contains
+    COMMENT }o--|| COMMENT: replies
+
+    CONTRIBUTION ||--o{ RANKING: classified_by
+    RANKING }o--|| USER: participated_by
 ```
