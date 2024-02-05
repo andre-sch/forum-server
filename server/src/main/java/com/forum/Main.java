@@ -14,6 +14,7 @@ import com.forum.features.rankContribution.RankContribution;
 
 import com.forum.features.listCategories.ListCategories;
 import com.forum.features.createCategory.CreateCategory;
+import com.forum.features.deleteCategory.DeleteCategory;
 
 import com.forum.repositories.impl.hibernate.*;
 import com.forum.repositories.Repository;
@@ -49,5 +50,6 @@ public class Main {
 
     app.get("/categories", new ListCategories(categoriesRepository).handler);
     app.post("/categories", new CreateCategory(categoriesRepository).handler);
+    app.delete("/categories/{categoryName}", new DeleteCategory(categoriesRepository).handler);
   }
 }
