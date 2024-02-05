@@ -55,6 +55,13 @@ public class HibernateRepository<T> implements Repository<T> {
     this.transaction.execute((entityManager) -> entityManager.merge(newInstance));
   }
 
+  public void delete(String id) {
+    this.transaction.execute((entityManager) -> {
+      T instance = entityManager.find(this.persistedClass, id);
+      entityManager.remove(instance);
+    });
+  }
+
   private class SingleResult { T instance; }
   private class ResultList { List<T> instances; }
 }

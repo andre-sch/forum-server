@@ -9,5 +9,5 @@ public interface Repository<T> {
   public T listOne(String id);
   public void save(T instance);
   public void update(T newInstance);
-  // TODO: public void delete(String id);
+  public void delete(String id);
 }

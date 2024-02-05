@@ -2,7 +2,6 @@ package com.forum.repositories.impl.memo;
 
 import java.util.*;
 import java.util.function.Predicate;
-
 import com.forum.repositories.Repository;
 
 public abstract class InMemoryRepository<T> implements Repository<T> {
@@ -35,5 +34,11 @@ public abstract class InMemoryRepository<T> implements Repository<T> {
     T oldInstance = this.listOne(this.getInstanceId(newInstance));
     int index = this.instances.indexOf(oldInstance);
     this.instances.set(index, newInstance);
+  }
+
+  public void delete(String id) {
+    this.instances = this.instances.stream().filter(
+      (instance) -> !Objects.equals(this.getInstanceId(instance), id)
+    ).toList();
   }
 }
