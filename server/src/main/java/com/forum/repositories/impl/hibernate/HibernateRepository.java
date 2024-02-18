@@ -47,6 +47,11 @@ public class HibernateRepository<T> implements Repository<T> {
     return result.instance;
   }
 
+  public T listFirst(Predicate<T> condition) {
+    List<T> instances = this.list(condition);
+    return instances.size() > 0 ? instances.get(0) : null;
+  }
+
   public void save(T instance) {
     this.transaction.execute((entityManager) -> entityManager.persist(instance));
   }

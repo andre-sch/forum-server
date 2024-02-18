@@ -1,6 +1,5 @@
 package com.forum.features.createUser;
 
-import java.util.*;
 import com.forum.entities.User;
 import com.forum.repositories.Repository;
 import com.forum.security.HashGenerator;
@@ -18,11 +17,11 @@ class CreateUserService {
   }
 
   public User execute(UserCreationRequest creationRequest) {
-    List<User> usersWithSameEmail = this.usersRepository.list(
-      (user) -> Objects.equals(user.getEmail(), creationRequest.email)
+    User registeredUser = this.usersRepository.listFirst(
+      (User instance) -> instance.getEmail().equals(creationRequest.email)
     );
 
-    if (usersWithSameEmail.size() > 0) {
+    if (registeredUser != null) {
       throw new Error("email already registered");
     }
 

@@ -26,6 +26,11 @@ public abstract class InMemoryRepository<T> implements Repository<T> {
     return null;
   }
 
+  public T listFirst(Predicate<T> condition) {
+    List<T> instances = this.list(condition);
+    return instances.size() > 0 ? instances.get(0) : null;
+  }
+
   public void save(T instance) {
     this.instances.add(instance);
   }
