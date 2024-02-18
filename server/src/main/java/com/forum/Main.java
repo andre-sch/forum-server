@@ -9,7 +9,7 @@ import com.forum.features.updateUser.UpdateUser;
 import com.forum.features.deleteUser.DeleteUser;
 
 import com.forum.features.listPosts.ListPosts;
-import com.forum.features.listOnePost.ListOnePost;
+import com.forum.features.listThread.ListThread;
 import com.forum.features.createPost.CreatePost;
 import com.forum.features.createComment.CreateComment;
 import com.forum.features.rankContribution.RankContribution;
@@ -43,7 +43,7 @@ public class Main {
     app.delete("/users/{userId}", new DeleteUser(usersRepository).handler);
 
     app.get("/posts", new ListPosts(postsRepository).handler);
-    app.get("/posts/{postId}", new ListOnePost(postsRepository, commentsRepository).handler);
+    app.get("/posts/{postId}", new ListThread(postsRepository, commentsRepository).handler);
 
     app.post("/posts", new CreatePost(postsRepository, usersRepository, categoriesRepository).handler);
     app.post("/comments", new CreateComment(commentsRepository, usersRepository, postsRepository).handler);

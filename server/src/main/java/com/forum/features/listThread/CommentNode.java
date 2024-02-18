@@ -1,4 +1,4 @@
-package com.forum.features.listOnePost;
+package com.forum.features.listThread;
 
 import java.util.*;
 import com.forum.entities.*;

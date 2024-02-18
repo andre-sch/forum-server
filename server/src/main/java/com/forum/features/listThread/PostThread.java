@@ -1,10 +1,10 @@
-package com.forum.features.listOnePost;
+package com.forum.features.listThread;
 
 import java.util.*;
 import com.forum.entities.*;
 import com.forum.views.*;
 
-class PostThread {
+class Thread {
   public String id;
   public String title;
   public String content;
@@ -16,7 +16,7 @@ class PostThread {
   public int lastUpdate;
   public List<CommentNode> comments;
 
-  public PostThread(Post post, List<CommentNode> comments) {
+  public Thread(Post post, List<CommentNode> comments) {
     CompletePostView postView = new CompletePostView(post);
 
     this.id = postView.id;

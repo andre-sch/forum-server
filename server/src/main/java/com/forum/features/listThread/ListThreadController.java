@@ -1,18 +1,18 @@
-package com.forum.features.listOnePost;
+package com.forum.features.listThread;
 
 import java.util.List;
 import com.forum.http.*;
 import com.forum.entities.Post;
 
-class ListOnePostController implements HttpHandler {
-  private ListOnePostService listOnePostService;
+class ListThreadController implements HttpHandler {
+  private ListThreadService listThreadService;
   private ListPostCommentsService listPostCommentsService;
 
-  public ListOnePostController(
-    ListOnePostService listOnePostService,
+  public ListThreadController(
+    ListThreadService listThreadService,
     ListPostCommentsService listPostCommentsService
   ) {
-    this.listOnePostService = listOnePostService;
+    this.listThreadService = listThreadService;
     this.listPostCommentsService = listPostCommentsService;
   }
 
@@ -20,9 +20,9 @@ class ListOnePostController implements HttpHandler {
     String postId = request.getPathParam("postId");
 
     List<CommentNode> comments = this.listPostCommentsService.execute(postId);
-    Post post = this.listOnePostService.execute(postId);
+    Post post = this.listThreadService.execute(postId);
 
-    PostThread thread = new PostThread(post, comments);
+    Thread thread = new Thread(post, comments);
 
     response.json(thread);
   };

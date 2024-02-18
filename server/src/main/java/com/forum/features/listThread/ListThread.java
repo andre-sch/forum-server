@@ -1,20 +1,20 @@
-package com.forum.features.listOnePost;
+package com.forum.features.listThread;
 
 import com.forum.http.HttpHandler;
 import com.forum.repositories.Repository;
 import com.forum.entities.Post;
 import com.forum.entities.Comment;
 
-public class ListOnePost {
-  public ListOnePost(
+public class ListThread {
+  public ListThread(
     Repository<Post> postsRepository,
     Repository<Comment> commentsRepository
   ) {
-    ListOnePostService listOnePostService = new ListOnePostService(postsRepository);
+    ListThreadService listThreadService = new ListThreadService(postsRepository);
     ListPostCommentsService listPostCommentsService = new ListPostCommentsService(commentsRepository);
 
-    ListOnePostController controller = new ListOnePostController(
-      listOnePostService,
+    ListThreadController controller = new ListThreadController(
+      listThreadService,
       listPostCommentsService
     );
 
