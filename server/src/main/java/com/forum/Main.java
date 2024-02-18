@@ -14,6 +14,7 @@ import com.forum.features.createPost.CreatePost;
 import com.forum.features.updatePost.UpdatePost;
 import com.forum.features.createComment.CreateComment;
 import com.forum.features.updateComment.UpdateComment;
+import com.forum.features.deleteContribution.DeleteContribution;
 import com.forum.features.rankContribution.RankContribution;
 
 import com.forum.features.listCategories.ListCategories;
@@ -49,9 +50,11 @@ public class Main {
 
     app.post("/posts", new CreatePost(postsRepository, usersRepository, categoriesRepository).handler);
     app.put("/posts/{postId}", new UpdatePost(postsRepository, categoriesRepository).handler);
+    app.delete("/posts/{contributionId}", new DeleteContribution(contributionsRepository).handler);
 
     app.post("/comments", new CreateComment(commentsRepository, usersRepository, postsRepository).handler);
     app.put("/comments/{commentId}", new UpdateComment(commentsRepository).handler);
+    app.delete("/comments/{contributionId}", new DeleteContribution(contributionsRepository).handler);
 
     app.put(
       "/ranking/{contributionId}/{action}",

@@ -47,7 +47,10 @@ public class Contribution {
       .map((ranking) -> ranking.getUserId()).toList();
   }
 
-  public void setAuthor(User author) { this.author = author; }
+  public void setAuthor(User author) {
+    this.setLastUpdate();
+    this.author = author;
+  }
 
   public void setContent(String content) {
     this.setLastUpdate();
