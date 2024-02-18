@@ -5,6 +5,7 @@ import com.forum.http.impl.Javalin.*;
 
 import com.forum.features.listUsers.ListUsers;
 import com.forum.features.createUser.CreateUser;
+import com.forum.features.updateUser.UpdateUser;
 import com.forum.features.deleteUser.DeleteUser;
 
 import com.forum.features.listPosts.ListPosts;
@@ -38,6 +39,7 @@ public class Main {
 
     app.get("/users", new ListUsers(usersRepository).handler);
     app.post("/users", new CreateUser(usersRepository).handler);
+    app.put("/users/{userId}", new UpdateUser(usersRepository).handler);
     app.delete("/users/{userId}", new DeleteUser(usersRepository).handler);
 
     app.get("/posts", new ListPosts(postsRepository).handler);
