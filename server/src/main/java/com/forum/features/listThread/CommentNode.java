@@ -17,7 +17,9 @@ class CommentNode {
   public CommentNode(Comment comment) {
     this.id = comment.getId();
     this.content = comment.getContent();
-    this.author = new CompactUserView(comment.getAuthor());
+    this.author = comment.getAuthor() != null
+      ? new CompactUserView(comment.getAuthor())
+      : null;
     this.upVotes = comment.getUpVotes();
     this.downVotes = comment.getDownVotes();
     this.createdAt = comment.getCreationTimestamp();

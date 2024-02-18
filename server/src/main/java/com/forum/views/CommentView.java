@@ -14,7 +14,9 @@ public class CommentView {
     this.id = comment.getId();
     this.content = comment.getContent();
     this.parentId = comment.getParentId();
-    this.author = new CompactUserView(comment.getAuthor());
+    this.author = comment.getAuthor() != null
+      ? new CompactUserView(comment.getAuthor())
+      : null;
     this.createdAt = comment.getCreationTimestamp();
     this.lastUpdate = comment.getUpdateTimestamp();
   }

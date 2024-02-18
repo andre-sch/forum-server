@@ -17,7 +17,9 @@ public class CompactPostView {
     this.title = post.getTitle();
     this.content = post.getContent();
 
-    this.author = new CompactUserView(post.getAuthor());
+    this.author = post.getAuthor() != null
+      ? new CompactUserView(post.getAuthor())
+      : null;
 
     this.categories = post.getCategories()
       .stream().map(CompactCategoryView::new).toList();
