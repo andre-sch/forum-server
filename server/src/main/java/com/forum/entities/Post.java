@@ -26,6 +26,13 @@ public class Post extends Contribution {
     return categoryNames;
   }
 
-  public void setTitle(String title) { this.title = title; }
-  public void setCategories(Set<Category> categories) { this.categories = categories; }
+  public void setTitle(String title) {
+    this.setLastUpdate();
+    this.title = title;
+  }
+
+  public void setCategories(Set<Category> categories) {
+    this.setLastUpdate();
+    this.categories = categories;
+  }
 }

@@ -11,6 +11,7 @@ import com.forum.features.deleteUser.DeleteUser;
 import com.forum.features.listPosts.ListPosts;
 import com.forum.features.listThread.ListThread;
 import com.forum.features.createPost.CreatePost;
+import com.forum.features.updatePost.UpdatePost;
 import com.forum.features.createComment.CreateComment;
 import com.forum.features.rankContribution.RankContribution;
 
@@ -46,6 +47,8 @@ public class Main {
     app.get("/posts/{postId}", new ListThread(postsRepository, commentsRepository).handler);
 
     app.post("/posts", new CreatePost(postsRepository, usersRepository, categoriesRepository).handler);
+    app.put("/posts/{postId}", new UpdatePost(postsRepository, categoriesRepository).handler);
+
     app.post("/comments", new CreateComment(commentsRepository, usersRepository, postsRepository).handler);
 
     app.put(

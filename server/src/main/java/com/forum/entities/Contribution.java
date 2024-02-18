@@ -48,5 +48,11 @@ public class Contribution {
   }
 
   public void setAuthor(User author) { this.author = author; }
-  public void setContent(String content) { this.content = content; }
+
+  public void setContent(String content) {
+    this.setLastUpdate();
+    this.content = content;
+  }
+
+  protected void setLastUpdate() { this.lastUpdate = Time.now(); }
 }
