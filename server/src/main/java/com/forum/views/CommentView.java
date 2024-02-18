@@ -1,9 +1,8 @@
-package com.forum.features.createComment;
+package com.forum.views;
 
 import com.forum.entities.*;
-import com.forum.views.CompactUserView;
 
-class CommentView {
+public class CommentView {
   public String id;
   public String parentId;
   public String content;

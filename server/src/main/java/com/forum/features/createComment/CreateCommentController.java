@@ -2,6 +2,7 @@ package com.forum.features.createComment;
 
 import com.forum.http.*;
 import com.forum.entities.Comment;
+import com.forum.views.CommentView;
 import com.google.gson.Gson;
 
 class CreateCommentController implements HttpHandler {
