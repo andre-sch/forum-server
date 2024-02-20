@@ -14,11 +14,13 @@
 - Each user on the system must have roles and permissions.
 - The system must support two types of users: common and super users
 - The system must support three main roles: administrators, authors and readers.
-- Each role and permission contains: name (unique), description and creation timestamp.
 - Common users are, at the same time, authors and readers.
 - Super users extend common users by being administrators (admins).
-- A user can have many posts and comments.
-- A post can be created, updated and deleted by one author.
+- Each role and permission contains: name (unique), description and creation timestamp.
+- A user can have many contributions: posts and comments.
+- A contribution can be created, updated and deleted by one author.
+- When a user is deleted, he is disassociated from his contributions and rankings.
+- When a contribution is deleted, only its content and authorship are removed.
 - A post contains: id, title, content, timestamps (creation, last update) and comments.
 - A post can be linked to multiple categories, improving search.
 - A category contains: name (unique), description and creation timestamp.
