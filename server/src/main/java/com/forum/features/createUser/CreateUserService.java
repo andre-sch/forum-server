@@ -2,6 +2,7 @@ package com.forum.features.createUser;
 
 import com.forum.entities.User;
 import com.forum.repositories.Repository;
+import com.forum.exceptions.domain.RequestException;
 import com.forum.security.HashGenerator;
 
 class CreateUserService {
@@ -22,7 +23,7 @@ class CreateUserService {
     );
 
     if (registeredUser != null) {
-      throw new Error("email already registered");
+      throw new RequestException("email already registered");
     }
 
     String passwordHash = this.hashGenerator.generate(creationRequest.password);

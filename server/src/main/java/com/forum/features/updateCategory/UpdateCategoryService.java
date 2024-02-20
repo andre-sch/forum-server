@@ -1,7 +1,8 @@
 package com.forum.features.updateCategory;
 
-import com.forum.repositories.Repository;
 import com.forum.entities.Category;
+import com.forum.repositories.Repository;
+import com.forum.exceptions.domain.RequestException;
 
 class UpdateCategoryService {
   private Repository<Category> categoriesRepository;
@@ -14,7 +15,7 @@ class UpdateCategoryService {
     Category category = categoriesRepository.listOne(updateRequest.name);
 
     if (category == null) {
-      throw new Error("category does not exist");
+      throw new RequestException("category does not exist");
     }
 
     if (updateRequest.description != null) {

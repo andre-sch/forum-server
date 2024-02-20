@@ -2,6 +2,7 @@ package com.forum.features.createComment;
 
 import com.forum.entities.*;
 import com.forum.repositories.*;
+import com.forum.exceptions.domain.RequestException;
 
 class CreateCommentService {
   private Repository<Comment> commentsRepository;
@@ -22,7 +23,7 @@ class CreateCommentService {
     User author = this.usersRepository.listOne(creationRequest.authorId);
 
     if (author == null) {
-      throw new Error("author does not exist");
+      throw new RequestException("author does not exist");
     }
 
     Contribution parent = this.commentsRepository.listOne(creationRequest.parentId);
@@ -31,7 +32,7 @@ class CreateCommentService {
       parent = this.postsRepository.listOne(creationRequest.parentId);
 
       if (parent == null) {
-        throw new Error("comment has no parent");
+        throw new RequestException("comment has no parent");
       }
     }
 

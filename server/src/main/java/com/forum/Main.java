@@ -2,6 +2,7 @@ package com.forum;
 
 import com.forum.http.*;
 import com.forum.http.impl.Javalin.*;
+import com.forum.exceptions.HttpExceptionHandlerImpl;
 
 import com.forum.features.listUsers.ListUsers;
 import com.forum.features.createUser.CreateUser;
@@ -32,6 +33,8 @@ public class Main {
 
     HttpServer server = new JavalinServer();
     HttpApp app = server.start(4000);
+
+    app.exception(new HttpExceptionHandlerImpl());
 
     Repository<User> usersRepository = new HibernateUsersRepository(transaction);
     Repository<Post> postsRepository = new HibernatePostsRepository(transaction);

@@ -2,6 +2,7 @@ package com.forum.features.rankContribution;
 
 import com.forum.entities.*;
 import com.forum.repositories.Repository;
+import com.forum.exceptions.domain.RequestException;
 
 class RankContributionService {
   private Repository<User> usersRepository;
@@ -22,13 +23,13 @@ class RankContributionService {
     User user = this.usersRepository.listOne(rankingRequest.userId);
 
     if (user == null) {
-      throw new Error("user does not exist");
+      throw new RequestException("user does not exist");
     }
 
     Contribution contribution = this.contributionsRepository.listOne(rankingRequest.contributionId);
 
     if (contribution == null) {
-      throw new Error("contribution does not exist");
+      throw new RequestException("contribution does not exist");
     }
 
     Ranking ranking = new Ranking();

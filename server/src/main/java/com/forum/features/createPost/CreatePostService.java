@@ -3,6 +3,7 @@ package com.forum.features.createPost;
 import java.util.*;
 import com.forum.repositories.*;
 import com.forum.entities.*;
+import com.forum.exceptions.domain.RequestException;
 
 class CreatePostService {
   private Repository<Post> postsRepository;
@@ -23,7 +24,7 @@ class CreatePostService {
     User author = this.usersRepository.listOne(creationRequest.authorId);
 
     if (author == null) {
-      throw new Error("author does not exist");
+      throw new RequestException("author does not exist");
     }
 
     Set<Category> categories = new HashSet<>();
@@ -31,7 +32,7 @@ class CreatePostService {
       Category category = this.categoriesRepository.listOne(categoryName);
 
       if (category == null) {
-        throw new Error(String.format("category named '%s' does not exist", categoryName));
+        throw new RequestException(String.format("category named '%s' does not exist", categoryName));
       }
 
       categories.add(category);

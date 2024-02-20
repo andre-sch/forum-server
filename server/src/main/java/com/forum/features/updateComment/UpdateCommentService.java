@@ -1,7 +1,8 @@
 package com.forum.features.updateComment;
 
-import com.forum.repositories.Repository;
 import com.forum.entities.Comment;
+import com.forum.repositories.Repository;
+import com.forum.exceptions.domain.RequestException;
 
 class UpdateCommentService {
   private Repository<Comment> commentsRepository;
@@ -14,7 +15,7 @@ class UpdateCommentService {
     Comment comment = this.commentsRepository.listOne(updateRequest.commentId);
 
     if (comment == null) {
-      throw new Error("comment does not exist");
+      throw new RequestException("comment does not exist");
     }
 
     if (updateRequest.content != null) {

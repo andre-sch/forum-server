@@ -2,9 +2,10 @@ package com.forum.features.updatePost;
 
 import java.util.*;
 
-import com.forum.repositories.Repository;
-import com.forum.entities.Category;
 import com.forum.entities.Post;
+import com.forum.entities.Category;
+import com.forum.repositories.Repository;
+import com.forum.exceptions.domain.RequestException;
 
 class UpdatePostService {
   private Repository<Post> postsRepository;
@@ -23,7 +24,7 @@ class UpdatePostService {
     Post post = this.postsRepository.listOne(updateRequest.postId);
 
     if (post == null) {
-      throw new Error("post does not exist");
+      throw new RequestException("post does not exist");
     }
 
     if (updateRequest.title != null) {
@@ -41,7 +42,7 @@ class UpdatePostService {
         Category category = this.categoriesRepository.listOne(categoryName);
 
         if (category == null) {
-          throw new Error(String.format("category named '%s' does not exist", categoryName));
+          throw new RequestException(String.format("category named '%s' does not exist", categoryName));
         }
 
         categories.add(category);

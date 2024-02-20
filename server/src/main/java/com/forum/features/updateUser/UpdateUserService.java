@@ -1,7 +1,8 @@
 package com.forum.features.updateUser;
 
-import com.forum.repositories.Repository;
 import com.forum.entities.User;
+import com.forum.repositories.Repository;
+import com.forum.exceptions.domain.RequestException;
 
 class UpdateUserService {
   private Repository<User> usersRepository;
@@ -14,7 +15,7 @@ class UpdateUserService {
     User user = this.usersRepository.listOne(updateRequest.userId);
 
     if (user == null) {
-      throw new Error("user does not exist");
+      throw new RequestException("user does not exist");
     }
 
     if (updateRequest.name != null) {
@@ -27,7 +28,7 @@ class UpdateUserService {
       );
 
       if (registeredUser != null) {
-        throw new Error("email already registered");
+        throw new RequestException("email already registered");
       }
 
       user.setEmail(updateRequest.email);

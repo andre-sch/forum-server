@@ -3,6 +3,7 @@ package com.forum.features.createCategory;
 import com.forum.utils.Color;
 import com.forum.entities.Category;
 import com.forum.repositories.Repository;
+import com.forum.exceptions.domain.RequestException;
 
 class CreateCategoryService {
   private Repository<Category> categoriesRepository;
@@ -15,7 +16,7 @@ class CreateCategoryService {
     Category category = this.categoriesRepository.listOne(creationRequest.name);
 
     if (category != null) {
-      throw new Error("category already exists");
+      throw new RequestException("category already exists");
     }
 
     category = new Category();

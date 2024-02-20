@@ -2,6 +2,7 @@ package com.forum.features.deleteContribution;
 
 import com.forum.entities.Contribution;
 import com.forum.repositories.Repository;
+import com.forum.exceptions.domain.RequestException;
 
 class DeleteContributionService {
   private Repository<Contribution> contributionsRepository;
@@ -14,7 +15,7 @@ class DeleteContributionService {
     Contribution contribution = this.contributionsRepository.listOne(contributionId);
 
     if (contribution == null) {
-      throw new Error("contribution does not exist");
+      throw new RequestException("contribution does not exist");
     }
 
     contribution.setAuthor(null);

@@ -1,7 +1,8 @@
 package com.forum.features.deleteUser;
 
-import com.forum.repositories.Repository;
 import com.forum.entities.User;
+import com.forum.repositories.Repository;
+import com.forum.exceptions.domain.RequestException;
 
 class DeleteUserService {
   private Repository<User> usersRepository;
@@ -14,7 +15,7 @@ class DeleteUserService {
     User user = this.usersRepository.listOne(userId);
 
     if (user == null) {
-      throw new Error("user does not exist");
+      throw new RequestException("user does not exist");
     }
 
     this.usersRepository.delete(userId);

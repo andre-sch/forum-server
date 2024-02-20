@@ -1,6 +1,7 @@
 package com.forum.entities;
 
 import java.util.*;
+import com.forum.exceptions.domain.RequestException;
 import jakarta.persistence.*;
 
 @Entity
@@ -31,7 +32,7 @@ public class Ranking {
 
   public void setVote(String action) {
     if (!isValidAction(action)) {
-      throw new Error("invalid action");
+      throw new RequestException("invalid action");
     }
 
     if (action.equals("cancel")) {
