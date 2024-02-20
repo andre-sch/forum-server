@@ -5,7 +5,7 @@ import com.forum.http.*;
 import com.forum.entities.User;
 import com.forum.views.CompleteUserView;
 
-class ListUsersController implements HttpHandler {
+class ListUsersController implements HttpEndpointHandler {
   private ListUsersService listUsersService;
 
   public ListUsersController(ListUsersService listUsersService) {

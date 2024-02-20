@@ -2,7 +2,7 @@ package com.forum.features.deleteContribution;
 
 import com.forum.http.*;
 
-class DeleteContributionController implements HttpHandler {
+class DeleteContributionController implements HttpEndpointHandler {
   private DeleteContributionService deleteContributionService;
 
   public DeleteContributionController(DeleteContributionService deleteContributionService) {

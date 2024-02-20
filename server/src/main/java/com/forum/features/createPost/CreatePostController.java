@@ -5,7 +5,7 @@ import com.forum.entities.Post;
 import com.forum.views.CompactPostView;
 import com.google.gson.Gson;
 
-class CreatePostController implements HttpHandler {
+class CreatePostController implements HttpEndpointHandler {
   private CreatePostService createPostService;
   private Gson jsonConverter = new Gson();
 

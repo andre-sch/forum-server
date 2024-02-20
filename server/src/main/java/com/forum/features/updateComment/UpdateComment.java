@@ -1,7 +1,7 @@
 package com.forum.features.updateComment;
 
 import com.forum.entities.Comment;
-import com.forum.http.HttpHandler;
+import com.forum.http.HttpEndpointHandler;
 import com.forum.repositories.Repository;
 
 public class UpdateComment {
@@ -12,5 +12,5 @@ public class UpdateComment {
     this.handler = controller;
   }
 
-  public HttpHandler handler;
+  public HttpEndpointHandler handler;
 }

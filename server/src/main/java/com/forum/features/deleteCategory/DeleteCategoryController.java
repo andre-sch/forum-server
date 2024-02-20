@@ -2,7 +2,7 @@ package com.forum.features.deleteCategory;
 
 import com.forum.http.*;
 
-class DeleteCategoryController implements HttpHandler {
+class DeleteCategoryController implements HttpEndpointHandler {
   private DeleteCategoryService deleteCategoryService;
 
   public DeleteCategoryController(DeleteCategoryService deleteCategoryService) {

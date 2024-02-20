@@ -2,7 +2,7 @@ package com.forum.features.updatePost;
 
 import com.forum.entities.Category;
 import com.forum.entities.Post;
-import com.forum.http.HttpHandler;
+import com.forum.http.HttpEndpointHandler;
 import com.forum.repositories.Repository;
 
 public class UpdatePost {
@@ -16,5 +16,5 @@ public class UpdatePost {
     this.handler = controller;
   }
 
-  public HttpHandler handler;
+  public HttpEndpointHandler handler;
 }

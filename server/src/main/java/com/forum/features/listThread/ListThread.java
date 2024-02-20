@@ -1,6 +1,6 @@
 package com.forum.features.listThread;
 
-import com.forum.http.HttpHandler;
+import com.forum.http.HttpEndpointHandler;
 import com.forum.repositories.Repository;
 import com.forum.entities.Post;
 import com.forum.entities.Comment;
@@ -21,5 +21,5 @@ public class ListThread {
     this.handler = controller;
   }
 
-  public HttpHandler handler;
+  public HttpEndpointHandler handler;
 }

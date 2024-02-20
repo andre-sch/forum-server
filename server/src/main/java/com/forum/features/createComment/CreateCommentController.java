@@ -5,7 +5,7 @@ import com.forum.entities.Comment;
 import com.forum.views.CommentView;
 import com.google.gson.Gson;
 
-class CreateCommentController implements HttpHandler {
+class CreateCommentController implements HttpEndpointHandler {
   private CreateCommentService createCommentService;
   private Gson jsonConverter = new Gson();
 

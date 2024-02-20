@@ -1,6 +1,6 @@
 package com.forum.features.deleteUser;
 
-import com.forum.http.HttpHandler;
+import com.forum.http.HttpEndpointHandler;
 import com.forum.repositories.Repository;
 import com.forum.entities.User;
 
@@ -12,5 +12,5 @@ public class DeleteUser {
     this.handler = controller;
   }
 
-  public HttpHandler handler;
+  public HttpEndpointHandler handler;
 }

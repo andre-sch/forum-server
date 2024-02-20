@@ -2,7 +2,7 @@ package com.forum.features.createUser;
 
 import com.forum.security.HashGenerator;
 import com.forum.security.BcryptHashGenerator;
-import com.forum.http.HttpHandler;
+import com.forum.http.HttpEndpointHandler;
 import com.forum.repositories.Repository;
 import com.forum.entities.User;
 
@@ -16,5 +16,5 @@ public class CreateUser {
     this.handler = controller;
   }
 
-  public HttpHandler handler;
+  public HttpEndpointHandler handler;
 }

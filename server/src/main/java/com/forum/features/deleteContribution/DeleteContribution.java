@@ -1,7 +1,7 @@
 package com.forum.features.deleteContribution;
 
 import com.forum.entities.Contribution;
-import com.forum.http.HttpHandler;
+import com.forum.http.HttpEndpointHandler;
 import com.forum.repositories.Repository;
 
 public class DeleteContribution {
@@ -12,5 +12,5 @@ public class DeleteContribution {
     this.handler = controller;
   }
 
-  public HttpHandler handler;
+  public HttpEndpointHandler handler;
 }

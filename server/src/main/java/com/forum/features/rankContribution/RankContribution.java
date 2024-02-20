@@ -1,6 +1,6 @@
 package com.forum.features.rankContribution;
 
-import com.forum.http.HttpHandler;
+import com.forum.http.HttpEndpointHandler;
 import com.forum.repositories.Repository;
 import com.forum.entities.*;
 
@@ -21,5 +21,5 @@ public class RankContribution {
     this.handler = controller;
   }
 
-  public HttpHandler handler;
+  public HttpEndpointHandler handler;
 }

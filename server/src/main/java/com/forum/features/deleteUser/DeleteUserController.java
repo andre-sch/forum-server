@@ -2,7 +2,7 @@ package com.forum.features.deleteUser;
 
 import com.forum.http.*;
 
-class DeleteUserController implements HttpHandler {
+class DeleteUserController implements HttpEndpointHandler {
   private DeleteUserService deleteUserService;
 
   public DeleteUserController(DeleteUserService deleteUserService) {

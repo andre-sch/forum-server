@@ -1,6 +1,6 @@
 package com.forum.features.createCategory;
 
-import com.forum.http.HttpHandler;
+import com.forum.http.HttpEndpointHandler;
 import com.forum.repositories.Repository;
 import com.forum.entities.Category;
 
@@ -12,5 +12,5 @@ public class CreateCategory {
     this.handler = controller;
   }
 
-  public HttpHandler handler;
+  public HttpEndpointHandler handler;
 }

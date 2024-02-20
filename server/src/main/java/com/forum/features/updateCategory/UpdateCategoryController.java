@@ -5,7 +5,7 @@ import com.forum.entities.Category;
 import com.forum.views.CompactCategoryView;
 import com.google.gson.Gson;
 
-class UpdateCategoryController implements HttpHandler {
+class UpdateCategoryController implements HttpEndpointHandler {
   private UpdateCategoryService updateCategoryService;
   private Gson jsonConverter = new Gson();
 

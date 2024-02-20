@@ -4,7 +4,7 @@ import java.util.List;
 import com.forum.http.*;
 import com.forum.entities.Post;
 
-class ListThreadController implements HttpHandler {
+class ListThreadController implements HttpEndpointHandler {
   private ListThreadService listThreadService;
   private ListPostCommentsService listPostCommentsService;
 

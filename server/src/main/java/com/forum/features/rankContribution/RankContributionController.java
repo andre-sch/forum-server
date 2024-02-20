@@ -4,7 +4,7 @@ import com.forum.http.*;
 import com.forum.entities.Ranking;
 import com.google.gson.Gson;
 
-class RankContributionController implements HttpHandler {
+class RankContributionController implements HttpEndpointHandler {
   private RankContributionService rankContributionService;
   private Gson jsonConverter = new Gson();
 

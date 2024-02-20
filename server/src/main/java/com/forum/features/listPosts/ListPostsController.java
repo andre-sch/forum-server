@@ -5,7 +5,7 @@ import com.forum.entities.Post;
 import com.forum.views.CompletePostView;
 import com.forum.http.*;
 
-class ListPostsController implements HttpHandler {
+class ListPostsController implements HttpEndpointHandler {
   private ListPostsService listPostsService;
 
   public ListPostsController(ListPostsService listPostsService) {

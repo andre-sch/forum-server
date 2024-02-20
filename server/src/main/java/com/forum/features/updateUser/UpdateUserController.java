@@ -5,7 +5,7 @@ import com.forum.entities.User;
 import com.forum.views.CompactUserView;
 import com.google.gson.Gson;
 
-class UpdateUserController implements HttpHandler {
+class UpdateUserController implements HttpEndpointHandler {
   private UpdateUserService updateUserService;
   private Gson jsonConverter = new Gson();
 

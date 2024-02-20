@@ -5,7 +5,7 @@ import com.forum.entities.Category;
 import com.forum.views.CompleteCategoryView;
 import com.forum.http.*;
 
-class ListCategoriesController implements HttpHandler {
+class ListCategoriesController implements HttpEndpointHandler {
   private ListCategoriesService listCategoriesService;
 
   public ListCategoriesController(ListCategoriesService listCategoriesService) {
