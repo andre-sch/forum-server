@@ -17,9 +17,39 @@
 - Replace `flyway.example.conf` in root using the same process listed in the previous section.
 - To get the current state of the database, run `mvn flyway:migrate` on terminal in `server` directory.
 
-## Usage
+## Endpoints
 
-### Definitions
+- User
+
+  - Create – `POST /users`
+  - List – `GET /users`
+  - Update – `PUT /users/:userId`
+  - Delete – `DELETE /users/:userId`
+
+- Category
+
+  - Create – `POST /categories`
+  - List – `GET /categories`
+  - Update – `PUT /categories/:categoryName`
+  - Delete – `DELETE /categories/:categoryName`
+
+- Post
+
+  - Create – `POST /posts`
+  - List – `GET /posts`
+  - List thread – `GET /posts/:postId`
+  - Update – `PUT /posts/:postId`
+  - Delete – `DELETE /posts/:postId`
+
+- Comment
+
+  - Create – `POST /comments`
+  - Update – `PUT /comments/:commentId`
+  - Delete – `DELETE /comments/:commentId`
+
+- Rank contribution – `PUT /ranking/:contributionId/:action`
+
+## Definitions
 
 ```ts
 type User = {
@@ -38,9 +68,9 @@ type Category = {
 };
 ```
 
-### Endpoints
+## User
 
-#### Create user – POST "/users"
+### Create – `POST /users`
 
 ```ts
 type RequestBody = {
@@ -56,14 +86,27 @@ type ResponseBody = StoredUser;
 type StoredUser = User & { createdAt: number };
 ```
 
-#### List users – GET "/users"
+### List – `GET /users`
 
 ```ts
 type RequestBody = null;
 type ResponseBody = StoredUser[];
 ```
 
-#### Create category – POST "/categories"
+### Update – `PUT /users/:userId`
+
+Equivalent to user creation.
+
+### Delete – `DELETE /users/:userId`
+
+```ts
+type RequestBody = null;
+type ResponseBody = null;
+```
+
+## Category
+
+### Create – `POST /categories`
 
 ```ts
 type RequestBody = {
@@ -77,14 +120,38 @@ type ResponseBody = StoredCategory;
 type StoredCategory = Category & { createdAt: number };
 ```
 
-#### List categories – GET "/categories"
+### List – `GET /categories`
 
 ```ts
 type RequestBody = null;
 type ResponseBody = StoredCategory[];
 ```
 
-#### Create post – POST "/posts"
+### Update – `PUT /categories/:categoryName`
+
+```ts
+type RequestBody = {
+  name: string;
+  description: string;
+  color: string;
+};
+```
+
+```ts
+type ResponseBody = StoredCategory;
+type StoredCategory = Category & { createdAt: number };
+```
+
+### Delete – `DELETE /categories/:categoryName`
+
+```ts
+type RequestBody = null;
+type ResponseBody = null;
+```
+
+## Post
+
+### Create – `POST /posts`
 
 ```ts
 type RequestBody = {
@@ -109,7 +176,7 @@ type ResponseBody = {
 };
 ```
 
-#### List posts – GET "/posts"
+### List – `GET /posts`
 
 ```ts
 type RequestQueryParams = {
@@ -141,7 +208,7 @@ type Post = {
 
 `upVotes` and `downVotes` references users who ranked the contribution.
 
-#### List one post – GET "/posts/:postId"
+### List thread – `GET /posts/:postId`
 
 ```ts
 type RequestBody = null;
@@ -174,7 +241,28 @@ type Comment = {
 };
 ```
 
-#### Create comment – POST "/comments"
+### Update – `PUT /posts/:postId`
+
+```ts
+type RequestBody = {
+  title: string;
+  content: string;
+  categoryNames: string[];
+};
+```
+
+`ResponseBody` is equal to post creation.
+
+### Delete – `DELETE /posts/:postId`
+
+```ts
+type RequestBody = null;
+type ResponseBody = null;
+```
+
+## Comment
+
+### Create – `POST /comments`
 
 ```ts
 type RequestBody = {
@@ -197,7 +285,26 @@ type ResponseBody = {
 };
 ```
 
-#### Rank contribution – PUT "/ranking/:contributionId/:action"
+### Update – `PUT /comments/:commentId`
+
+```ts
+type RequestBody = {
+  content: string;
+};
+```
+
+`ResponseBody` is equal to comment creation.
+
+### Delete – `DELETE /comments/:commentId`
+
+```ts
+type RequestBody = null;
+type ResponseBody = null;
+```
+
+## Ranking
+
+### Rank contribution – `PUT /ranking/:contributionId/:action`
 
 ```ts
 type RequestBody = { userId: string };
