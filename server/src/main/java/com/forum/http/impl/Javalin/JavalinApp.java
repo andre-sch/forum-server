@@ -10,6 +10,13 @@ public class JavalinApp implements HttpApp {
     this.app = app;
   }
 
+  public void use(String path, HttpEndpointHandler handler) {
+    this.get(path, handler);
+    this.post(path, handler);
+    this.put(path, handler);
+    this.delete(path, handler);
+  }
+
   public void get(String path, HttpEndpointHandler handler) {
     this.app.get(path, EndpointHandlerWrapper.wrap(handler));
   }

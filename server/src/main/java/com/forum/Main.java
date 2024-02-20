@@ -3,6 +3,7 @@ package com.forum;
 import com.forum.http.*;
 import com.forum.http.impl.Javalin.*;
 import com.forum.exceptions.HttpExceptionHandlerImpl;
+import com.forum.endpoints.*;
 
 import com.forum.features.listUsers.ListUsers;
 import com.forum.features.createUser.CreateUser;
@@ -68,5 +69,7 @@ public class Main {
     app.post("/categories", new CreateCategory(categoriesRepository).handler);
     app.put("/categories/{categoryName}", new UpdateCategory(categoriesRepository).handler);
     app.delete("/categories/{categoryName}", new DeleteCategory(categoriesRepository).handler);
+
+    app.use("*", new UnavailableResource());
   }
 }
