@@ -2,7 +2,7 @@ package com.forum.features.updateUser;
 
 import com.forum.http.*;
 import com.forum.entities.User;
-import com.forum.views.CompactUserView;
+import com.forum.views.CompleteUserView;
 import com.google.gson.Gson;
 
 class UpdateUserController implements HttpEndpointHandler {
@@ -26,7 +26,7 @@ class UpdateUserController implements HttpEndpointHandler {
     updateRequest.avatarUrl = requestBody.avatarUrl;
 
     User updatedUser = this.updateUserService.execute(updateRequest);
-    CompactUserView updatedUserView = new CompactUserView(updatedUser);
+    CompleteUserView updatedUserView = new CompleteUserView(updatedUser);
 
     response.json(updatedUserView);
   }

@@ -2,7 +2,7 @@ package com.forum.features.updateCategory;
 
 import com.forum.http.*;
 import com.forum.entities.Category;
-import com.forum.views.CompactCategoryView;
+import com.forum.views.CompleteCategoryView;
 import com.google.gson.Gson;
 
 class UpdateCategoryController implements HttpEndpointHandler {
@@ -24,7 +24,7 @@ class UpdateCategoryController implements HttpEndpointHandler {
     updateRequest.color = requestBody.color;
 
     Category updatedCategory = this.updateCategoryService.execute(updateRequest);
-    CompactCategoryView updatedCategoryView = new CompactCategoryView(updatedCategory);
+    CompleteCategoryView updatedCategoryView = new CompleteCategoryView(updatedCategory);
 
     response.json(updatedCategoryView);
   }
