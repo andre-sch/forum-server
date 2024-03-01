@@ -10,11 +10,11 @@ public class ListThread {
     Repository<Post> postsRepository,
     Repository<Comment> commentsRepository
   ) {
-    ListThreadService listThreadService = new ListThreadService(postsRepository);
+    ListPostContentService listPostContentService = new ListPostContentService(postsRepository);
     ListPostCommentsService listPostCommentsService = new ListPostCommentsService(commentsRepository);
 
     ListThreadController controller = new ListThreadController(
-      listThreadService,
+      listPostContentService,
       listPostCommentsService
     );
 

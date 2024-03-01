@@ -3,10 +3,10 @@ package com.forum.features.listThread;
 import com.forum.entities.Post;
 import com.forum.repositories.Repository;
 
-class ListThreadService {
+class ListPostContentService {
   private Repository<Post> postsRepository;
 
-  public ListThreadService(Repository<Post> postsRepository) {
+  public ListPostContentService(Repository<Post> postsRepository) {
     this.postsRepository = postsRepository;
   }
 

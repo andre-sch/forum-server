@@ -5,14 +5,14 @@ import com.forum.http.*;
 import com.forum.entities.Post;
 
 class ListThreadController implements HttpEndpointHandler {
-  private ListThreadService listThreadService;
+  private ListPostContentService listPostContentService;
   private ListPostCommentsService listPostCommentsService;
 
   public ListThreadController(
-    ListThreadService listThreadService,
+    ListPostContentService listPostContentService,
     ListPostCommentsService listPostCommentsService
   ) {
-    this.listThreadService = listThreadService;
+    this.listPostContentService = listPostContentService;
     this.listPostCommentsService = listPostCommentsService;
   }
 
@@ -20,7 +20,7 @@ class ListThreadController implements HttpEndpointHandler {
     String postId = request.getPathParam("postId");
 
     List<CommentNode> comments = this.listPostCommentsService.execute(postId);
-    Post post = this.listThreadService.execute(postId);
+    Post post = this.listPostContentService.execute(postId);
 
     Thread thread = new Thread(post, comments);
 
