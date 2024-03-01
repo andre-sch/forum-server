@@ -6,14 +6,14 @@ import com.forum.entities.*;
 
 public class CreateComment {
   public CreateComment(
+    Repository<Contribution> contributionsRepository,
     Repository<Comment> commentsRepository,
-    Repository<User> usersRepository,
-    Repository<Post> postsRepository
+    Repository<User> usersRepository
   ) {
     CreateCommentService service = new CreateCommentService(
+      contributionsRepository,
       commentsRepository,
-      usersRepository,
-      postsRepository
+      usersRepository
     );
 
     CreateCommentController controller = new CreateCommentController(service);

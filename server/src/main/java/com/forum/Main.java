@@ -56,7 +56,7 @@ public class Main {
     app.put("/posts/{postId}", new UpdatePost(postsRepository, categoriesRepository).handler);
     app.delete("/posts/{contributionId}", new DeleteContribution(contributionsRepository).handler);
 
-    app.post("/comments", new CreateComment(commentsRepository, usersRepository, postsRepository).handler);
+    app.post("/comments", new CreateComment(contributionsRepository, commentsRepository, usersRepository).handler);
     app.put("/comments/{commentId}", new UpdateComment(commentsRepository).handler);
     app.delete("/comments/{contributionId}", new DeleteContribution(contributionsRepository).handler);
 

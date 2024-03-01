@@ -5,18 +5,18 @@ import com.forum.repositories.*;
 import com.forum.exceptions.domain.RequestException;
 
 class CreateCommentService {
+  private Repository<Contribution> contributionsRepository;
   private Repository<Comment> commentsRepository;
   private Repository<User> usersRepository;
-  private Repository<Post> postsRepository;
 
   public CreateCommentService(
+    Repository<Contribution> contributionsRepository,
     Repository<Comment> commentsRepository,
-    Repository<User> usersRepository,
-    Repository<Post> postsRepository
+    Repository<User> usersRepository
   ) {
+    this.contributionsRepository = contributionsRepository;
     this.commentsRepository = commentsRepository;
     this.usersRepository = usersRepository;
-    this.postsRepository = postsRepository;
   }
 
   public Comment execute(CommentCreationRequest creationRequest) {
@@ -26,14 +26,10 @@ class CreateCommentService {
       throw new RequestException("author does not exist");
     }
 
-    Contribution parent = this.commentsRepository.listOne(creationRequest.parentId);
+    Contribution parent = this.contributionsRepository.listOne(creationRequest.parentId);
 
     if (parent == null) {
-      parent = this.postsRepository.listOne(creationRequest.parentId);
-
-      if (parent == null) {
-        throw new RequestException("comment has no parent");
-      }
+      throw new RequestException("comment has no parent");
     }
 
     Comment comment = new Comment();
