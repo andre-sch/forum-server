@@ -1,11 +1,10 @@
 package com.forum.features.updateComment;
 
-import com.forum.entities.Comment;
 import com.forum.http.HttpEndpointHandler;
-import com.forum.repositories.Repository;
+import com.forum.repositories.CommentsRepository;
 
 public class UpdateComment {
-  public UpdateComment(Repository<Comment> commentsRepository) {
+  public UpdateComment(CommentsRepository commentsRepository) {
     UpdateCommentService service = new UpdateCommentService(commentsRepository);
     UpdateCommentController controller = new UpdateCommentController(service);
 

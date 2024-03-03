@@ -1,18 +1,18 @@
 package com.forum.features.rankContribution;
 
 import com.forum.entities.*;
-import com.forum.repositories.Repository;
+import com.forum.repositories.*;
 import com.forum.exceptions.domain.RequestException;
 
 class RankContributionService {
-  private Repository<User> usersRepository;
-  private Repository<Contribution> contributionsRepository;
-  private Repository<Ranking> rankingsRepository;
+  private UsersRepository usersRepository;
+  private ContributionsRepository contributionsRepository;
+  private RankingsRepository rankingsRepository;
 
   public RankContributionService(
-    Repository<User> usersRepository,
-    Repository<Contribution> contributionsRepository,
-    Repository<Ranking> rankingsRepository
+    UsersRepository usersRepository,
+    ContributionsRepository contributionsRepository,
+    RankingsRepository rankingsRepository
   ) {
     this.usersRepository = usersRepository;
     this.contributionsRepository = contributionsRepository;

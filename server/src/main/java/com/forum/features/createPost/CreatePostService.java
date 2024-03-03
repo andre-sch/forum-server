@@ -6,14 +6,14 @@ import com.forum.entities.*;
 import com.forum.exceptions.domain.RequestException;
 
 class CreatePostService {
-  private Repository<Post> postsRepository;
-  private Repository<User> usersRepository;
-  private Repository<Category> categoriesRepository;
+  private PostsRepository postsRepository;
+  private UsersRepository usersRepository;
+  private CategoriesRepository categoriesRepository;
 
   public CreatePostService(
-    Repository<Post> postsRepository,
-    Repository<User> usersRepository,
-    Repository<Category> categoriesRepository
+    PostsRepository postsRepository,
+    UsersRepository usersRepository,
+    CategoriesRepository categoriesRepository
   ) {
     this.postsRepository = postsRepository;
     this.usersRepository = usersRepository;

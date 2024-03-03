@@ -1,13 +1,13 @@
 package com.forum.features.updateCategory;
 
 import com.forum.entities.Category;
-import com.forum.repositories.Repository;
+import com.forum.repositories.CategoriesRepository;
 import com.forum.exceptions.domain.RequestException;
 
 class UpdateCategoryService {
-  private Repository<Category> categoriesRepository;
+  private CategoriesRepository categoriesRepository;
 
-  public UpdateCategoryService(Repository<Category> categoriesRepository) {
+  public UpdateCategoryService(CategoriesRepository categoriesRepository) {
     this.categoriesRepository = categoriesRepository;
   }
 

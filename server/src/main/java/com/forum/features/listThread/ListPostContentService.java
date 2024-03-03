@@ -1,12 +1,12 @@
 package com.forum.features.listThread;
 
 import com.forum.entities.Post;
-import com.forum.repositories.Repository;
+import com.forum.repositories.PostsRepository;
 
 class ListPostContentService {
-  private Repository<Post> postsRepository;
+  private PostsRepository postsRepository;
 
-  public ListPostContentService(Repository<Post> postsRepository) {
+  public ListPostContentService(PostsRepository postsRepository) {
     this.postsRepository = postsRepository;
   }
 

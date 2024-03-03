@@ -2,13 +2,13 @@ package com.forum.features.listPosts;
 
 import java.util.*;
 import java.util.regex.*;
-import com.forum.entities.*;
-import com.forum.repositories.Repository;
+import com.forum.entities.Post;
+import com.forum.repositories.PostsRepository;
 
 class ListPostsService {
-  private Repository<Post> postsRepository;
+  private PostsRepository postsRepository;
 
-  public ListPostsService(Repository<Post> postsRepository) {
+  public ListPostsService(PostsRepository postsRepository) {
     this.postsRepository = postsRepository;
   }
 

@@ -5,14 +5,14 @@ import com.forum.repositories.*;
 import com.forum.exceptions.domain.RequestException;
 
 class CreateCommentService {
-  private Repository<Contribution> contributionsRepository;
-  private Repository<Comment> commentsRepository;
-  private Repository<User> usersRepository;
+  private ContributionsRepository contributionsRepository;
+  private CommentsRepository commentsRepository;
+  private UsersRepository usersRepository;
 
   public CreateCommentService(
-    Repository<Contribution> contributionsRepository,
-    Repository<Comment> commentsRepository,
-    Repository<User> usersRepository
+    ContributionsRepository contributionsRepository,
+    CommentsRepository commentsRepository,
+    UsersRepository usersRepository
   ) {
     this.contributionsRepository = contributionsRepository;
     this.commentsRepository = commentsRepository;

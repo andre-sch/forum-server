@@ -5,7 +5,7 @@ import com.forum.repositories.*;
 
 public class ListThread {
   public ListThread(
-    Repository<Post> postsRepository,
+    PostsRepository postsRepository,
     CommentsRepository commentsRepository
   ) {
     ListPostContentService listPostContentService = new ListPostContentService(postsRepository);

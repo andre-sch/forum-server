@@ -2,12 +2,12 @@ package com.forum.features.listUsers;
 
 import java.util.List;
 import com.forum.entities.User;
-import com.forum.repositories.Repository;
+import com.forum.repositories.UsersRepository;
 
 class ListUsersService {
-  private Repository<User> usersRepository;
+  private UsersRepository usersRepository;
 
-  public ListUsersService(Repository<User> usersRepository) {
+  public ListUsersService(UsersRepository usersRepository) {
     this.usersRepository = usersRepository;
   }
 

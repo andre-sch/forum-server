@@ -1,11 +1,10 @@
 package com.forum.features.deleteContribution;
 
-import com.forum.entities.Contribution;
 import com.forum.http.HttpEndpointHandler;
-import com.forum.repositories.Repository;
+import com.forum.repositories.ContributionsRepository;
 
 public class DeleteContribution {
-  public DeleteContribution(Repository<Contribution> contributionsRepository) {
+  public DeleteContribution(ContributionsRepository contributionsRepository) {
     DeleteContributionService service = new DeleteContributionService(contributionsRepository);
     DeleteContributionController controller = new DeleteContributionController(service);
 

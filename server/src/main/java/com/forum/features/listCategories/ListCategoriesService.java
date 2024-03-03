@@ -2,12 +2,12 @@ package com.forum.features.listCategories;
 
 import java.util.List;
 import com.forum.entities.Category;
-import com.forum.repositories.Repository;
+import com.forum.repositories.CategoriesRepository;
 
 class ListCategoriesService {
-  private Repository<Category> categoriesRepository;
+  private CategoriesRepository categoriesRepository;
 
-  public ListCategoriesService(Repository<Category> categoriesRepository) {
+  public ListCategoriesService(CategoriesRepository categoriesRepository) {
     this.categoriesRepository = categoriesRepository;
   }
 

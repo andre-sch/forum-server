@@ -1,13 +1,13 @@
 package com.forum.features.deleteContribution;
 
 import com.forum.entities.Contribution;
-import com.forum.repositories.Repository;
+import com.forum.repositories.ContributionsRepository;
 import com.forum.exceptions.domain.RequestException;
 
 class DeleteContributionService {
-  private Repository<Contribution> contributionsRepository;
+  private ContributionsRepository contributionsRepository;
 
-  public DeleteContributionService(Repository<Contribution> contributionsRepository) {
+  public DeleteContributionService(ContributionsRepository contributionsRepository) {
     this.contributionsRepository = contributionsRepository;
   }
 

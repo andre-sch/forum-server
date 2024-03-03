@@ -1,14 +1,13 @@
 package com.forum.features.updatePost;
 
-import com.forum.entities.Category;
-import com.forum.entities.Post;
 import com.forum.http.HttpEndpointHandler;
-import com.forum.repositories.Repository;
+import com.forum.repositories.CategoriesRepository;
+import com.forum.repositories.PostsRepository;
 
 public class UpdatePost {
   public UpdatePost(
-    Repository<Post> postsRepository,
-    Repository<Category> categoriesRepository
+    PostsRepository postsRepository,
+    CategoriesRepository categoriesRepository
   ) {
     UpdatePostService service = new UpdatePostService(postsRepository, categoriesRepository);
     UpdatePostController controller = new UpdatePostController(service);

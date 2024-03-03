@@ -1,13 +1,13 @@
 package com.forum.features.updateComment;
 
 import com.forum.entities.Comment;
-import com.forum.repositories.Repository;
+import com.forum.repositories.CommentsRepository;
 import com.forum.exceptions.domain.RequestException;
 
 class UpdateCommentService {
-  private Repository<Comment> commentsRepository;
+  private CommentsRepository commentsRepository;
 
-  public UpdateCommentService(Repository<Comment> commentsRepository) {
+  public UpdateCommentService(CommentsRepository commentsRepository) {
     this.commentsRepository = commentsRepository;
   }
 

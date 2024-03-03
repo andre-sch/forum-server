@@ -2,13 +2,13 @@ package com.forum.features.createCategory;
 
 import com.forum.utils.Color;
 import com.forum.entities.Category;
-import com.forum.repositories.Repository;
+import com.forum.repositories.CategoriesRepository;
 import com.forum.exceptions.domain.RequestException;
 
 class CreateCategoryService {
-  private Repository<Category> categoriesRepository;
+  private CategoriesRepository categoriesRepository;
 
-  public CreateCategoryService(Repository<Category> categoriesRepository) {
+  public CreateCategoryService(CategoriesRepository categoriesRepository) {
     this.categoriesRepository = categoriesRepository;
   }
 

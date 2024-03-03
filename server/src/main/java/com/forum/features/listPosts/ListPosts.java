@@ -1,11 +1,10 @@
 package com.forum.features.listPosts;
 
 import com.forum.http.HttpEndpointHandler;
-import com.forum.repositories.Repository;
-import com.forum.entities.Post;
+import com.forum.repositories.PostsRepository;
 
 public class ListPosts {
-  public ListPosts(Repository<Post> postsRepository) {
+  public ListPosts(PostsRepository postsRepository) {
     ListPostsService service = new ListPostsService(postsRepository);
     ListPostsController controller = new ListPostsController(service);
 

@@ -1,14 +1,13 @@
 package com.forum.features.rankContribution;
 
 import com.forum.http.HttpEndpointHandler;
-import com.forum.repositories.Repository;
-import com.forum.entities.*;
+import com.forum.repositories.*;
 
 public class RankContribution {
   public RankContribution(
-    Repository<User> usersRepository,
-    Repository<Contribution> contributionsRepository,
-    Repository<Ranking> rankingsRepository
+    UsersRepository usersRepository,
+    ContributionsRepository contributionsRepository,
+    RankingsRepository rankingsRepository
   ) {
     RankContributionService service = new RankContributionService(
       usersRepository,

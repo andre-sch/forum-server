@@ -2,13 +2,12 @@ package com.forum.features.createPost;
 
 import com.forum.http.HttpEndpointHandler;
 import com.forum.repositories.*;
-import com.forum.entities.*;
 
 public class CreatePost {
   public CreatePost(
-    Repository<Post> postsRepository,
-    Repository<User> usersRepository,
-    Repository<Category> categoriesRepository
+    PostsRepository postsRepository,
+    UsersRepository usersRepository,
+    CategoriesRepository categoriesRepository
   ) {
     CreatePostService service = new CreatePostService(
       postsRepository,

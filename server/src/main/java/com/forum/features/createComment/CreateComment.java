@@ -2,13 +2,12 @@ package com.forum.features.createComment;
 
 import com.forum.http.HttpEndpointHandler;
 import com.forum.repositories.*;
-import com.forum.entities.*;
 
 public class CreateComment {
   public CreateComment(
-    Repository<Contribution> contributionsRepository,
-    Repository<Comment> commentsRepository,
-    Repository<User> usersRepository
+    ContributionsRepository contributionsRepository,
+    CommentsRepository commentsRepository,
+    UsersRepository usersRepository
   ) {
     CreateCommentService service = new CreateCommentService(
       contributionsRepository,

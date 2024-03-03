@@ -1,13 +1,13 @@
 package com.forum.features.deleteUser;
 
 import com.forum.entities.User;
-import com.forum.repositories.Repository;
+import com.forum.repositories.UsersRepository;
 import com.forum.exceptions.domain.RequestException;
 
 class DeleteUserService {
-  private Repository<User> usersRepository;
+  private UsersRepository usersRepository;
 
-  public DeleteUserService(Repository<User> usersRepository) {
+  public DeleteUserService(UsersRepository usersRepository) {
     this.usersRepository = usersRepository;
   }
 

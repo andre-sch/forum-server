@@ -1,13 +1,13 @@
 package com.forum.features.deleteCategory;
 
 import com.forum.entities.Category;
-import com.forum.repositories.Repository;
+import com.forum.repositories.CategoriesRepository;
 import com.forum.exceptions.domain.RequestException;
 
 class DeleteCategoryService {
-  private Repository<Category> categoriesRepository;
+  private CategoriesRepository categoriesRepository;
 
-  public DeleteCategoryService(Repository<Category> categoriesRepository) {
+  public DeleteCategoryService(CategoriesRepository categoriesRepository) {
     this.categoriesRepository = categoriesRepository;
   }
 

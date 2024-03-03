@@ -2,18 +2,17 @@ package com.forum.features.updatePost;
 
 import java.util.*;
 
-import com.forum.entities.Post;
-import com.forum.entities.Category;
-import com.forum.repositories.Repository;
+import com.forum.entities.*;
+import com.forum.repositories.*;
 import com.forum.exceptions.domain.RequestException;
 
 class UpdatePostService {
-  private Repository<Post> postsRepository;
-  private Repository<Category> categoriesRepository;
+  private PostsRepository postsRepository;
+  private CategoriesRepository categoriesRepository;
 
   public UpdatePostService(
-    Repository<Post> postsRepository,
-    Repository<Category> categoriesRepository
+    PostsRepository postsRepository,
+    CategoriesRepository categoriesRepository
   ) {
     this.postsRepository = postsRepository;
     this.categoriesRepository = categoriesRepository;

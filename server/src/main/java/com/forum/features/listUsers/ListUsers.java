@@ -1,11 +1,10 @@
 package com.forum.features.listUsers;
 
 import com.forum.http.HttpEndpointHandler;
-import com.forum.repositories.Repository;
-import com.forum.entities.User;
+import com.forum.repositories.UsersRepository;
 
 public class ListUsers {
-  public ListUsers(Repository<User> usersRepository) {
+  public ListUsers(UsersRepository usersRepository) {
     ListUsersService service = new ListUsersService(usersRepository);
     ListUsersController controller = new ListUsersController(service);
 

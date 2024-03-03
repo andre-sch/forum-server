@@ -37,11 +37,11 @@ public class Main {
     app.exception(new HttpExceptionHandlerImpl());
 
     UsersRepository usersRepository = new HibernateUsersRepository(transaction);
-    Repository<Post> postsRepository = new HibernatePostsRepository(transaction);
+    PostsRepository postsRepository = new HibernatePostsRepository(transaction);
     CommentsRepository commentsRepository = new HibernateCommentsRepository(transaction);
-    Repository<Contribution> contributionsRepository = new HibernateContributionsRepository(transaction);
-    Repository<Ranking> rankingsRepository = new HibernateRankingsRepository(transaction);
-    Repository<Category> categoriesRepository = new HibernateCategoriesRepository(transaction);
+    ContributionsRepository contributionsRepository = new HibernateContributionsRepository(transaction);
+    RankingsRepository rankingsRepository = new HibernateRankingsRepository(transaction);
+    CategoriesRepository categoriesRepository = new HibernateCategoriesRepository(transaction);
 
     app.get("/users", new ListUsers(usersRepository).handler);
     app.post("/users", new CreateUser(usersRepository).handler);
