@@ -38,7 +38,7 @@ public class Main {
 
     UsersRepository usersRepository = new HibernateUsersRepository(transaction);
     Repository<Post> postsRepository = new HibernatePostsRepository(transaction);
-    Repository<Comment> commentsRepository = new HibernateCommentsRepository(transaction);
+    CommentsRepository commentsRepository = new HibernateCommentsRepository(transaction);
     Repository<Contribution> contributionsRepository = new HibernateContributionsRepository(transaction);
     Repository<Ranking> rankingsRepository = new HibernateRankingsRepository(transaction);
     Repository<Category> categoriesRepository = new HibernateCategoriesRepository(transaction);

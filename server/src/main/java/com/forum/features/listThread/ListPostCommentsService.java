@@ -1,18 +1,18 @@
 package com.forum.features.listThread;
 
 import java.util.*;
-import com.forum.repositories.Repository;
+import com.forum.repositories.CommentsRepository;
 import com.forum.entities.Comment;
 
 class ListPostCommentsService {
-  private Repository<Comment> commentsRepository;
+  private CommentsRepository commentsRepository;
 
-  public ListPostCommentsService(Repository<Comment> commentsRepository) {
+  public ListPostCommentsService(CommentsRepository commentsRepository) {
     this.commentsRepository = commentsRepository;
   }
 
   public List<CommentNode> execute(String postId) {
-    List<Comment> rootComments = this.getRepliesFrom(postId);
+    List<Comment> rootComments = this.commentsRepository.listRepliesFrom(postId);
     List<CommentNode> listOfComments = rootComments.stream().map(CommentNode::new).toList();
     this.populateCommentReplies(listOfComments);
 
@@ -25,7 +25,7 @@ class ListPostCommentsService {
     while (commentQueue.size() > 0) {
       CommentNode commentNode = commentQueue.poll();
 
-      List<Comment> replies = this.getRepliesFrom(commentNode.id);
+      List<Comment> replies = this.commentsRepository.listRepliesFrom(commentNode.id);
 
       replies.forEach((Comment reply) -> {
         CommentNode replyNode = new CommentNode(reply);
@@ -34,9 +34,5 @@ class ListPostCommentsService {
         commentQueue.offer(replyNode);
       });
     }
-  }
-
-  private List<Comment> getRepliesFrom(String id) {
-    return this.commentsRepository.list((Comment comment) -> comment.getParentId().equals(id));
   }
 }

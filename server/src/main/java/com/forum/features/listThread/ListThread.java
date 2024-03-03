@@ -1,14 +1,12 @@
 package com.forum.features.listThread;
 
 import com.forum.http.HttpEndpointHandler;
-import com.forum.repositories.Repository;
-import com.forum.entities.Post;
-import com.forum.entities.Comment;
+import com.forum.repositories.*;
 
 public class ListThread {
   public ListThread(
     Repository<Post> postsRepository,
-    Repository<Comment> commentsRepository
+    CommentsRepository commentsRepository
   ) {
     ListPostContentService listPostContentService = new ListPostContentService(postsRepository);
     ListPostCommentsService listPostCommentsService = new ListPostCommentsService(commentsRepository);
