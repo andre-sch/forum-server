@@ -1,26 +1,24 @@
 package com.forum.features.createUser;
 
 import com.forum.entities.User;
-import com.forum.repositories.Repository;
+import com.forum.repositories.UsersRepository;
 import com.forum.exceptions.domain.RequestException;
 import com.forum.security.HashGenerator;
 
 class CreateUserService {
   private HashGenerator hashGenerator;
-  private Repository<User> usersRepository;
+  private UsersRepository usersRepository;
 
   public CreateUserService(
     HashGenerator hashGenerator,
-    Repository<User> usersRepository
+    UsersRepository usersRepository
   ) {
     this.hashGenerator = hashGenerator;
     this.usersRepository = usersRepository;
   }
 
   public User execute(UserCreationRequest creationRequest) {
-    User registeredUser = this.usersRepository.listFirst(
-      (User instance) -> instance.getEmail().equals(creationRequest.email)
-    );
+    User registeredUser = this.usersRepository.listOneByEmail(creationRequest.email);
 
     if (registeredUser != null) {
       throw new RequestException("email already registered");

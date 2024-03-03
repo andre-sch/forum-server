@@ -25,8 +25,7 @@ import com.forum.features.updateCategory.UpdateCategory;
 import com.forum.features.deleteCategory.DeleteCategory;
 
 import com.forum.repositories.impl.hibernate.*;
-import com.forum.repositories.Repository;
-import com.forum.entities.*;
+import com.forum.repositories.*;
 
 public class Main {
   public static void main(String[] args) {
@@ -37,7 +36,7 @@ public class Main {
 
     app.exception(new HttpExceptionHandlerImpl());
 
-    Repository<User> usersRepository = new HibernateUsersRepository(transaction);
+    UsersRepository usersRepository = new HibernateUsersRepository(transaction);
     Repository<Post> postsRepository = new HibernatePostsRepository(transaction);
     Repository<Comment> commentsRepository = new HibernateCommentsRepository(transaction);
     Repository<Contribution> contributionsRepository = new HibernateContributionsRepository(transaction);

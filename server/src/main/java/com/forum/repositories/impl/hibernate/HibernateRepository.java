@@ -8,7 +8,7 @@ import com.forum.repositories.Repository;
 
 public class HibernateRepository<T> implements Repository<T> {
   private Class<T> persistedClass;
-  private Transaction transaction;
+  protected Transaction transaction;
 
   public HibernateRepository(
     Class<T> persistedClass,
@@ -67,6 +67,6 @@ public class HibernateRepository<T> implements Repository<T> {
     });
   }
 
-  private class SingleResult { T instance; }
-  private class ResultList { List<T> instances; }
+  protected class SingleResult { T instance; }
+  protected class ResultList { List<T> instances; }
 }

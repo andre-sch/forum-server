@@ -1,13 +1,13 @@
 package com.forum.features.updateUser;
 
 import com.forum.entities.User;
-import com.forum.repositories.Repository;
+import com.forum.repositories.UsersRepository;
 import com.forum.exceptions.domain.RequestException;
 
 class UpdateUserService {
-  private Repository<User> usersRepository;
+  private UsersRepository usersRepository;
 
-  public UpdateUserService(Repository<User> usersRepository) {
+  public UpdateUserService(UsersRepository usersRepository) {
     this.usersRepository = usersRepository;
   }
 
@@ -23,9 +23,7 @@ class UpdateUserService {
     }
 
     if (updateRequest.email != null) {
-      User registeredUser = this.usersRepository.listFirst(
-        (User instance) -> instance.getEmail().equals(updateRequest.email)
-      );
+      User registeredUser = this.usersRepository.listOneByEmail(updateRequest.email);
 
       if (registeredUser != null) {
         throw new RequestException("email already registered");
