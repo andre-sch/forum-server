@@ -13,15 +13,15 @@ class ListPostsService {
   }
 
   public List<Post> execute(PostListingRequest listingRequest) {
-    return this.postsRepository.list((post) -> {
-      boolean authorMatches = listingRequest.author == null ? true
-        : this.checkIfAuthorMatches(post.getAuthorName(), listingRequest.author);
+    return this.postsRepository.list().stream().filter((post) -> {
+      boolean authorMatches = listingRequest.authorName == null ? true
+        : this.checkIfAuthorMatches(post.getAuthorName(), listingRequest.authorName);
 
       boolean someCategoriesMatch = listingRequest.categoryNames.size() == 0 ? true
         : this.checkIfSomeCategoriesMatch(post.getCategoryNames(), listingRequest.categoryNames);
 
       return authorMatches && someCategoriesMatch;
-    });
+    }).toList();
   }
 
   private boolean checkIfAuthorMatches(String baseAuthor, String inputAuthor) {

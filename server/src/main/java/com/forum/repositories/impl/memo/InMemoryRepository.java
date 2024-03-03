@@ -1,17 +1,12 @@
 package com.forum.repositories.impl.memo;
 
 import java.util.*;
-import java.util.function.Predicate;
 import com.forum.repositories.Repository;
 
 public abstract class InMemoryRepository<T> implements Repository<T> {
   List<T> instances = new ArrayList<>();
 
   protected abstract String getInstanceId(T instance);
-
-  public List<T> list(Predicate<T> condition) {
-    return this.list().stream().filter(condition).toList();
-  }
 
   public List<T> list() {
     return this.instances;
@@ -24,11 +19,6 @@ public abstract class InMemoryRepository<T> implements Repository<T> {
       }
     }
     return null;
-  }
-
-  public T listFirst(Predicate<T> condition) {
-    List<T> instances = this.list(condition);
-    return instances.size() > 0 ? instances.get(0) : null;
   }
 
   public void save(T instance) {

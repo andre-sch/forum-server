@@ -1,8 +1,6 @@
 package com.forum.repositories.impl.hibernate;
 
 import java.util.List;
-import java.util.function.Predicate;
-
 import com.forum.Transaction;
 import com.forum.repositories.Repository;
 
@@ -16,10 +14,6 @@ public class HibernateRepository<T> implements Repository<T> {
   ) {
     this.persistedClass = persistedClass;
     this.transaction = transaction;
-  }
-
-  public List<T> list(Predicate<T> condition) {
-    return this.list().stream().filter(condition).toList();
   }
 
   public List<T> list() {
@@ -45,11 +39,6 @@ public class HibernateRepository<T> implements Repository<T> {
     });
 
     return result.instance;
-  }
-
-  public T listFirst(Predicate<T> condition) {
-    List<T> instances = this.list(condition);
-    return instances.size() > 0 ? instances.get(0) : null;
   }
 
   public void save(T instance) {
