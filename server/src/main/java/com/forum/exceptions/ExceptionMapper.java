@@ -23,6 +23,7 @@ class ExceptionMapper {
       var httpExceptionConstructor = httpExceptionClass.getDeclaredConstructor(String.class);
       return (HttpException) httpExceptionConstructor.newInstance(errorMessage);
     } catch (Exception exception) {
+      domainException.printStackTrace();
       return new InternalServerError(errorMessage);
     }
   }
