@@ -15,6 +15,7 @@ class ListPostsController implements HttpEndpointHandler {
   public void handle(HttpRequest request, HttpResponse response) {
     PostListingRequest listingRequest = new PostListingRequest();
 
+    listingRequest.title = request.getQueryParam("title");
     listingRequest.authorName = request.getQueryParam("author");
     List<String> categoryNames = request.getQueryParams("category");
 

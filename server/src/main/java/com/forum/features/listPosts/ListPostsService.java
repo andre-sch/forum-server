@@ -14,23 +14,30 @@ class ListPostsService {
 
   public List<Post> execute(PostListingRequest listingRequest) {
     return this.postsRepository.list().stream().filter((post) -> {
+      boolean titleMatches = listingRequest.title == null ? true
+        : this.matches(post.getTitle(), listingRequest.title);
+
       boolean authorMatches = listingRequest.authorName == null ? true
-        : this.checkIfAuthorMatches(post.getAuthorName(), listingRequest.authorName);
+        : this.matches(post.getAuthorName(), listingRequest.authorName);
 
-      boolean someCategoriesMatch = listingRequest.categoryNames.size() == 0 ? true
-        : this.checkIfSomeCategoriesMatch(post.getCategoryNames(), listingRequest.categoryNames);
+      boolean anyCategoriesMatch = listingRequest.categoryNames.size() == 0 ? true
+        : this.matchesAny(post.getCategoryNames(), listingRequest.categoryNames);
 
-      return authorMatches && someCategoriesMatch;
+      return titleMatches && authorMatches && anyCategoriesMatch;
     }).toList();
   }
 
-  private boolean checkIfAuthorMatches(String baseAuthor, String inputAuthor) {
-    Pattern pattern = Pattern.compile(inputAuthor, Pattern.CASE_INSENSITIVE);
-    Matcher matcher = pattern.matcher(baseAuthor);
+  private boolean matches(String sequence, String subsequence) {
+    Pattern pattern = Pattern.compile(subsequence, Pattern.CASE_INSENSITIVE);
+    Matcher matcher = pattern.matcher(sequence);
     return matcher.find();
   }
 
-  private boolean checkIfSomeCategoriesMatch(Set<String> baseCategories, Set<String> inputCategories) {
-    return inputCategories.stream().anyMatch(baseCategories::contains);
+  private boolean matchesAny(Set<String> sequences, Set<String> subsequences) {
+    for (String sequence : sequences)
+      for (String subsequence : subsequences)
+        if (this.matches(sequence, subsequence))
+          return true;
+    return false;
   }
 }

@@ -176,13 +176,15 @@ type ResponseBody = {
 
 ```ts
 type RequestQueryParams = {
+  title: string | undefined;
   author: string | undefined;
   category: string[] | undefined;
 };
 ```
 
-`author` references a name (or a subsequence) of an author.  
-`category` is a multi-valued field which references categories.
+`title` references a post title.  
+`author` references an user name.  
+`category` references category names.
 
 Query example: GET /posts **?author=** john **&category=** test **&category=** programming
 
