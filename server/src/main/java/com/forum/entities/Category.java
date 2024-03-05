@@ -18,7 +18,7 @@ public class Category {
 
   public String getName() { return this.name; }
   public String getDescription() { return this.description; }
-  public String getColor() { return Color.prependHash(this.color); }
+  public String getColor() { return this.color; }
   public int getCreationTimestamp() { return this.createdAt; }
 
   public void setName(String name) { this.name = name; }

@@ -109,10 +109,7 @@ type ResponseBody = null;
 ### Create – `POST /categories`
 
 ```ts
-type RequestBody = {
-  name: string;
-  description: string;
-};
+type RequestBody = Category;
 ```
 
 ```ts
@@ -131,7 +128,6 @@ type ResponseBody = StoredCategory[];
 
 ```ts
 type RequestBody = {
-  name: string;
   description: string;
   color: string;
 };

@@ -1,6 +1,5 @@
 package com.forum.features.createCategory;
 
-import com.forum.utils.Color;
 import com.forum.entities.Category;
 import com.forum.repositories.CategoriesRepository;
 import com.forum.exceptions.domain.RequestException;
@@ -22,7 +21,7 @@ class CreateCategoryService {
     category = new Category();
     category.setName(creationRequest.name);
     category.setDescription(creationRequest.description);
-    category.setColor(Color.getRandom());
+    category.setColor(creationRequest.color);
 
     this.categoriesRepository.save(category);
 

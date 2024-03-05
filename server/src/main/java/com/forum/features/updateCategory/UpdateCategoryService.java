@@ -23,10 +23,6 @@ class UpdateCategoryService {
     }
 
     if (updateRequest.color != null) {
-      if (updateRequest.color.startsWith("#")) {
-        updateRequest.color = updateRequest.color.substring(1);
-      }
-
       category.setColor(updateRequest.color);
     }
 
