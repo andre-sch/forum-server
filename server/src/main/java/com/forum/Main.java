@@ -9,13 +9,16 @@ import com.forum.features.listUsers.ListUsers;
 import com.forum.features.createUser.CreateUser;
 import com.forum.features.updateUser.UpdateUser;
 import com.forum.features.deleteUser.DeleteUser;
+import com.forum.features.authenticateUser.AuthenticateUser;
 
 import com.forum.features.listPosts.ListPosts;
 import com.forum.features.listThread.ListThread;
 import com.forum.features.createPost.CreatePost;
 import com.forum.features.updatePost.UpdatePost;
+
 import com.forum.features.createComment.CreateComment;
 import com.forum.features.updateComment.UpdateComment;
+
 import com.forum.features.deleteContribution.DeleteContribution;
 import com.forum.features.rankContribution.RankContribution;
 
@@ -42,6 +45,8 @@ public class Main {
     ContributionsRepository contributionsRepository = new HibernateContributionsRepository(transaction);
     RankingsRepository rankingsRepository = new HibernateRankingsRepository(transaction);
     CategoriesRepository categoriesRepository = new HibernateCategoriesRepository(transaction);
+
+    app.post("/login", new AuthenticateUser(usersRepository).handler);
 
     app.get("/users", new ListUsers(usersRepository).handler);
     app.post("/users", new CreateUser(usersRepository).handler);
