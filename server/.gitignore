@@ -7,3 +7,4 @@ target/
 # config files
 flyway.conf
 persistence.xml
+.env
