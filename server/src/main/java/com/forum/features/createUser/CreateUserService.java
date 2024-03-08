@@ -3,17 +3,17 @@ package com.forum.features.createUser;
 import com.forum.entities.User;
 import com.forum.repositories.UsersRepository;
 import com.forum.exceptions.domain.RequestException;
-import com.forum.security.HashGenerator;
+import com.forum.security.HashProvider;
 
 class CreateUserService {
-  private HashGenerator hashGenerator;
+  private HashProvider hashProvider;
   private UsersRepository usersRepository;
 
   public CreateUserService(
-    HashGenerator hashGenerator,
+    HashProvider hashProvider,
     UsersRepository usersRepository
   ) {
-    this.hashGenerator = hashGenerator;
+    this.hashProvider = hashProvider;
     this.usersRepository = usersRepository;
   }
 
@@ -24,7 +24,7 @@ class CreateUserService {
       throw new RequestException("email already registered");
     }
 
-    String passwordHash = this.hashGenerator.generate(creationRequest.password);
+    String passwordHash = this.hashProvider.hash(creationRequest.password);
 
     User user = new User();
     user.setName(creationRequest.name);
