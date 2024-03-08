@@ -5,6 +5,6 @@ import com.forum.exceptions.domain.ResourceException;
 
 public class UnavailableResource implements HttpEndpointHandler {
   public void handle(HttpRequest request, HttpResponse response) {
-    throw new ResourceException();
+    throw new ResourceException("requested resource is not available");
   }
 }
