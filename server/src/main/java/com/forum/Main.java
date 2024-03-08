@@ -50,23 +50,23 @@ public class Main {
 
     app.get("/users", new ListUsers(usersRepository).handler);
     app.post("/users", new CreateUser(usersRepository).handler);
-    app.put("/users/{userId}", new UpdateUser(usersRepository).handler);
-    app.delete("/users/{userId}", new DeleteUser(usersRepository).handler);
+    app.put("/users/{userId}", new AuthenticatedEndpoint(new UpdateUser(usersRepository).handler));
+    app.delete("/users/{userId}", new AuthenticatedEndpoint(new DeleteUser(usersRepository).handler));
 
     app.get("/posts", new ListPosts(postsRepository).handler);
     app.get("/posts/{postId}", new ListThread(postsRepository, commentsRepository).handler);
 
-    app.post("/posts", new CreatePost(postsRepository, usersRepository, categoriesRepository).handler);
-    app.put("/posts/{postId}", new UpdatePost(postsRepository, categoriesRepository).handler);
-    app.delete("/posts/{contributionId}", new DeleteContribution(contributionsRepository).handler);
+    app.post("/posts", new AuthenticatedEndpoint(new CreatePost(postsRepository, usersRepository, categoriesRepository).handler));
+    app.put("/posts/{postId}", new AuthenticatedEndpoint(new UpdatePost(postsRepository, categoriesRepository).handler));
+    app.delete("/posts/{contributionId}", new AuthenticatedEndpoint(new DeleteContribution(contributionsRepository).handler));
 
-    app.post("/comments", new CreateComment(contributionsRepository, commentsRepository, usersRepository).handler);
-    app.put("/comments/{commentId}", new UpdateComment(commentsRepository).handler);
-    app.delete("/comments/{contributionId}", new DeleteContribution(contributionsRepository).handler);
+    app.post("/comments", new AuthenticatedEndpoint(new CreateComment(contributionsRepository, commentsRepository, usersRepository).handler));
+    app.put("/comments/{commentId}", new AuthenticatedEndpoint(new UpdateComment(commentsRepository).handler));
+    app.delete("/comments/{contributionId}", new AuthenticatedEndpoint(new DeleteContribution(contributionsRepository).handler));
 
     app.put(
       "/ranking/{contributionId}/{action}",
-      new RankContribution(usersRepository, contributionsRepository, rankingsRepository).handler
+      new AuthenticatedEndpoint(new RankContribution(usersRepository, contributionsRepository, rankingsRepository).handler)
     );
 
     app.get("/categories", new ListCategories(categoriesRepository).handler);

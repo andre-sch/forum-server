@@ -1,8 +1,10 @@
 package com.forum.features.deleteContribution;
 
+import java.util.Objects;
 import com.forum.entities.Contribution;
 import com.forum.repositories.ContributionsRepository;
 import com.forum.exceptions.domain.RequestException;
+import com.forum.exceptions.domain.OwnershipException;
 
 class DeleteContributionService {
   private ContributionsRepository contributionsRepository;
@@ -11,11 +13,15 @@ class DeleteContributionService {
     this.contributionsRepository = contributionsRepository;
   }
 
-  public void execute(String contributionId) {
-    Contribution contribution = this.contributionsRepository.listOne(contributionId);
+  public void execute(ContributionDeletionRequest deletionRequest) {
+    Contribution contribution = this.contributionsRepository.listOne(deletionRequest.contributionId);
 
     if (contribution == null) {
       throw new RequestException("contribution does not exist");
+    }
+
+    if (!Objects.equals(contribution.getAuthorId(), deletionRequest.authenticatedUserId)) {
+      throw new OwnershipException("cannot delete third-party contributions");
     }
 
     contribution.setAuthor(null);

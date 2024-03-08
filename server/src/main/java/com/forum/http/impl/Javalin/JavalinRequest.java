@@ -11,6 +11,10 @@ class JavalinRequest implements HttpRequest {
     this.httpContext = httpContext;
   }
 
+  public String getHeader(String name) {
+    return this.httpContext.header(name);
+  }
+
   public String getBody() {
     return this.httpContext.body();
   }
@@ -25,5 +29,13 @@ class JavalinRequest implements HttpRequest {
 
   public List<String> getQueryParams(String name) {
     return this.httpContext.queryParams(name);
+  }
+
+  public String getSessionAttribute(String name) {
+    return this.httpContext.sessionAttribute(name);
+  }
+
+  public void setSessionAttribute(String name, Object value) {
+    this.httpContext.sessionAttribute(name, value);
   }
 }

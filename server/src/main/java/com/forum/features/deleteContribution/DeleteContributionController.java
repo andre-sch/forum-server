@@ -10,9 +10,15 @@ class DeleteContributionController implements HttpEndpointHandler {
   }
 
   public void handle(HttpRequest request, HttpResponse response) {
+    String authenticatedUserId = request.getSessionAttribute("userId");
     String contributionId = request.getPathParam("contributionId");
 
-    this.deleteContributionService.execute(contributionId);
+    ContributionDeletionRequest deletionRequest = new ContributionDeletionRequest();
+
+    deletionRequest.authenticatedUserId = authenticatedUserId;
+    deletionRequest.contributionId = contributionId;
+
+    this.deleteContributionService.execute(deletionRequest);
 
     response.status(204);
   }

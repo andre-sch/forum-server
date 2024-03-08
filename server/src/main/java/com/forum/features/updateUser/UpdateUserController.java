@@ -14,12 +14,15 @@ class UpdateUserController implements HttpEndpointHandler {
   }
 
   public void handle(HttpRequest request, HttpResponse response) {
-    String userId = request.getPathParam("userId");
+    String authenticatedUserId = request.getPathParam("userId");
+    String updatedUserId = request.getPathParam("userId");
+
     RequestBody requestBody = this.jsonConverter.fromJson(request.getBody(), RequestBody.class);
 
     UserUpdateRequest updateRequest =  new UserUpdateRequest();
 
-    updateRequest.userId = userId;
+    updateRequest.authenticatedUserId = authenticatedUserId;
+    updateRequest.updatedUserId = updatedUserId;
     updateRequest.name = requestBody.name;
     updateRequest.email = requestBody.email;
     updateRequest.password = requestBody.password;

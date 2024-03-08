@@ -14,12 +14,26 @@ class CreatePostController implements HttpEndpointHandler {
   }
 
   public void handle(HttpRequest request, HttpResponse response) {
-    PostCreationRequest creationRequest = this.jsonConverter.fromJson(request.getBody(), PostCreationRequest.class);
+    String userId = request.getSessionAttribute("userId");
+    RequestBody requestBody = this.jsonConverter.fromJson(request.getBody(), RequestBody.class);
+
+    PostCreationRequest creationRequest = new PostCreationRequest();
+
+    creationRequest.authorId = userId;
+    creationRequest.title = requestBody.title;
+    creationRequest.content = requestBody.content;
+    creationRequest.categoryNames = requestBody.categoryNames;
 
     Post createdPost = this.createPostService.execute(creationRequest);
     CompactPostView createdPostView = new CompactPostView(createdPost);
 
     response.status(201);
     response.json(createdPostView);
+  }
+
+  private class RequestBody {
+    public String title;
+    public String content;
+    public String[] categoryNames;
   }
 }

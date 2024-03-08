@@ -10,9 +10,15 @@ class DeleteUserController implements HttpEndpointHandler {
   }
 
   public void handle(HttpRequest request, HttpResponse response) {
-    String userId = request.getPathParam("userId");
+    String authenticatedUserId = request.getSessionAttribute("userId");
+    String deletedUserId = request.getPathParam("userId");
 
-    this.deleteUserService.execute(userId);
+    UserDeletionRequest deletionRequest = new UserDeletionRequest();
+
+    deletionRequest.authenticatedUserId = authenticatedUserId;
+    deletionRequest.deletedUserId = deletedUserId;
+
+    this.deleteUserService.execute(deletionRequest);
 
     response.status(204);
   }

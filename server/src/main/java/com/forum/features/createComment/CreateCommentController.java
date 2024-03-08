@@ -14,12 +14,24 @@ class CreateCommentController implements HttpEndpointHandler {
   }
 
   public void handle(HttpRequest request, HttpResponse response) {
-    CommentCreationRequest creationRequest = this.jsonConverter.fromJson(request.getBody(), CommentCreationRequest.class);
+    String userId = request.getSessionAttribute("userId");
+    RequestBody requestBody = this.jsonConverter.fromJson(request.getBody(), RequestBody.class);
+
+    CommentCreationRequest creationRequest = new CommentCreationRequest();
+
+    creationRequest.parentId = requestBody.parentId;
+    creationRequest.authorId = userId;
+    creationRequest.content = requestBody.content;
 
     Comment createdComment = this.createCommentService.execute(creationRequest);
     CommentView createdCommentView = new CommentView(createdComment);
 
     response.status(201);
     response.json(createdCommentView);
+  }
+
+  private class RequestBody {
+    public String parentId;
+    public String content;
   }
 }

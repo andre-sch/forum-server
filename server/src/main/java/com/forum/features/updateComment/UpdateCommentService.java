@@ -1,8 +1,11 @@
 package com.forum.features.updateComment;
 
+import java.util.Objects;
+
 import com.forum.entities.Comment;
 import com.forum.repositories.CommentsRepository;
 import com.forum.exceptions.domain.RequestException;
+import com.forum.exceptions.domain.OwnershipException;
 
 class UpdateCommentService {
   private CommentsRepository commentsRepository;
@@ -16,6 +19,10 @@ class UpdateCommentService {
 
     if (comment == null) {
       throw new RequestException("comment does not exist");
+    }
+
+    if (!Objects.equals(comment.getAuthorId(), updateRequest.authenticatedUserId)) {
+      throw new OwnershipException("cannot update third-party comments");
     }
 
     if (updateRequest.content != null) {

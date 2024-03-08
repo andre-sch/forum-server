@@ -1,7 +1,10 @@
 package com.forum.features.updateUser;
 
+import java.util.Objects;
+
 import com.forum.entities.User;
 import com.forum.repositories.UsersRepository;
+import com.forum.exceptions.domain.OwnershipException;
 import com.forum.exceptions.domain.RequestException;
 
 class UpdateUserService {
@@ -12,10 +15,14 @@ class UpdateUserService {
   }
 
   public User execute(UserUpdateRequest updateRequest) {
-    User user = this.usersRepository.listOne(updateRequest.userId);
+    User user = this.usersRepository.listOne(updateRequest.updatedUserId);
 
     if (user == null) {
       throw new RequestException("user does not exist");
+    }
+
+    if (!Objects.equals(user.getId(), updateRequest.authenticatedUserId)) {
+      throw new OwnershipException("cannot update third-party accounts");
     }
 
     if (updateRequest.name != null) {
