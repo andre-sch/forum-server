@@ -14,7 +14,7 @@ class UpdatePostController implements HttpEndpointHandler {
   }
 
   public void handle(HttpRequest request, HttpResponse response) {
-    String authenticatedUserId = request.getSessionAttribute("userId");
+    String authenticatedUserId = (String) request.getSessionAttribute("userId");
     String postId = request.getPathParam("postId");
 
     RequestBody requestBody = this.jsonConverter.fromJson(request.getBody(), RequestBody.class);

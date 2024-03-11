@@ -31,7 +31,7 @@ class JavalinRequest implements HttpRequest {
     return this.httpContext.queryParams(name);
   }
 
-  public String getSessionAttribute(String name) {
+  public Object getSessionAttribute(String name) {
     return this.httpContext.sessionAttribute(name);
   }
 

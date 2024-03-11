@@ -11,7 +11,7 @@ class RankContributionController implements HttpEndpointHandler {
   }
 
   public void handle(HttpRequest request, HttpResponse response) {
-    String userId = request.getSessionAttribute("userId");
+    String userId = (String) request.getSessionAttribute("userId");
     String contributionId = request.getPathParam("contributionId");
     String action = request.getPathParam("action");
 

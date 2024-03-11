@@ -14,7 +14,7 @@ class CreatePostController implements HttpEndpointHandler {
   }
 
   public void handle(HttpRequest request, HttpResponse response) {
-    String userId = request.getSessionAttribute("userId");
+    String userId = (String) request.getSessionAttribute("userId");
     RequestBody requestBody = this.jsonConverter.fromJson(request.getBody(), RequestBody.class);
 
     PostCreationRequest creationRequest = new PostCreationRequest();
