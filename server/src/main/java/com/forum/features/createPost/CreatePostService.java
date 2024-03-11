@@ -27,16 +27,7 @@ class CreatePostService {
       throw new RequestException("author does not exist");
     }
 
-    Set<Category> categories = new HashSet<>();
-    for (String categoryName : creationRequest.categoryNames) {
-      Category category = this.categoriesRepository.listOne(categoryName);
-
-      if (category == null) {
-        throw new RequestException(String.format("category named '%s' does not exist", categoryName));
-      }
-
-      categories.add(category);
-    }
+    Set<Category> categories = this.categoriesRepository.listMany(creationRequest.categoryNames);
 
     Post post = new Post();
     post.setAuthor(author);

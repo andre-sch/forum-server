@@ -1,8 +1,9 @@
 package com.forum.repositories.impl.hibernate;
 
-import java.util.List;
+import java.util.*;
 import com.forum.Transaction;
 import com.forum.repositories.Repository;
+import com.forum.exceptions.domain.*;
 
 public class HibernateRepository<T> implements Repository<T> {
   private Class<T> persistedClass;
@@ -39,6 +40,22 @@ public class HibernateRepository<T> implements Repository<T> {
     });
 
     return result.instance;
+  }
+
+  public Set<T> listMany(String[] ids) throws RequestException {
+    Set<T> instances = new HashSet<>();
+
+    for (String id : ids) {
+      T instance = this.listOne(id);
+
+      if (instance == null) {
+        throw new RequestException(String.format("id named '%s' does not exist", id));
+      }
+
+      instances.add(instance);
+    }
+
+    return instances;
   }
 
   public void save(T instance) {
