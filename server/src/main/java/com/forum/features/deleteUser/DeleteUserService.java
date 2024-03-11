@@ -4,7 +4,7 @@ import java.util.Objects;
 import com.forum.entities.User;
 import com.forum.repositories.UsersRepository;
 import com.forum.exceptions.domain.RequestException;
-import com.forum.exceptions.domain.OwnershipException;
+import com.forum.exceptions.domain.RestrictedAccessException;
 
 class DeleteUserService {
   private UsersRepository usersRepository;
@@ -20,8 +20,13 @@ class DeleteUserService {
       throw new RequestException("user does not exist");
     }
 
-    if (!Objects.equals(user.getId(), deletionRequest.authenticatedUserId)) {
-      throw new OwnershipException("cannot delete third-party account");
+    if (
+      !Objects.equals(
+        user.getId(),
+        deletionRequest.authenticatedUserId
+      ) && !deletionRequest.isModerator
+    ) {
+      throw new RestrictedAccessException("cannot delete third-party account");
     }
 
     this.usersRepository.delete(deletionRequest.deletedUserId);

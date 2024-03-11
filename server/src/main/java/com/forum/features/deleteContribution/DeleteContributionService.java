@@ -4,7 +4,7 @@ import java.util.Objects;
 import com.forum.entities.Contribution;
 import com.forum.repositories.ContributionsRepository;
 import com.forum.exceptions.domain.RequestException;
-import com.forum.exceptions.domain.OwnershipException;
+import com.forum.exceptions.domain.RestrictedAccessException;
 
 class DeleteContributionService {
   private ContributionsRepository contributionsRepository;
@@ -20,8 +20,13 @@ class DeleteContributionService {
       throw new RequestException("contribution does not exist");
     }
 
-    if (!Objects.equals(contribution.getAuthorId(), deletionRequest.authenticatedUserId)) {
-      throw new OwnershipException("cannot delete third-party contributions");
+    if (
+      !Objects.equals(
+        contribution.getAuthorId(),
+        deletionRequest.authenticatedUserId
+      ) && !deletionRequest.isModerator
+    ) {
+      throw new RestrictedAccessException("cannot delete third-party contributions");
     }
 
     contribution.setAuthor(null);
