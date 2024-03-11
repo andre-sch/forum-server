@@ -37,7 +37,7 @@ public class Main {
     HttpServer server = new JavalinServer();
     HttpApp app = server.start(4000);
 
-    app.exception(new HttpExceptionHandlerImpl());
+    app.addExceptionHandler(new HttpExceptionHandlerImpl());
 
     UsersRepository usersRepository = new HibernateUsersRepository(transaction);
     PostsRepository postsRepository = new HibernatePostsRepository(transaction);
