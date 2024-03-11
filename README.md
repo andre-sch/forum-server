@@ -2,110 +2,34 @@
 
 ## Overview
 
-...
+The system provides an environment for discussion threads between community members.
 
 ## Requirements
 
-- The forum system manages users, posts and comments.
-- A user contains: id, name, email (unique), password, avatar url and creation timestamp.
-- The user password must be stored encrypted.
-- The system must have user authentication.
-- The system must have access control.
-- Each user on the system must have roles and permissions.
-- The system must support two types of users: common and super users
-- The system must support three main roles: administrators, authors and readers.
-- Common users are, at the same time, authors and readers.
-- Super users extend common users by being administrators (admins).
-- Each role and permission contains: name (unique), description and creation timestamp.
-- A user can have many contributions: posts and comments.
-- A contribution can be created, updated and deleted by one author.
-- When a user is deleted, he is disassociated from his contributions and rankings.
-- When a contribution is deleted, only its content and authorship are removed.
-- A post contains: id, title, content, timestamps (creation, last update) and comments.
-- A post can be linked to multiple categories, improving search.
-- A category contains: name (unique), description and creation timestamp.
-- Categories must have unique names.
-- Categories can only be created, updated and deleted by admins.
-- A comment contains: node id, parent id, user id, content and timestamps (creation, last update).
-- A comment can be linked to a post directly or indirectly by another comment (as a reply).
-- A comment can be created, updated and deleted by one reader.
-- Admins can delete inappropriate posts and comments from users.
-- Deleting a comment does not affect its children.
-- Posts and comments must be visible to any user of the system.
-- Posts and comments can be ranked using and up/down-voting system.
-- In the voting system, a user can only participate once, exclusively voting up or down.
+1. A user must contain: id, name, email, password, image and date of creation
 
-## Diagrams
+   - Id and email must be unique
+   - Password must be encrypted
 
-```mermaid
-  erDiagram
-    USER {
-      String id PK
-      String name
-      String email UK
-      String password
-      String avatar_url
-      int created_at
-    }
+2. The system must have authentication
 
-    ROLE {
-      String name PK
-      String description
-      int created_at
-    }
+3. The system must have authorization
 
-    PERMISSION {
-      String name PK
-      String description
-      int created_at
-    }
+   - Each user in the system must be associated with permissions, which can be grouped into roles
+   - The system must support two types of users: members and administrators
+   - Members can create and rank contributions – posts and comments. In addition to manage your own account
+   - Administrators can create roles, permissions and categories
+   - A role/permission must contain: name (unique), description and date of creation
 
-    CONTRIBUTION {
-      String id PK
-      String author_id FK
-      int created_at
-      int last_update
-    }
+4. The system must store user contributions
 
-    POST {
-      String id PK, FK
-      String title
-      String content
-    }
+   - A contribution must be accessible to any user on the system, even without being authenticated
+   - A post must contain: id, author, title, content, categories, comments and dates (creation, last update)
+   - A category must contain: name (unique), description, color and date of creation
+   - A comment must contain: id, author, content and dates (creation, last update)
+   - A comment can reference another as an answer
 
-    CATEGORY {
-      String name PK
-      String description
-      String color
-      int created_at
-    }
+5. Contributions can be ranked by community
 
-    COMMENT {
-      String id PK, FK
-      String parent_id FK
-      String content
-    }
-
-    RANKING {
-      String user_id PK, FK
-      String contribution_id PK, FK
-      String vote
-    }
-
-    USER }o--o{ ROLE: performs
-    ROLE }o--o{ PERMISSION: provides
-    USER }o--o{ PERMISSION: has
-
-    POST ||--|| CONTRIBUTION: inherits
-    COMMENT ||--|| CONTRIBUTION: inherits
-
-    CONTRIBUTION }o--|| USER: published_by
-
-    POST }o--o{ CATEGORY: belongs_to
-
-    POST ||--o{ COMMENT: contains
-    COMMENT }o--|| COMMENT: replies
-
-    CONTRIBUTION ||--o{ RANKING: classified_by
-    RANKING }o--|| USER: participated_by
-```
+   - A ranking can be either positive or negative
+   - A user can only participate once
