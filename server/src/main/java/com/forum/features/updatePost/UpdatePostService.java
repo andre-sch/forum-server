@@ -5,7 +5,7 @@ import java.util.*;
 import com.forum.entities.*;
 import com.forum.repositories.*;
 import com.forum.exceptions.domain.RequestException;
-import com.forum.exceptions.domain.OwnershipException;
+import com.forum.exceptions.domain.RestrictedAccessException;
 
 class UpdatePostService {
   private PostsRepository postsRepository;
@@ -28,7 +28,7 @@ class UpdatePostService {
     }
 
     if (!Objects.equals(post.getAuthorId(), updateRequest.authenticatedUserId)) {
-      throw new OwnershipException("cannot update third-party posts");
+      throw new RestrictedAccessException("cannot update third-party posts");
     }
 
     if (updateRequest.title != null) {
@@ -40,18 +40,7 @@ class UpdatePostService {
     }
 
     if (updateRequest.categoryNames != null) {
-      Set<Category> categories = new HashSet<>();
-
-      for (String categoryName : updateRequest.categoryNames) {
-        Category category = this.categoriesRepository.listOne(categoryName);
-
-        if (category == null) {
-          throw new RequestException(String.format("category named '%s' does not exist", categoryName));
-        }
-
-        categories.add(category);
-      }
-
+      Set<Category> categories = this.categoriesRepository.listMany(updateRequest.categoryNames);
       post.setCategories(categories);
     }
 

@@ -4,8 +4,8 @@ import java.util.Objects;
 
 import com.forum.entities.User;
 import com.forum.repositories.UsersRepository;
-import com.forum.exceptions.domain.OwnershipException;
 import com.forum.exceptions.domain.RequestException;
+import com.forum.exceptions.domain.RestrictedAccessException;
 
 class UpdateUserService {
   private UsersRepository usersRepository;
@@ -22,7 +22,7 @@ class UpdateUserService {
     }
 
     if (!Objects.equals(user.getId(), updateRequest.authenticatedUserId)) {
-      throw new OwnershipException("cannot update third-party accounts");
+      throw new RestrictedAccessException("cannot update third-party accounts");
     }
 
     if (updateRequest.name != null) {

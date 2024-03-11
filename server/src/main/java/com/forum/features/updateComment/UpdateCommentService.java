@@ -5,7 +5,7 @@ import java.util.Objects;
 import com.forum.entities.Comment;
 import com.forum.repositories.CommentsRepository;
 import com.forum.exceptions.domain.RequestException;
-import com.forum.exceptions.domain.OwnershipException;
+import com.forum.exceptions.domain.RestrictedAccessException;
 
 class UpdateCommentService {
   private CommentsRepository commentsRepository;
@@ -22,7 +22,7 @@ class UpdateCommentService {
     }
 
     if (!Objects.equals(comment.getAuthorId(), updateRequest.authenticatedUserId)) {
-      throw new OwnershipException("cannot update third-party comments");
+      throw new RestrictedAccessException("cannot update third-party comments");
     }
 
     if (updateRequest.content != null) {

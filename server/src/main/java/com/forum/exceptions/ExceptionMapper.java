@@ -10,8 +10,8 @@ class ExceptionMapper {
   public ExceptionMapper() {
     this.exceptionMapper.put(RequestException.class.getName(), BadRequest.class.getName());
     this.exceptionMapper.put(ResourceException.class.getName(), NotFound.class.getName());
-    this.exceptionMapper.put(InvalidTokenException.class.getName(), Unauthorized.class.getName());
-    this.exceptionMapper.put(OwnershipException.class.getName(), Unauthorized.class.getName());
+    this.exceptionMapper.put(AuthenticationException.class.getName(), Unauthorized.class.getName());
+    this.exceptionMapper.put(RestrictedAccessException.class.getName(), Forbidden.class.getName());
   }
 
   public HttpException map(Exception domainException) {
