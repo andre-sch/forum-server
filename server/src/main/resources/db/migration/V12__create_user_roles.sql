@@ -1,7 +1,7 @@
-CREATE TABLE user_roles (
-  user_id VARCHAR(255) NOT NULL,
-  role_name VARCHAR(255) NOT NULL,
-  PRIMARY KEY (user_id, role_name),
-  FOREIGN KEY (user_id) REFERENCES users (id) ON DELETE CASCADE,
-  FOREIGN KEY (role_name) REFERENCES roles (name) ON DELETE CASCADE
+create table user_roles (
+  user_id varchar(255) not null,
+  role_name varchar(255) not null,
+  primary key (user_id, role_name),
+  foreign key (user_id) references users (id) on delete cascade,
+  foreign key (role_name) references roles (name) on delete cascade
 );

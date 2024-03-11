@@ -1,5 +1,5 @@
-CREATE TABLE permissions (
-  name VARCHAR(255) PRIMARY KEY,
-  description VARCHAR(255) NOT NULL,
-  created_at INT NOT NULL
+create table permissions (
+  name varchar(255) primary key,
+  description varchar(255) not null,
+  created_at int not null
 );
