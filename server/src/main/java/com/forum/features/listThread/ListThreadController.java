@@ -19,8 +19,8 @@ class ListThreadController implements HttpEndpointHandler {
   public void handle(HttpRequest request, HttpResponse response) {
     String postId = request.getPathParam("postId");
 
-    List<CommentNode> comments = this.listPostCommentsService.execute(postId);
     Post post = this.listPostContentService.execute(postId);
+    List<CommentNode> comments = this.listPostCommentsService.execute(postId);
 
     Thread thread = new Thread(post, comments);
 

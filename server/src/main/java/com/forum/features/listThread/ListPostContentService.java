@@ -1,6 +1,7 @@
 package com.forum.features.listThread;
 
 import com.forum.entities.Post;
+import com.forum.exceptions.domain.RequestException;
 import com.forum.repositories.PostsRepository;
 
 class ListPostContentService {
@@ -11,6 +12,12 @@ class ListPostContentService {
   }
 
   public Post execute(String postId) {
-    return this.postsRepository.listOne(postId);
+    Post post = this.postsRepository.listOne(postId);
+
+    if (post == null) {
+      throw new RequestException("post does not exist");
+    }
+
+    return post;
   }
 }
