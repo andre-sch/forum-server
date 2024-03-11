@@ -34,7 +34,7 @@ class AuthenticateUserService {
       this.throwUserOrPasswordInvalid();
     }
 
-    String token = this.jwtProvider.generate(user.getId());
+    String token = this.jwtProvider.generate(user);
 
     return token;
   }

@@ -1,8 +1,9 @@
 package com.forum.security;
 
-import com.forum.exceptions.domain.InvalidTokenException;
+import com.forum.entities.User;
+import com.forum.exceptions.domain.*;
 
 public interface JWTProvider {
-  public String generate(String subject);
-  public ParsedToken parse(String token) throws InvalidTokenException;
+  public String generate(User user);
+  public ParsedToken parse(String token) throws AuthenticationException;
 }

@@ -4,7 +4,7 @@ import com.forum.http.*;
 import com.forum.exceptions.domain.*;
 import com.forum.security.*;
 
-public class AuthenticatedEndpoint implements HttpEndpointHandler {
+class AuthenticatedEndpoint implements HttpEndpointHandler {
   private HttpEndpointHandler endpoint;
   private JWTProvider jwtProvider = new JWTProviderAuth0Adapter();
 
@@ -16,7 +16,7 @@ public class AuthenticatedEndpoint implements HttpEndpointHandler {
     String authorization = request.getHeader("authorization");
 
     if (authorization == null) {
-      throw new InvalidTokenException("token missing");
+      throw new AuthenticationException("token missing");
     }
 
     String authorizationContent;
@@ -24,11 +24,14 @@ public class AuthenticatedEndpoint implements HttpEndpointHandler {
     try {
       authorizationContent = authorization.split(" ")[1];
     } catch(Exception exception) {
-      throw new InvalidTokenException("invalid token");
+      throw new AuthenticationException("invalid token");
     }
 
     ParsedToken token = this.jwtProvider.parse(authorizationContent);
+
     request.setSessionAttribute("userId", token.subject);
+    request.setSessionAttribute("userRoles", token.roles);
+    request.setSessionAttribute("userPermissions", token.permissions);
 
     endpoint.handle(request, response);
   }
