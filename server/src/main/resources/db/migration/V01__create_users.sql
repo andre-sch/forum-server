@@ -4,5 +4,5 @@ create table users (
   email varchar(255) unique not null,
   password varchar(255) not null,
   avatar_url varchar(255) not null,
-  created_at int not null
+  created_at int default (unix_timestamp()) not null
 );
