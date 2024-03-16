@@ -1,6 +1,6 @@
-package com.forum.security.impl;
+package com.forum.providers.impl;
 
-import com.forum.security.HashProvider;
+import com.forum.providers.HashProvider;
 import org.springframework.security.crypto.bcrypt.*;
 
 public class HashProviderBCryptAdapter implements HashProvider {

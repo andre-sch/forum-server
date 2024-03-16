@@ -1,10 +1,10 @@
-package com.forum.security.impl;
+package com.forum.providers.impl;
 
 import java.util.*;
 import java.time.Instant;
 import com.forum.entities.User;
 import com.forum.exceptions.domain.*;
-import com.forum.security.*;
+import com.forum.providers.*;
 import com.forum.utils.*;
 
 import com.auth0.jwt.*;

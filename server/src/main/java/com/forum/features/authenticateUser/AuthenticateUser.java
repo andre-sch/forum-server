@@ -2,8 +2,8 @@ package com.forum.features.authenticateUser;
 
 import com.forum.repositories.UsersRepository;
 import com.forum.http.HttpEndpointHandler;
-import com.forum.security.*;
-import com.forum.security.impl.*;
+import com.forum.providers.*;
+import com.forum.providers.impl.*;
 
 public class AuthenticateUser {
   private HashProvider hashProvider = new HashProviderBCryptAdapter();

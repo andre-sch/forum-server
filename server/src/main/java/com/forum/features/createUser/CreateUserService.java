@@ -4,7 +4,7 @@ import java.util.*;
 import com.forum.entities.*;
 import com.forum.repositories.*;
 import com.forum.exceptions.domain.RequestException;
-import com.forum.security.HashProvider;
+import com.forum.providers.HashProvider;
 
 public class CreateUserService {
   private HashProvider hashProvider;

@@ -2,8 +2,8 @@ package com.forum.features.createAdmin;
 
 import com.forum.http.*;
 import com.forum.repositories.*;
-import com.forum.security.*;
-import com.forum.security.impl.*;
+import com.forum.providers.*;
+import com.forum.providers.impl.*;
 import com.forum.features.createUser.*;
 
 public class CreateAdmin {

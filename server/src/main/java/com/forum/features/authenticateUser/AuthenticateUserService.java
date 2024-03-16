@@ -3,8 +3,8 @@ package com.forum.features.authenticateUser;
 import com.forum.entities.User;
 import com.forum.repositories.UsersRepository;
 import com.forum.exceptions.domain.RequestException;
-import com.forum.security.HashProvider;
-import com.forum.security.JWTProvider;
+import com.forum.providers.HashProvider;
+import com.forum.providers.JWTProvider;
 
 class AuthenticateUserService {
   private UsersRepository usersRepository;
