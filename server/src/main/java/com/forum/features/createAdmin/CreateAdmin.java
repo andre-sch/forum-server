@@ -2,8 +2,9 @@ package com.forum.features.createAdmin;
 
 import com.forum.http.*;
 import com.forum.repositories.*;
-import com.forum.features.createUser.*;
 import com.forum.security.*;
+import com.forum.security.impl.*;
+import com.forum.features.createUser.*;
 
 public class CreateAdmin {
   private HashProvider hashProvider = new HashProviderBCryptAdapter();

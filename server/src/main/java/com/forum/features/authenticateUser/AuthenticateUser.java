@@ -3,6 +3,7 @@ package com.forum.features.authenticateUser;
 import com.forum.repositories.UsersRepository;
 import com.forum.http.HttpEndpointHandler;
 import com.forum.security.*;
+import com.forum.security.impl.*;
 
 public class AuthenticateUser {
   private HashProvider hashProvider = new HashProviderBCryptAdapter();

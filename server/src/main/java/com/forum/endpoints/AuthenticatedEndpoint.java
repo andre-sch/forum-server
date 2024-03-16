@@ -3,6 +3,7 @@ package com.forum.endpoints;
 import com.forum.http.*;
 import com.forum.exceptions.domain.*;
 import com.forum.security.*;
+import com.forum.security.impl.*;
 
 class AuthenticatedEndpoint implements HttpEndpointHandler {
   private HttpEndpointHandler endpoint;
