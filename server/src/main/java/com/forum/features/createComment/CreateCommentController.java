@@ -3,11 +3,12 @@ package com.forum.features.createComment;
 import com.forum.http.*;
 import com.forum.entities.Comment;
 import com.forum.views.CommentView;
-import com.google.gson.Gson;
+import com.forum.providers.*;
+import com.forum.providers.impl.*;
 
 class CreateCommentController implements HttpEndpointHandler {
   private CreateCommentService createCommentService;
-  private Gson jsonConverter = new Gson();
+  private JSONProvider JSON = new JSONProviderGoogleAdapter();
 
   public CreateCommentController(CreateCommentService service) {
     this.createCommentService = service;
@@ -15,7 +16,7 @@ class CreateCommentController implements HttpEndpointHandler {
 
   public void handle(HttpRequest request, HttpResponse response) {
     String userId = (String) request.getSessionAttribute("userId");
-    RequestBody requestBody = this.jsonConverter.fromJson(request.getBody(), RequestBody.class);
+    RequestBody requestBody = this.JSON.deserialize(request.getBody(), RequestBody.class);
 
     CommentCreationRequest creationRequest = new CommentCreationRequest();
 

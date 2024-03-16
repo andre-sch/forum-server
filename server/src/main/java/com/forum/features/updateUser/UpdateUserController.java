@@ -3,11 +3,12 @@ package com.forum.features.updateUser;
 import com.forum.http.*;
 import com.forum.entities.User;
 import com.forum.views.CompleteUserView;
-import com.google.gson.Gson;
+import com.forum.providers.*;
+import com.forum.providers.impl.*;
 
 class UpdateUserController implements HttpEndpointHandler {
   private UpdateUserService updateUserService;
-  private Gson jsonConverter = new Gson();
+  private JSONProvider JSON = new JSONProviderGoogleAdapter();
 
   public UpdateUserController(UpdateUserService updateUserService) {
     this.updateUserService = updateUserService;
@@ -17,7 +18,7 @@ class UpdateUserController implements HttpEndpointHandler {
     String authenticatedUserId = request.getPathParam("userId");
     String updatedUserId = request.getPathParam("userId");
 
-    RequestBody requestBody = this.jsonConverter.fromJson(request.getBody(), RequestBody.class);
+    RequestBody requestBody = this.JSON.deserialize(request.getBody(), RequestBody.class);
 
     UserUpdateRequest updateRequest =  new UserUpdateRequest();
 

@@ -3,11 +3,12 @@ package com.forum.features.createPost;
 import com.forum.http.*;
 import com.forum.entities.Post;
 import com.forum.views.CompactPostView;
-import com.google.gson.Gson;
+import com.forum.providers.*;
+import com.forum.providers.impl.*;
 
 class CreatePostController implements HttpEndpointHandler {
   private CreatePostService createPostService;
-  private Gson jsonConverter = new Gson();
+  private JSONProvider JSON = new JSONProviderGoogleAdapter();
 
   public CreatePostController(CreatePostService service) {
     this.createPostService = service;
@@ -15,7 +16,7 @@ class CreatePostController implements HttpEndpointHandler {
 
   public void handle(HttpRequest request, HttpResponse response) {
     String userId = (String) request.getSessionAttribute("userId");
-    RequestBody requestBody = this.jsonConverter.fromJson(request.getBody(), RequestBody.class);
+    RequestBody requestBody = this.JSON.deserialize(request.getBody(), RequestBody.class);
 
     PostCreationRequest creationRequest = new PostCreationRequest();
 

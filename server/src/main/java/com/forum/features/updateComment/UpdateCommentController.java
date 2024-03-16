@@ -3,11 +3,12 @@ package com.forum.features.updateComment;
 import com.forum.http.*;
 import com.forum.entities.Comment;
 import com.forum.views.CommentView;
-import com.google.gson.Gson;
+import com.forum.providers.*;
+import com.forum.providers.impl.*;
 
 class UpdateCommentController implements HttpEndpointHandler {
   private UpdateCommentService updateCommentService;
-  private Gson jsonConverter = new Gson();
+  private JSONProvider JSON = new JSONProviderGoogleAdapter();
 
   public UpdateCommentController(UpdateCommentService updateCommentService) {
     this.updateCommentService = updateCommentService;
@@ -17,7 +18,7 @@ class UpdateCommentController implements HttpEndpointHandler {
     String authenticatedUserId = (String) request.getSessionAttribute("userId");
     String commentId = request.getPathParam("commentId");
 
-    RequestBody requestBody = this.jsonConverter.fromJson(request.getBody(), RequestBody.class);
+    RequestBody requestBody = this.JSON.deserialize(request.getBody(), RequestBody.class);
 
     CommentUpdateRequest updateRequest = new CommentUpdateRequest();
 

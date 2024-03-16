@@ -3,11 +3,12 @@ package com.forum.features.updateCategory;
 import com.forum.http.*;
 import com.forum.entities.Category;
 import com.forum.views.CompleteCategoryView;
-import com.google.gson.Gson;
+import com.forum.providers.*;
+import com.forum.providers.impl.*;
 
 class UpdateCategoryController implements HttpEndpointHandler {
   private UpdateCategoryService updateCategoryService;
-  private Gson jsonConverter = new Gson();
+  private JSONProvider JSON = new JSONProviderGoogleAdapter();
 
   public UpdateCategoryController(UpdateCategoryService updateCategoryService) {
     this.updateCategoryService = updateCategoryService;
@@ -15,7 +16,7 @@ class UpdateCategoryController implements HttpEndpointHandler {
 
   public void handle(HttpRequest request, HttpResponse response) {
     String categoryName = request.getPathParam("categoryName");
-    RequestBody requestBody = this.jsonConverter.fromJson(request.getBody(), RequestBody.class);
+    RequestBody requestBody = this.JSON.deserialize(request.getBody(), RequestBody.class);
 
     CategoryUpdateRequest updateRequest = new CategoryUpdateRequest();
 

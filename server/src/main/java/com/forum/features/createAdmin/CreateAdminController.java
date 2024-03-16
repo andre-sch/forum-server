@@ -2,23 +2,24 @@ package com.forum.features.createAdmin;
 
 import com.forum.http.*;
 import com.forum.entities.User;
-import com.forum.features.createUser.*;
 import com.forum.views.CompleteUserView;
-import com.google.gson.Gson;
+import com.forum.providers.*;
+import com.forum.providers.impl.*;
+import com.forum.features.createUser.*;
 
 class CreateAdminController implements HttpEndpointHandler {
   private final String[] roleNames = { "admin", "member" };
   private final String[] addedPermissionNames = {};
 
   private CreateUserService createUserService;
-  private Gson jsonConverter = new Gson();
+  private JSONProvider JSON = new JSONProviderGoogleAdapter();
 
   public CreateAdminController(CreateUserService service) {
     this.createUserService = service;
   }
 
   public void handle(HttpRequest request, HttpResponse response) {
-    RequestBody requestBody = this.jsonConverter.fromJson(request.getBody(), RequestBody.class);
+    RequestBody requestBody = this.JSON.deserialize(request.getBody(), RequestBody.class);
 
     UserCreationRequest creationRequest = new UserCreationRequest();
 
