@@ -21,7 +21,7 @@ class DeletePostController implements HttpEndpointHandler {
 
     deletionRequest.postId = postId;
     deletionRequest.authenticatedUserId = authenticatedUserId;
-    deletionRequest.isModerator = authenticatedUserRoles.contains("admin");
+    deletionRequest.isAuthoritative = authenticatedUserRoles.contains("admin");
 
     this.deletePostService.execute(deletionRequest);
 

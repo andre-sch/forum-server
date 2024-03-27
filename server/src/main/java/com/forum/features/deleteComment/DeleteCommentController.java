@@ -21,7 +21,7 @@ class DeleteCommentController implements HttpEndpointHandler {
 
     deletionRequest.commentId = commentId;
     deletionRequest.authenticatedUserId = authenticatedUserId;
-    deletionRequest.isModerator = authenticatedUserRoles.contains("admin");
+    deletionRequest.isAuthoritative = authenticatedUserRoles.contains("admin");
 
     this.deleteCommentService.execute(deletionRequest);
 

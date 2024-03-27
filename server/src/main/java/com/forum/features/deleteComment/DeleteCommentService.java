@@ -20,12 +20,8 @@ class DeleteCommentService {
       throw new RequestException("comment does not exist");
     }
 
-    if (
-      !Objects.equals(
-        comment.getAuthorId(),
-        deletionRequest.authenticatedUserId
-      ) && !deletionRequest.isModerator
-    ) {
+    boolean isCommentOwner = Objects.equals(comment.getAuthorId(), deletionRequest.authenticatedUserId);
+    if (!isCommentOwner && !deletionRequest.isAuthoritative) {
       throw new RestrictedAccessException("cannot delete third-party comments");
     }
 

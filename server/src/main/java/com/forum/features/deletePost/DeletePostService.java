@@ -20,12 +20,8 @@ class DeletePostService {
       throw new RequestException("post does not exist");
     }
 
-    if (
-      !Objects.equals(
-        post.getAuthorId(),
-        deletionRequest.authenticatedUserId
-      ) && !deletionRequest.isModerator
-    ) {
+    boolean isPostOwner = Objects.equals(post.getAuthorId(), deletionRequest.authenticatedUserId);
+    if (!isPostOwner && !deletionRequest.isAuthoritative) {
       throw new RestrictedAccessException("cannot delete third-party posts");
     }
 

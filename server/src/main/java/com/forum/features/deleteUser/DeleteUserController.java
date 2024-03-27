@@ -19,9 +19,9 @@ class DeleteUserController implements HttpEndpointHandler {
 
     UserDeletionRequest deletionRequest = new UserDeletionRequest();
 
-    deletionRequest.authenticatedUserId = authenticatedUserId;
     deletionRequest.deletedUserId = deletedUserId;
-    deletionRequest.isModerator = authenticatedUserRoles.contains("admin");
+    deletionRequest.authenticatedUserId = authenticatedUserId;
+    deletionRequest.isAuthoritative = authenticatedUserRoles.contains("admin");
 
     this.deleteUserService.execute(deletionRequest);
 

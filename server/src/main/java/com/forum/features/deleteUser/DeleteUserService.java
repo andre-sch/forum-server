@@ -20,12 +20,8 @@ class DeleteUserService {
       throw new RequestException("user does not exist");
     }
 
-    if (
-      !Objects.equals(
-        user.getId(),
-        deletionRequest.authenticatedUserId
-      ) && !deletionRequest.isModerator
-    ) {
+    boolean isAccountOwner = Objects.equals(user.getId(), deletionRequest.authenticatedUserId);
+    if (!isAccountOwner && !deletionRequest.isAuthoritative) {
       throw new RestrictedAccessException("cannot delete third-party account");
     }
 
