@@ -15,8 +15,6 @@ public class Contribution {
   @JoinColumn(name = "author_id")
   private User author;
 
-  private String content;
-
   @OneToMany(mappedBy = "contribution", fetch = FetchType.EAGER)
   private Set<Ranking> rankings;
 
@@ -34,7 +32,6 @@ public class Contribution {
   public String getId() { return this.id; }
   public String getAuthorId() { return this.author != null ? this.author.getId() : ""; }
   public String getAuthorName() { return this.author != null ? this.author.getName() : ""; }
-  public String getContent() { return this.content; }
   public User getAuthor() { return this.author; }
   public List<String> getUpVotes() { return this.getVotes("upvote"); }
   public List<String> getDownVotes() { return this.getVotes("downvote"); }
@@ -50,11 +47,6 @@ public class Contribution {
   public void setAuthor(User author) {
     this.setLastUpdate();
     this.author = author;
-  }
-
-  public void setContent(String content) {
-    this.setLastUpdate();
-    this.content = content;
   }
 
   protected void setLastUpdate() { this.lastUpdate = Time.now(); }

@@ -7,6 +7,7 @@ import jakarta.persistence.*;
 @Table(name = "posts")
 public class Post extends Contribution {
   private String title;
+  private String content;
 
   @ManyToMany(fetch = FetchType.EAGER)
   @JoinTable(
@@ -19,6 +20,7 @@ public class Post extends Contribution {
   public Post() {}
 
   public String getTitle() { return this.title; }
+  public String getContent() { return this.content; }
   public Set<Category> getCategories() { return this.categories; }
   public Set<String> getCategoryNames() {
     Set<String> categoryNames = new HashSet<>();
@@ -29,6 +31,11 @@ public class Post extends Contribution {
   public void setTitle(String title) {
     this.setLastUpdate();
     this.title = title;
+  }
+
+  public void setContent(String content) {
+    this.setLastUpdate();
+    this.content = content;
   }
 
   public void setCategories(Set<Category> categories) {

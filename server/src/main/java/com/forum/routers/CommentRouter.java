@@ -7,7 +7,7 @@ import com.forum.repositories.*;
 
 import com.forum.features.createComment.*;
 import com.forum.features.updateComment.*;
-import com.forum.features.deleteContribution.*;
+import com.forum.features.deleteComment.*;
 
 public class CommentRouter implements Router {
   private HttpApp app;
@@ -32,8 +32,8 @@ public class CommentRouter implements Router {
       "update-contribution"
     ));
 
-    this.app.delete("/comments/{contributionId}", restrictedEndpoint.create(
-      new DeleteContribution(contributionsRepository).handler,
+    this.app.delete("/comments/{commentId}", restrictedEndpoint.create(
+      new DeleteComment(commentsRepository).handler,
       "delete-contribution"
     ));
   }

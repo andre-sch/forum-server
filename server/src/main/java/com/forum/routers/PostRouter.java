@@ -9,16 +9,15 @@ import com.forum.features.listPosts.*;
 import com.forum.features.listThread.*;
 import com.forum.features.createPost.*;
 import com.forum.features.updatePost.*;
-import com.forum.features.deleteContribution.*;
+import com.forum.features.deletePost.*;
 
 public class PostRouter implements Router {
   private HttpApp app;
   private RestrictedEndpointFactory restrictedEndpoint = new RestrictedEndpointFactory();
 
   private UsersRepository usersRepository = Repositories.getUsersRepository();
-  private ContributionsRepository contributionsRepository = Repositories.getContributionsRepository();
-  private CommentsRepository commentsRepository = Repositories.getCommentsRepository();
   private PostsRepository postsRepository = Repositories.getPostsRepository();
+  private CommentsRepository commentsRepository = Repositories.getCommentsRepository();
   private CategoriesRepository categoriesRepository = Repositories.getCategoriesRepository();
 
   public PostRouter(HttpApp app) {
@@ -39,8 +38,8 @@ public class PostRouter implements Router {
       "update-contribution"
     ));
 
-    app.delete("/posts/{contributionId}", restrictedEndpoint.create(
-      new DeleteContribution(contributionsRepository).handler,
+    app.delete("/posts/{postId}", restrictedEndpoint.create(
+      new DeletePost(postsRepository).handler,
       "delete-contribution"
     ));
   }
