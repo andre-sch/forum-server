@@ -12,18 +12,13 @@ import com.auth0.jwt.JWTCreator.Builder;
 import com.auth0.jwt.algorithms.Algorithm;
 import com.auth0.jwt.exceptions.JWTVerificationException;
 import com.auth0.jwt.interfaces.DecodedJWT;
-import io.github.cdimascio.dotenv.Dotenv;
 
 public class JWTProviderAuth0Adapter implements JWTProvider {
+  // must be replaced by external config on production
+  private final String secret = "token_generation_secret";
   private final String issuer = "forum.com";
-  private Algorithm algorithm;
 
-  public JWTProviderAuth0Adapter() {
-    Dotenv environment = Dotenv.load();
-    String secret = environment.get("TOKEN_GENERATION_SECRET");
-
-    this.algorithm = Algorithm.HMAC256(secret);
-  }
+  private Algorithm algorithm = Algorithm.HMAC256(this.secret);
 
   public String generate(User user) {
     Builder jwtBuilder = JWT.create();

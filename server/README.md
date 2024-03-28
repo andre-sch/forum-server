@@ -7,11 +7,6 @@
 - Connect to MySQL database
 - Install Maven CLI
 
-### Environment Variables
-
-- Replace `.env.example` in `main/java/` by `.env`.
-- Set a JWT generation secret.
-
 ### ORM with Hibernate
 
 - Using JPA standard, you must replace `persistence.example.xml` in `resources/META-INF/`
