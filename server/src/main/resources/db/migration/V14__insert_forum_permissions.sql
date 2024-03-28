@@ -16,4 +16,5 @@ values
   ("create-contribution", "create a contribution"),
   ("update-contribution", "update a contribution"),
   ("delete-contribution", "delete a contribution - author is detached and content removed"),
+  ("moderate-contribution", "moderate third-party contributions"),
   ("rank-contribution", "rank a contribution");

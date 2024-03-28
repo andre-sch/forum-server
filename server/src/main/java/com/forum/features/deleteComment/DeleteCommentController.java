@@ -12,7 +12,7 @@ class DeleteCommentController implements HttpEndpointHandler {
 
   public void handle(HttpRequest request, HttpResponse response) {
     @SuppressWarnings("unchecked")
-    Set<String> authenticatedUserRoles = (Set<String>) request.getSessionAttribute("userRoles");
+    Set<String> authenticatedUserPermissions = (Set<String>) request.getSessionAttribute("userPermissions");
     String authenticatedUserId = (String) request.getSessionAttribute("userId");
 
     String commentId = request.getPathParam("commentId");
@@ -21,7 +21,7 @@ class DeleteCommentController implements HttpEndpointHandler {
 
     deletionRequest.commentId = commentId;
     deletionRequest.authenticatedUserId = authenticatedUserId;
-    deletionRequest.isAuthoritative = authenticatedUserRoles.contains("admin");
+    deletionRequest.isAuthoritative = authenticatedUserPermissions.contains("moderate-contribution");
 
     this.deleteCommentService.execute(deletionRequest);
 

@@ -12,7 +12,7 @@ class DeletePostController implements HttpEndpointHandler {
 
   public void handle(HttpRequest request, HttpResponse response) {
     @SuppressWarnings("unchecked")
-    Set<String> authenticatedUserRoles = (Set<String>) request.getSessionAttribute("userRoles");
+    Set<String> authenticatedUserPermissions = (Set<String>) request.getSessionAttribute("userPermissions");
     String authenticatedUserId = (String) request.getSessionAttribute("userId");
 
     String postId = request.getPathParam("postId");
@@ -21,7 +21,7 @@ class DeletePostController implements HttpEndpointHandler {
 
     deletionRequest.postId = postId;
     deletionRequest.authenticatedUserId = authenticatedUserId;
-    deletionRequest.isAuthoritative = authenticatedUserRoles.contains("admin");
+    deletionRequest.isAuthoritative = authenticatedUserPermissions.contains("moderate-contribution");
 
     this.deletePostService.execute(deletionRequest);
 

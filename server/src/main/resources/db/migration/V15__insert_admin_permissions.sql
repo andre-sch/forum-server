@@ -8,6 +8,7 @@ values
   ("admin", "create-role"),
   ("admin", "delete-role"),
   ("admin", "create-admin"),
+  ("admin", "moderate-contribution"),
   ("admin", "create-category"),
   ("admin", "update-category"),
   ("admin", "delete-category");
