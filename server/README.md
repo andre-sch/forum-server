@@ -30,7 +30,7 @@
 | Endpoint                               | Required roles |
 | -------------------------------------- | -------------- |
 | Users                                  |                |
-| `GET /users`                           |                |
+| `GET /users`                           | `admin`        |
 | `POST /members`                        |                |
 | `POST /admins`                         | `admin`        |
 | `POST /login`                          |                |

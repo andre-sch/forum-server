@@ -8,6 +8,7 @@ values
   ("create-role", "create a role"),
   ("delete-role", "delete a role"),
   ("update-user", "update an user"),
+  ("list-users", "list all users"),
   ("delete-user", "delete an user - contributions are detached and rankings removed"),
   ("create-admin", "create an administrator"),
   ("create-category", "create a category"),

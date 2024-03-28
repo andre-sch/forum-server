@@ -25,7 +25,10 @@ public class UserRouter implements Router {
   }
 
   public void bindEndpoints() {
-    app.get("/users", new ListUsers(usersRepository).handler);
+    app.get("/users", restrictedEndpoint.create(
+      new ListUsers(usersRepository).handler,
+      "list-users"
+    ));
 
     app.post("/members", new CreateMember(usersRepository, rolesRepository, permissionsRepository).handler);
     app.post("/admins",  restrictedEndpoint.create(
