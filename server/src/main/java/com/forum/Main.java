@@ -20,5 +20,7 @@ public class Main {
     new CategoryRouter(app).bindEndpoints();
 
     app.use("*", new UnavailableResource());
+
+    new Management().insertSystemAdmin();
   }
 }

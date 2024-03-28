@@ -16,7 +16,6 @@
 
 - Replace `flyway.example.conf` in root using the same process listed in the previous section.
 - To get the current state of the database, run `mvn flyway:migrate` on terminal in `server` directory.
-- Insert the first administrator manually, by creating a `member` account and associating it with the `admin` role.
 
 ## Endpoints
 
