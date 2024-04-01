@@ -11,6 +11,8 @@ public class Main {
 
     app.addExceptionHandler(new HttpExceptionHandlerImpl());
 
+    app.get("/", new ServerHealthCheck());
+
     new PermissionRouter(app).bindEndpoints();
     new RoleRouter(app).bindEndpoints();
     new UserRouter(app).bindEndpoints();
