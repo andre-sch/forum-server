@@ -1,11 +1,9 @@
 package com.forum.exceptions.http;
 
-public class HttpException {
-  public int status;
-  public String type;
-  public String message;
+import com.forum.http.HttpFeedback;
 
+public class HttpException extends HttpFeedback {
   public HttpException(String message) {
-    this.message = message;
+    super(message);
   }
 }

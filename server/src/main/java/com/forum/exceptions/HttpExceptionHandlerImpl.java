@@ -12,7 +12,7 @@ public class HttpExceptionHandlerImpl implements HttpExceptionHandler {
     Exception domainException
   ) {
     HttpException httpException = this.exceptionMapper.map(domainException);
-    response.status(httpException.status);
+    response.status(httpException.code);
     response.json(httpException);
   }
 }
