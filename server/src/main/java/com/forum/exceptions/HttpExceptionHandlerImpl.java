@@ -1,7 +1,6 @@
 package com.forum.exceptions;
 
 import com.forum.http.*;
-import com.forum.exceptions.http.*;
 
 public class HttpExceptionHandlerImpl implements HttpExceptionHandler {
   ExceptionMapper exceptionMapper = new ExceptionMapper();
@@ -11,7 +10,7 @@ public class HttpExceptionHandlerImpl implements HttpExceptionHandler {
     HttpResponse response,
     Exception domainException
   ) {
-    HttpException httpException = this.exceptionMapper.map(domainException);
+    var httpException = this.exceptionMapper.map(domainException);
     response.status(httpException.code);
     response.json(httpException);
   }

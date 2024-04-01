@@ -2,7 +2,7 @@ package com.forum.exceptions;
 
 import java.util.*;
 import com.forum.exceptions.domain.*;
-import com.forum.exceptions.http.*;
+import com.forum.http.feedback.*;
 
 class ExceptionMapper {
   private Map<String, String> exceptionMapper = new HashMap<>();
@@ -14,7 +14,7 @@ class ExceptionMapper {
     this.exceptionMapper.put(RestrictedAccessException.class.getName(), Forbidden.class.getName());
   }
 
-  public HttpException map(Exception domainException) {
+  public HttpFeedback map(Exception domainException) {
     String errorMessage = domainException.getMessage();
 
     String domainExceptionClassName = domainException.getClass().getName();
@@ -23,7 +23,7 @@ class ExceptionMapper {
     try {
       var httpExceptionClass = Class.forName(httpExceptionClassName);
       var httpExceptionConstructor = httpExceptionClass.getDeclaredConstructor(String.class);
-      return (HttpException) httpExceptionConstructor.newInstance(errorMessage);
+      return (HttpFeedback) httpExceptionConstructor.newInstance(errorMessage);
     } catch (Exception exception) {
       domainException.printStackTrace();
       return new InternalServerError(errorMessage);
