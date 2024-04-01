@@ -27,7 +27,6 @@ class UpdateUserController implements HttpEndpointHandler {
     updateRequest.name = requestBody.name;
     updateRequest.email = requestBody.email;
     updateRequest.password = requestBody.password;
-    updateRequest.avatarUrl = requestBody.avatarUrl;
 
     User updatedUser = this.updateUserService.execute(updateRequest);
     CompleteUserView updatedUserView = new CompleteUserView(updatedUser);
@@ -39,6 +38,5 @@ class UpdateUserController implements HttpEndpointHandler {
     public String name;
     public String email;
     public String password;
-    public String avatarUrl;
   }
 }

@@ -40,7 +40,6 @@ public class CreateUserService {
     user.setName(creationRequest.name);
     user.setEmail(creationRequest.email);
     user.setPassword(passwordHash);
-    user.setAvatarUrl(creationRequest.avatarUrl);
     user.setRoles(roles);
     user.addPermissions(addedPermissions);
 

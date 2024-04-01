@@ -43,10 +43,6 @@ class UpdateUserService {
       user.setPassword(updateRequest.password);
     }
 
-    if (updateRequest.avatarUrl != null) {
-      user.setAvatarUrl(updateRequest.avatarUrl);
-    }
-
     this.usersRepository.update(user);
 
     return user;

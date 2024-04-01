@@ -26,7 +26,6 @@ class CreateMemberController implements HttpEndpointHandler {
     creationRequest.name = requestBody.name;
     creationRequest.email = requestBody.email;
     creationRequest.password = requestBody.password;
-    creationRequest.avatarUrl = requestBody.avatarUrl;
     creationRequest.roleNames = this.roleNames;
     creationRequest.addedPermissionNames = this.addedPermissionNames;
 
@@ -41,6 +40,5 @@ class CreateMemberController implements HttpEndpointHandler {
     public String name;
     public String email;
     public String password;
-    public String avatarUrl;
   }
 }

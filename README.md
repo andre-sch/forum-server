@@ -6,7 +6,7 @@ The system provides an environment for discussion threads between community memb
 
 ## Requirements
 
-1. A user must contain: id, name, email, password, image and date of creation
+1. A user must contain: id, name, email, password and date of creation
 
    - Id and email must be unique
    - Password must be encrypted
