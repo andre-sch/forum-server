@@ -52,8 +52,8 @@ Como base nesta interface, implementa-se uma conexão com mapeamento objeto-rela
 ### Configuração
 
 - Informe os dados da conexão MySQL – _url_, _user_ e _password_ – na unidade
-  de persistência `META-INF/persistence.xml` e no versionamento do banco
-  `forum/flyway.conf`, substituindo os respectivos arquivos `.example`
+  de persistência `META-INF/` `persistence.xml` e no versionamento do banco
+  `forum/flyway.conf`, substituindo os arquivos `.example`
 
 ### Execução
 
