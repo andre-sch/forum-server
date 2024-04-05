@@ -1,83 +1,76 @@
-# Forum Server
+# Forum-server
 
-## Configuração
+- Confira a [documentação da API](https://andre-sch.notion.site/Forum-Server-API-6d8c15c6681e45ecb77f13a79bf458cb)
+- Acesse o [deploy do servidor](https://forum-deploy.onrender.com/)
 
-### Pré-requisitos
+## Conceitos
 
-- Inicie uma conexão com o MySQL
-- Instale o Maven CLI
+O Forum providencia um ambiente para discussões entre membros de uma comunidade.  
+A comunicação acontece por meio de postagens e comentários.
 
-### ORM com Hibernate
+- Postagens podem ser agrupadas por categorias.
+- Comentários formam uma estrutura hierárquica e recursiva.
 
-- Defina a configuração do JPA ao substituir `persistence.example.xml` por `persistence.xml` em `resources/META-INF/`
-  e alterar as propriedades da conexão – _url_, _user_ e _password_.
+Ambas podem ainda ser ranqueadas por membros.  
+O voto é positivo ou negativo, exclusivamente.
 
-### Migrations com Flyway
+O sistema controla a autenticação e autorização de usuários.
 
-- Substitua `flyway.example.conf` por `flyway.conf` na raiz do projeto preenchendo os mesmos dados da conexão.
-- Execute `mvn flyway:migrate` com o terminal no diretório `server/`, para obter o estado atual do banco de dados.
+## Arquitetura
 
-## Estrutura
-
-O servidor está organizado da seguinte forma:
+O sistema é baseado no modelo proposto por Robert C. Martin, conhecido como _Clean Architecture_.  
+Segundo este paradigma, organiza-se o servidor da seguinte forma:
 
 ```text
 forum/
-├─── endpoints/
 ├─── entities/
-├─── exceptions/
 ├─── features/
-├─── http/
+│    ├─── createPost/
+│    │    ├─── CreatePost.java
+│    │    ├─── CreatePostController.java
+│    │    └─── CreatePostService.java
+│    ...
 ├─── repositories/
-├─── security/
-├─── utils/
-├─── views/
-└─── Main.java
+├─── Main.java
+...
 ```
 
-O núcleo do projeto é composto por entidades - `entities/` e funcionalidades - `features/`.
-Cada funcionalidade do sistema é modularizada em um pacote, onde há casos de uso e controladores,
-além de interfaces e injeções de dependência.
+O núcleo do projeto é composto por entidades – `entities/` e funcionalidades – `features/`.  
+Cada funcionalidade abrange serviços, controladores e injeções de dependência.
 
-O acesso ao banco de dados é intermediada por repositórios - `repositories/`,
-interfaces que abstraem uma unidade de persistência. A partir delas, implementa-se
-uma conexão com o MySQL pelo uso do Hibernate como ORM.
+O domínio do sistema é isolado do meio externo com o uso de interfaces e adaptadores.  
+E.g. a unidade de persistência é acessada por intermédio de repositórios – `repositories/`.  
+Como base nesta interface, implementa-se uma conexão com mapeamento objeto-relacional (ORM).
 
-## Endpoints
+## Ambiente de Desenvolvimento
 
-> Em rotas restritas, o cliente deve fornecer um token de autenticação.
+### Pré-requisitos
 
-| Endpoint                               | Required roles |
-| -------------------------------------- | -------------- |
-| Users                                  |                |
-| `GET /users`                           | `admin`        |
-| `POST /members`                        |                |
-| `POST /admins`                         | `admin`        |
-| `POST /login`                          |                |
-| `PUT /users/:userId`                   | `member`       |
-| `DELETE /users/:userId`                | `member`       |
-| Categories                             |                |
-| `GET /categories`                      |                |
-| `POST /categories`                     | `admin`        |
-| `PUT /categories/:categoryName`        | `admin`        |
-| `DELETE /categories/:categoryName`     | `admin`        |
-| Posts                                  |                |
-| `GET /posts`                           |                |
-| `GET /posts/:postId`                   |                |
-| `POST /posts`                          | `member`       |
-| `PUT /posts/:postId`                   | `member`       |
-| `DELETE /posts/:postId`                | `member`       |
-| Comments                               |                |
-| `POST /comments`                       | `member`       |
-| `PUT /comments/:commentId`             | `member`       |
-| `DELETE /comments/:commentId`          | `member`       |
-| Rankings                               |                |
-| `PUT /ranking/:contributionId/:action` | `member`       |
-| Permissions                            |                |
-| `GET /permissions`                     | `admin`        |
-| `POST /permissions`                    | `admin`        |
-| `DELETE /permissions/:permissionName`  | `admin`        |
-| Roles                                  |                |
-| `GET /roles`                           | `admin`        |
-| `POST /roles`                          | `admin`        |
-| `DELETE /roles/:roleName`              | `admin`        |
+- Estabeleça uma conexão MySQL
+- Instale Maven e Java Development Kit 17
+
+### Configuração
+
+- Informe os dados da conexão MySQL – _url_, _user_ e _password_ – na unidade
+  de persistência `META-INF/persistence.xml` e no versionamento do banco
+  `forum/flyway.conf`, substituindo os respectivos arquivos `.example`
+
+### Execução
+
+1. Atualize o estado do banco
+
+   ```bash
+   mvn flyway:migrate
+   ```
+
+2. Compile com o plugin `maven-assembly`
+
+   ```bash
+   mvn compile assembly:single
+   ```
+
+3. Execute o pacote
+
+   ```bash
+   java -jar target/server-1.0-jar-with-dependencies.jar
+   ```
